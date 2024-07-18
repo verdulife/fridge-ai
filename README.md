@@ -1,38 +1,43 @@
-# create-svelte
+# Fridge AI 🍽
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This is a demo app for the Vercel AI SDK Hackathon, powered by Midudev.
 
-## Creating a project
+## Description
 
-If you're seeing this, you've probably already done this step. Congrats!
+Get your digital fridge powered by AI. This app allows you to know your food preferences and balance your meals. Store everything in your fridge and let the AI do the rest.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## Features
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- Store your food preferences in local storage
+- Generate a nutritionally balanced weekly meal
+- Get alternative recipes for your favorite dishes
+- Generate a shopping list for your weekly meal:
+  - Get a list of ingredients
+  - Calcule the use of ingredients each day
+  - Notify you when you are low on ingredients
+  - Reorder daily meals if you are low on ingredients to keep meal balance
 
-## Developing
+## Tech stack
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- SvelteKit
+- Vercel AI SDK
+- Cohere
+- Tailwind
+- TypeScript
 
-```bash
-npm run dev
+---
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+### To do
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [x] Add all dependencies
+- [ ] Generate pages and navigation
+  - [ ] Home
+  - [ ] Meals
+  - [ ] Shopping list
+  - [ ] Settings
+- [ ] Base UI
+- [ ] Prepare schemas and local storage
+- [ ] Guided init to store preferences with AI
+- [ ] Prompt engineering
+- [ ] Prompt to json
+- [ ] Prompt fine tuning
