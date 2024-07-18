@@ -25,6 +25,10 @@ Get your digital fridge powered by AI. This app allows you to know your food pre
 - Tailwind
 - TypeScript
 
+## Design prototype
+
+[View in Figma](https://www.figma.com/design/SYq4uQTkuRnJQl2cuccejy/Untitled?node-id=0-1&t=LO49p6sCoPetMl4e-1)
+
 ---
 
 ### To do
@@ -41,3 +45,4 @@ Get your digital fridge powered by AI. This app allows you to know your food pre
 - [ ] Prompt engineering
 - [ ] Prompt to json
 - [ ] Prompt fine tuning
+- [ ] Webapp landing page

@@ -1,17 +1,24 @@
 <script>
 	import '@/app.css';
+	import Header from '@/components/Header.svelte';
+	import { title, description, url } from '@/lib/metadata';
 </script>
 
 <svelte:head>
-	<title>Fridge AI 🍽️</title>
+	<title>{title}</title>
+	<meta name="apple-mobile-web-app-title" content={title} />
+	<meta property="og:url" content={url} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta name="twitter:title" content={title} />
+	<meta name="twitter:description" content={description} />
+	<meta name="twitter:image:alt" content={title} />
 </svelte:head>
 
-<main class="flex h-screen flex-col items-center overflow-x-hidden bg-neutral-950 text-neutral-300">
-	<header class="flex w-full justify-center border-b border-neutral-800 p-4 text-center">
-		<h1 class="text-xl font-bold">Fridge AI 🍽️</h1>
-	</header>
+<main class="min-h-screen bg-[radial-gradient(transparent,#171717_70%)]">
+	<Header />
 
-	<div class="flex w-full flex-1 flex-col items-center justify-center p-4">
+	<div class="flex flex-col items-center justify-center">
 		<slot />
 	</div>
 </main>
