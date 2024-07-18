@@ -15,10 +15,12 @@
 	<meta name="twitter:image:alt" content={title} />
 </svelte:head>
 
-<main class="min-h-screen bg-[radial-gradient(transparent,#171717_70%)]">
+<main
+	class="mx-auto flex h-screen max-w-4xl flex-col items-center justify-center border-x border-neutral-800 bg-neutral-950"
+>
 	<Header />
 
-	<div class="flex flex-col items-center justify-center">
+	<div class="flex h-full flex-col items-center justify-center">
 		<slot />
 	</div>
 </main>
