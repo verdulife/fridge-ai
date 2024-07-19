@@ -1,7 +1,3 @@
-<script>
-	import Tour from '@/components/tour/Tour.svelte';
-</script>
-
 <section class="size-full">
-	<Tour />
+	<h1>Home</h1>
 </section>

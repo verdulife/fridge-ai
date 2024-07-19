@@ -21,5 +21,5 @@
 		</Text>
 	</div>
 
-	<Button class="w-1/2 md:w-1/5" brand {nextTour}>EMPEZAR</Button>
+	<Button class="w-1/2 md:w-1/5" brand click={nextTour}>EMPEZAR</Button>
 </article>

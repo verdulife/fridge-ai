@@ -37,5 +37,5 @@
 		</div>
 	</div>
 
-	<Button class="w-1/2 md:w-1/5" {nextTour}>SIGUIENTE</Button>
+	<Button class="w-1/2 md:w-1/5" click={nextTour}>SIGUIENTE</Button>
 </article>

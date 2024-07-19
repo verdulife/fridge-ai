@@ -4,6 +4,7 @@
 	import DislikeTour from '@/components/tour/DislikeTour.svelte';
 	import AllergensTour from '@/components/tour/AllergensTour.svelte';
 	import UserTour from '@/components/tour/UserTour.svelte';
+	import EndTour from '@/components/tour/EndTour.svelte';
 
 	function nextTour(ev: Event) {
 		const target = ev.currentTarget as EventTarget & {
@@ -36,6 +37,16 @@
 	</li>
 
 	<li class="flex size-full shrink-0 snap-center p-8">
-		<UserTour {nextTour}></UserTour>
+		<UserTour></UserTour>
+	</li>
+
+	<li class="flex size-full shrink-0 snap-center p-8">
+		<EndTour></EndTour>
 	</li>
 </ul>
+
+<style>
+	ul {
+		scrollbar-width: none;
+	}
+</style>

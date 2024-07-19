@@ -8,9 +8,9 @@
 	import Minus from '@/assets/Minus.svelte';
 	import Radio from '../ui/Radio.svelte';
 
+	import { goto } from '$app/navigation';
 	import { exercise } from '@/lib/exercise';
 
-	export let nextTour;
 	let exerciseSelection = {
 		none: false,
 		bit: false,
@@ -18,6 +18,10 @@
 		constant: false,
 		full: false
 	};
+
+	function endTour() {
+		goto('/tour/end');
+	}
 </script>
 
 <article class="flex size-full flex-col items-center justify-center gap-12">
@@ -48,5 +52,5 @@
 		</div>
 	</div>
 
-	<Button class="w-1/2 md:w-1/5" {nextTour}>SIGUIENTE</Button>
+	<Button class="w-1/2 md:w-1/5" click={endTour}>SIGUIENTE</Button>
 </article>

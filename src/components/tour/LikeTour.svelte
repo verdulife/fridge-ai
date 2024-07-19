@@ -18,5 +18,5 @@
 		<Input placeholder="4er ingrediente o plato" />
 	</div>
 
-	<Button class="w-1/2 md:w-1/5" {nextTour}>SIGUIENTE</Button>
+	<Button class="w-1/2 md:w-1/5" click={nextTour}>SIGUIENTE</Button>
 </article>
