@@ -1,7 +1,7 @@
 <script>
-	import Tour from '@/components/Tour.svelte';
+	import Tour from '@/components/tour/Tour.svelte';
 </script>
 
-<section class="size-full p-4">
+<section class="size-full">
 	<Tour />
 </section>

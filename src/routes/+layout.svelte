@@ -20,7 +20,7 @@
 >
 	<Header />
 
-	<div class="flex h-full flex-col items-center justify-center">
+	<div class="flex size-full flex-col items-center justify-center">
 		<slot />
 	</div>
 </main>
