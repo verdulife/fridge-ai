@@ -7,7 +7,7 @@
 </script>
 
 <article class="flex size-full flex-col items-center justify-center gap-12">
-	<div class="flex flex-col items-center justify-center gap-4 text-center w-full">
+	<div class="flex w-full max-w-md flex-col items-center justify-center gap-4 text-center">
 		<Heading as="h1">hola, soy tu nevera digital inteligente</Heading>
 
 		<Text>

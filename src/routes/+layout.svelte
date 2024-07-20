@@ -16,11 +16,11 @@
 </svelte:head>
 
 <main
-	class="mx-auto flex h-screen max-w-4xl flex-col items-center justify-center border-x border-neutral-800 bg-neutral-950"
+	class="mx-auto flex min-h-screen max-w-4xl flex-col items-center justify-center border-x border-neutral-800 bg-neutral-950"
 >
 	<Header />
 
-	<div class="flex size-full flex-col items-center justify-center">
+	<div class="flex size-full flex-col items-center">
 		<slot />
 	</div>
 </main>

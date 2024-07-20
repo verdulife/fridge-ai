@@ -1,12 +1,14 @@
 <script>
 	import Heading from '@/components/ui/Heading.svelte';
 	import Text from '@/components/ui/Text.svelte';
+
+	export let message;
 </script>
 
-<article class="flex size-full flex-col items-center justify-center gap-12">
+<article class="flex size-full flex-col items-center justify-center">
 	<div class="flex w-full flex-col items-center justify-center gap-4 text-center">
 		<Heading as="h1">Eso es todo</Heading>
 
-		<Text>Preparando tu menú y lista de la compra, un momento...</Text>
+		<Text>{message}</Text>
 	</div>
 </article>
