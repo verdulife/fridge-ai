@@ -11,20 +11,20 @@
 	$: requiredDislike = $UserPreferences.dislike.length === MINIMUM_LIKE_OR_DISLIKE;
 </script>
 
-<article class="flex size-full flex-col items-center justify-center gap-12">
-	<div class="flex flex-col max-w-md justify-center gap-4">
+<article class="flex w-full max-w-sm flex-col items-center justify-center gap-12">
+	<div class="flex flex-col justify-center gap-4">
 		<Heading>
-			Dime 4 platos o ingredientes que <span class="text-vista-300">detestes</span>
+			Ingredientes que <span class="text-vista-300">detestes</span>
 		</Heading>
 		<Text>Más adelante podrás ampliar esta lista</Text>
 
-		<Input bind:value={$UserPreferences.dislike[0]} placeholder="1er ingrediente o plato" />
-		<Input bind:value={$UserPreferences.dislike[1]} placeholder="2er ingrediente o plato" />
-		<Input bind:value={$UserPreferences.dislike[2]} placeholder="3er ingrediente o plato" />
-		<Input bind:value={$UserPreferences.dislike[3]} placeholder="4er ingrediente o plato" />
+		<Input bind:value={$UserPreferences.dislike[0]} placeholder="Primer ingrediente" />
+		<Input bind:value={$UserPreferences.dislike[1]} placeholder="Segundo ingrediente" />
+		<Input bind:value={$UserPreferences.dislike[2]} placeholder="Tercer ingrediente" />
+		<Input bind:value={$UserPreferences.dislike[3]} placeholder="Cuarto ingrediente" />
 	</div>
 
 	{#if requiredDislike}
-		<Button class="w-1/2 md:w-1/5" click={nextTour}>SIGUIENTE</Button>
+		<Button class="w-2/3 border border-neutral-200" click={nextTour}>SIGUIENTE</Button>
 	{/if}
 </article>

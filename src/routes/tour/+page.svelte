@@ -2,6 +2,6 @@
 	import Tour from '@/components/tour/Tour.svelte';
 </script>
 
-<section class="size-full">
+<section class="h-[calc(100vh-96px)] w-full">
 	<Tour />
 </section>

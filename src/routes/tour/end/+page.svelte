@@ -5,6 +5,7 @@
 	import { AWAITING_RESPONSES } from '@/lib/consts';
 
 	import EndTour from '@/components/tour/EndTour.svelte';
+
 	let message: string = AWAITING_RESPONSES[0];
 
 	function simulateProcessing() {
@@ -38,11 +39,10 @@
 
 	onMount(async () => {
 		simulateProcessing();
-		if ($Menus.length === 0) await generateMenus();
-		else goto('/tour');
+		await generateMenus();
 	});
 </script>
 
-<section class="size-full p-8">
+<section class="h-[calc(100vh-96px)] w-full p-8">
 	<EndTour {message} />
 </section>

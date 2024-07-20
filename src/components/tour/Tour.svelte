@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { UserPreferences } from '@/lib/stores';
-
 	import WelcomeTour from '@/components/tour/WelcomeTour.svelte';
 	import LikeTour from '@/components/tour/LikeTour.svelte';
 	import DislikeTour from '@/components/tour/DislikeTour.svelte';
 	import AllergensTour from '@/components/tour/AllergensTour.svelte';
+	import StatsTour from '@/components/tour/StatsTour.svelte';
 	import UserTour from '@/components/tour/UserTour.svelte';
 
 	function nextTour(ev: Event) {
@@ -20,24 +19,28 @@
 	}
 </script>
 
-<ul class="flex size-full snap-x snap-mandatory overflow-x-auto">
-	<li class="flex size-full shrink-0 snap-center p-8">
+<ul class="flex size-full snap-x snap-mandatory overflow-x-auto py-8">
+	<li class="flex w-full shrink-0 snap-center justify-center px-8">
 		<WelcomeTour {nextTour}></WelcomeTour>
 	</li>
 
-	<li class="flex size-full shrink-0 snap-center p-8">
+	<li class="flex w-full shrink-0 snap-center justify-center px-8">
 		<LikeTour {nextTour}></LikeTour>
 	</li>
 
-	<li class="flex size-full shrink-0 snap-center p-8">
+	<li class="flex w-full shrink-0 snap-center justify-center px-8">
 		<DislikeTour {nextTour}></DislikeTour>
 	</li>
 
-	<li class="flex size-full shrink-0 snap-center p-8">
+	<li class="flex w-full shrink-0 snap-center justify-center px-8">
 		<AllergensTour {nextTour}></AllergensTour>
 	</li>
 
-	<li class="flex size-full shrink-0 snap-center p-8">
+	<li class="flex w-full shrink-0 snap-center justify-center px-8">
+		<StatsTour {nextTour}></StatsTour>
+	</li>
+
+	<li class="flex w-full shrink-0 snap-center justify-center px-8">
 		<UserTour></UserTour>
 	</li>
 </ul>

@@ -7,7 +7,7 @@
 </script>
 
 <header
-	class={`sticky top-0 flex border-b border-neutral-800 bg-neutral-950 z-30 w-full p-8 text-center ${isTour ? 'justify-center' : 'justify-end'}`}
+	class={`fixed top-0 max-w-4xl z-30 flex h-24 w-full border-b border-x border-neutral-800 bg-neutral-950 p-8 text-center ${isTour ? 'justify-center' : 'justify-end'}`}
 >
 	<Logo class={isTour ? 'w-32' : 'w-24'} />
 </header>

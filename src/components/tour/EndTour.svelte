@@ -5,9 +5,9 @@
 	export let message;
 </script>
 
-<article class="flex size-full flex-col items-center justify-center">
+<article class="flex size-full max-w-sm flex-col items-center justify-center">
 	<div class="flex w-full flex-col items-center justify-center gap-4 text-center">
-		<Heading as="h1">Eso es todo</Heading>
+		<Heading as="h1">Un momento</Heading>
 
 		<Text>{message}</Text>
 	</div>

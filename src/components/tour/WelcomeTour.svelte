@@ -6,8 +6,8 @@
 	export let nextTour;
 </script>
 
-<article class="flex size-full flex-col items-center justify-center gap-12">
-	<div class="flex w-full max-w-md flex-col items-center justify-center gap-4 text-center">
+<article class="flex w-full max-w-sm flex-col items-center justify-center gap-12">
+	<div class="flex w-full flex-col items-center gap-4 text-center">
 		<Heading as="h1">hola, soy tu nevera digital inteligente</Heading>
 
 		<Text>
@@ -21,5 +21,5 @@
 		</Text>
 	</div>
 
-	<Button class="w-1/2 md:w-1/5" brand click={nextTour}>EMPEZAR</Button>
+	<Button class="w-2/3" brand click={nextTour}>EMPEZAR</Button>
 </article>

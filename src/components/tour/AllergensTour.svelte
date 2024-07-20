@@ -23,12 +23,13 @@
 		));
 </script>
 
-<article class="flex size-full flex-col items-center justify-center gap-12">
-	<div class="flex max-w-md flex-col justify-center gap-4">
+<article class="flex w-full max-w-md flex-col items-center justify-center gap-12">
+	<div class="flex flex-col justify-center gap-4">
 		<Heading
-			>Si tienes alguna <span class="text-vista-300">alergia</span> o
-			<span class="text-vista-300">intolerancia</span> márcalas aquí</Heading
-		>
+			>Tus <span class="text-vista-300">alergias</span>,
+			<span class="text-vista-300">intolerancias</span> o
+			<span class="text-vista-300">preferencias</span>
+		</Heading>
 
 		<div class="flex flex-wrap items-start justify-start gap-1">
 			{#each allergens_options as allergen}
@@ -39,5 +40,5 @@
 		</div>
 	</div>
 
-	<Button class="w-1/2 md:w-1/5" click={nextTour}>SIGUIENTE</Button>
+	<Button class="w-2/3 border border-neutral-200" click={nextTour}>SIGUIENTE</Button>
 </article>

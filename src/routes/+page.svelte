@@ -13,7 +13,7 @@
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === getCurrentDay().toLocaleLowerCase()
 	);
 
-	const todayMenu = $Menus[todayMenuIndex];
+	$: todayMenu = $Menus[todayMenuIndex];
 
 	async function generateIngridients(dish: string, menuType: string) {
 		const res = await fetch('/api/generate-ingridients', {
@@ -44,6 +44,6 @@
 
 <main class="flex w-full flex-col gap-8 py-8 lg:py-16">
 	<Today />
-	<TodaySlider {todayMenu} />
-	<ShoppingList {todayMenu} />
+	<TodaySlider bind:todayMenu />
+	<ShoppingList bind:todayMenu />
 </main>

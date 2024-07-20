@@ -11,7 +11,9 @@ const cohere = createCohere({
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
 	const { dish } = await request.json();
-	
+
+	console.log('START');
+
 	const { text } = await generateText({
 		model: cohere('command-r-plus'),
 		messages: [
@@ -32,6 +34,8 @@ export async function POST({ request }) {
 		presencePenalty: 0,
 		temperature: 0
 	});
+
+	console.log('END');
 
 	return json(text);
 }

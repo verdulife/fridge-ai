@@ -12,6 +12,8 @@ const cohere = createCohere({
 export async function POST({ request }) {
 	const { user_preferences } = await request.json();
 
+	console.log('START');
+
 	const { text } = await generateText({
 		model: cohere('command-r-plus'),
 		messages: [
@@ -25,6 +27,8 @@ export async function POST({ request }) {
 			}
 		],
 	});
+
+	console.log('END');
 
 	return json(text);
 }
