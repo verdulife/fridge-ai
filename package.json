@@ -37,6 +37,7 @@
 	"type": "module",
 	"dependencies": {
 		"@ai-sdk/cohere": "^0.0.5",
-		"ai": "^3.2.27"
+		"ai": "^3.2.27",
+		"zod": "^3.23.8"
 	}
 }

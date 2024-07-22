@@ -2,6 +2,9 @@ import type { UserPreferencesType } from '@/lib/types';
 
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
+import { getCurrentDay } from '@/lib/utils';
+
+export const CurrentDay = writable(getCurrentDay());
 
 const defaultUserPreferences: UserPreferencesType = {
   like: [],

@@ -97,6 +97,16 @@ export const exercise_options = [
   }
 ]
 
+export const WEEK_DAYS = [
+  "Lunes",
+  "Martes",
+  "Miércoles",
+  "Jueves",
+  "Viernes",
+  "Sábado",
+  "Domingo"
+];
+
 export const AWAITING_RESPONSES = [
   "Preparando menus...",
   "Buscando alimentos...",
@@ -109,4 +119,4 @@ export const AWAITING_RESPONSES = [
   "Descansando...",
   "Guardando resultados...",
   "Limpiando..."
-]
+];

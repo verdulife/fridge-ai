@@ -1,18 +1,12 @@
 <script lang="ts">
-	import type { DayType } from '@/lib/types';
-	import { Menus } from '@/lib/stores';
-	import { getCurrentDay } from '@/lib/utils';
-
 	import Text from '@/components/ui/Text.svelte';
 
-	$: todayMenu = $Menus.find(
-		(menu: DayType) => menu.week_day.toLocaleLowerCase() === getCurrentDay().toLocaleLowerCase()
-	);
+	export let data;
 
-	$: breakfastMenuItems = todayMenu?.breakfast[0].menu_items ?? [];
-	$: lunchMenuItems = todayMenu?.lunch[0].menu_items ?? [];
-	$: dinnerMenuItems = todayMenu?.dinner[0].menu_items ?? [];
-	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
+	$: breakfastMenuItems = data?.breakfast[0].menu_ingredients ?? [];
+	$: lunchMenuItems = data?.lunch[0].menu_ingredients ?? [];
+	$: dinnerMenuItems = data?.dinner[0].menu_ingredients ?? [];
+	$: allMenuItems = [...new Set([...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems])];
 </script>
 
 <section class="flex flex-col gap-4 px-8 lg:px-16">
@@ -23,7 +17,7 @@
 			{#each allMenuItems as menuItem}
 				<li class="flex w-full flex-col gap-2">
 					<article class="rounded-lg bg-neutral-900 p-4">
-						<Text>{menuItem.label} ({menuItem.amount})</Text>
+						<Text class="first-letter:uppercase">{menuItem}</Text>
 					</article>
 				</li>
 			{/each}

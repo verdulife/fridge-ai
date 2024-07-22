@@ -11,16 +11,10 @@ export interface UserPreferencesType {
   }
 };
 
-export interface MenuItemType {
-  label: string;
-  amount: number;
-  macronutrients: string[];
-  calories: number;
-}
-
 export interface MealType {
   menu_label: string;
-  menu_items: Array<MenuItemType>
+  menu_ingredients: Array<string>;
+  time_to_prepare: string;
 }
 
 export interface DayType {
