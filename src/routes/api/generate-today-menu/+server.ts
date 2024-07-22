@@ -9,6 +9,11 @@ const cohere = createCohere({
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
+<<<<<<< HEAD
+=======
+  console.log(request);
+
+>>>>>>> 90f9b0c6e20096c89f211ba8360d384aca8f1089
   const { user_preferences } = await request.json();
 
   console.log('START');
@@ -27,5 +32,12 @@ export async function POST({ request }) {
     ],
   });
 
+<<<<<<< HEAD
+=======
+  console.log(result);
+
+  console.log('END');
+
+>>>>>>> 90f9b0c6e20096c89f211ba8360d384aca8f1089
   return result.toAIStreamResponse();
 }
