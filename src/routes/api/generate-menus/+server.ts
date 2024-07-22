@@ -1,6 +1,5 @@
-import { json } from '@sveltejs/kit';
 import { createCohere } from '@ai-sdk/cohere';
-import { generateText } from 'ai';
+import { streamText } from 'ai';
 import { COHERE_API_KEY } from '$env/static/private';
 import { GENERATE_MENUS_PROMPT } from '@/lib/prompts';
 
@@ -14,7 +13,7 @@ export async function POST({ request }) {
 
 	console.log('START');
 
-	const { text } = await generateText({
+	const result = await streamText({
 		model: cohere('command-r-plus'),
 		messages: [
 			{
@@ -30,5 +29,5 @@ export async function POST({ request }) {
 
 	console.log('END');
 
-	return json(text);
+	return result.toAIStreamResponse();
 }

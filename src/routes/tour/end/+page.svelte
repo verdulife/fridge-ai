@@ -32,9 +32,12 @@
 		if (!res.ok) resetTour();
 		const data = await res.json();
 
-		if (!JSON.parse(data)) resetTour();
+		// TODO for await of chunks to fix vercel timeout
+		console.log({ res, data });
+
+		/* if (!JSON.parse(data)) resetTour();
 		$Menus = JSON.parse(data);
-		goto('/');
+		goto('/'); */
 	}
 
 	onMount(async () => {
