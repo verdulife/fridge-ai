@@ -1,10 +1,13 @@
 <script>
-	import Plus from '@/assets/Plus.svelte';
-	import Heading from './ui/Heading.svelte';
-	import Button from './ui/Button.svelte';
+	import Heading from '@/components/ui/Heading.svelte';
+	import Button from '@/components/ui/Button.svelte';
 	import Ai from '@/assets/Ai.svelte';
 
 	export let dish;
+
+	function moreInfo() {
+		console.log('more info');
+	}
 </script>
 
 <article
@@ -17,7 +20,7 @@
 	<Heading as="h3" class="text-xl">{dish[0].menu_label}</Heading>
 
 	<footer class="mt-auto flex w-full items-center">
-		<Button class="border border-neutral-200 text-sm">Más info</Button>
-		<Button><Ai /> Generar</Button>
+		<Button click={moreInfo} class="border border-neutral-200 text-sm">Más info</Button>
+		<Button click={moreInfo}><Ai /> Generar</Button>
 	</footer>
 </article>

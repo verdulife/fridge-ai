@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <script lang="ts">
 	import type { DayType } from '@/lib/types';
 	import { Menus } from '@/lib/stores';
@@ -13,15 +12,6 @@
 	$: breakfastMenuItems = todayMenu?.breakfast[0].menu_items ?? [];
 	$: lunchMenuItems = todayMenu?.lunch[0].menu_items ?? [];
 	$: dinnerMenuItems = todayMenu?.dinner[0].menu_items ?? [];
-=======
-<script>
-	import Text from '@/components/ui/Text.svelte';
-	export let todayMenu;
-
-	const breakfastMenuItems = todayMenu?.breakfast[0].menu_items ?? [];
-	const lunchMenuItems = todayMenu?.lunch[0].menu_items ?? [];
-	const dinnerMenuItems = todayMenu?.dinner[0].menu_items ?? [];
->>>>>>> 90f9b0c6e20096c89f211ba8360d384aca8f1089
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 </script>
 
