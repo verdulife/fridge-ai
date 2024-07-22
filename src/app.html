@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, viewport-fit=cover" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
 	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 	<meta name="robots" content="index, follow" />
 	<link rel="sitemap" href="/sitemap.xml" />
@@ -21,7 +22,7 @@
 
 <body data-sveltekit-preload-data="hover"
 	class="overflow-x-hidden bg-neutral-950 text-neutral-300 bg-[repeating-linear-gradient(0deg,#333,transparent_1px,transparent_30px),repeating-linear-gradient(90deg,#333,transparent_1px,transparent_30px)]">
-	%sveltekit.body%
+	<div class="contents">%sveltekit.body%</div>
 </body>
 
 </html>

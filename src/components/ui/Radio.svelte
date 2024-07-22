@@ -1,13 +1,13 @@
-<script>
-	export let group = '';
-	export let value = false;
+<script lang="ts">
+	export let group: string;
+	export let value: string;
 </script>
 
 <label
-	class={`rounded-full border border-neutral-400 px-4 py-2 text-sm text-neutral-400 ${value && 'bg-vista-400 text-neutral-200'}`}
+	class={`rounded-full border border-neutral-400 px-4 py-2 text-sm text-neutral-400 ${value === group && 'bg-vista-300 !text-neutral-950'}`}
 >
 	<span>
 		<slot />
 	</span>
-	<input type="radio" class="appearance-none" bind:value bind:group />
+	<input type="radio" class="appearance-none" {value} bind:group />
 </label>

@@ -1,0 +1,58 @@
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
+	import { Menus, UserPreferences } from '@/lib/stores';
+	import { AWAITING_RESPONSES } from '@/lib/consts';
+
+	import Heading from '@/components/ui/Heading.svelte';
+	import Text from '@/components/ui/Text.svelte';
+
+	let message: string = AWAITING_RESPONSES[0];
+
+	function simulateProcessing() {
+		setInterval(() => {
+			const index = Math.floor(Math.random() * AWAITING_RESPONSES.length);
+			message = AWAITING_RESPONSES[index];
+		}, 2000);
+	}
+
+	function resetTour() {
+		alert('Error al generar menús. Intenta nuevamente.');
+		goto('/tour');
+	}
+
+	async function generateMenus() {
+		const res = await fetch('/api/generate-menus', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ user_preferences: $UserPreferences })
+		});
+
+		if (!res.ok) resetTour();
+		const data = await res.json();
+
+		// TODO for await of chunks to fix vercel timeout
+		console.log({ res, data });
+
+		/* if (!JSON.parse(data)) resetTour();
+		$Menus = JSON.parse(data);
+		goto('/'); */
+	}
+
+	onMount(async () => {
+		simulateProcessing();
+		await generateMenus();
+	});
+</script>
+
+<section class="h-[calc(100vh-96px)] w-full p-8">
+	<article class="flex size-full max-w-sm flex-col items-center justify-center">
+		<div class="flex w-full flex-col items-center justify-center gap-4 text-center">
+			<Heading as="h1">Un momento</Heading>
+
+			<Text>{message}</Text>
+		</div>
+	</article>
+</section>

@@ -45,4 +45,9 @@ Get your digital fridge powered by AI. This app allows you to know your food pre
 - [ ] Prompt engineering
 - [ ] Prompt to json
 - [ ] Prompt fine tuning
+- [ ] Autocomplete for ingredients
+- [ ] Alergia intolerancia o preferencias
+- [ ] Añadir tiempo de preparación en los platos 
+- [ ] Añadir precio aproximado del menu semanal
+- [ ] Make tests
 - [ ] Webapp landing page

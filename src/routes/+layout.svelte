@@ -1,7 +1,25 @@
-<script>
+<script lang="ts">
 	import '@/app.css';
-	import Header from '@/components/Header.svelte';
+
+	import { onNavigate } from '$app/navigation';
 	import { title, description, url } from '@/lib/metadata';
+	import { page } from '$app/stores';
+
+	import Header from '@/components/Header.svelte';
+	import Nav from '@/components/Nav.svelte';
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
+
+	$: notTour = !$page.url.pathname.includes('tour');
 </script>
 
 <svelte:head>
@@ -16,11 +34,14 @@
 </svelte:head>
 
 <main
-	class="mx-auto flex h-screen max-w-4xl flex-col items-center justify-center border-x border-neutral-800 bg-neutral-950"
+	class="mx-auto flex min-h-screen max-w-4xl flex-col items-center border-x border-neutral-800 bg-neutral-950"
 >
 	<Header />
-
-	<div class="flex size-full flex-col items-center justify-center">
+	<div class="mt-24 w-full">
 		<slot />
 	</div>
+
+	{#if notTour}
+		<Nav />
+	{/if}
 </main>
