@@ -20,9 +20,6 @@ export interface MenuItemType {
 
 export interface MealType {
   menu_label: string;
-}
-
-export interface MealTypeFull extends MealType {
   menu_items: Array<MenuItemType>
 }
 

@@ -1,16 +1,11 @@
 <script lang="ts">
 	import { UserPreferences } from '@/lib/stores';
 	import { gender_options, exercise_options } from '@/lib/consts';
-	import { goto } from '$app/navigation';
 
 	import Heading from '@/components/ui/Heading.svelte';
-	import Button from '@/components/ui/Button.svelte';
 	import Text from '@/components/ui/Text.svelte';
-	import Radio from '../ui/Radio.svelte';
-
-	function endTour() {
-		goto('/tour/set-cookie');
-	}
+	import Radio from '@/components/ui/Radio.svelte';
+	import Link from '@/components/ui/Link.svelte';
 </script>
 
 <article class="flex w-full max-w-sm flex-col items-center justify-center gap-12">
@@ -40,5 +35,5 @@
 		</div>
 	</div>
 
-	<Button class="w-2/3 border border-neutral-200" click={endTour}>SIGUIENTE</Button>
+	<Link href="/tour/end" class="w-2/3 border border-neutral-200">SIGUIENTE</Link>
 </article>

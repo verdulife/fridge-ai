@@ -7,5 +7,5 @@ export function GET({ cookies }) {
     maxAge: 2147483647,
   });
 
-  throw redirect(302, '/tour/end');
+  throw redirect(302, '/');
 }

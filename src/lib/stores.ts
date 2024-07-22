@@ -11,7 +11,7 @@ const defaultUserPreferences: UserPreferencesType = {
     height: "160 cm",
     weight: "60 kg",
     age: "30 años",
-    gender: "",
+    gender: "female",
     weekly_exercise: "none",
   }
 };

@@ -69,11 +69,11 @@ export const allergens_options = [
 
 export const gender_options = [
   {
-    id: "femenino",
+    id: "female",
     name: "Femenino",
   },
   {
-    id: "masculino",
+    id: "male",
     name: "Masculino",
   },
 ]

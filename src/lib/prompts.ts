@@ -25,14 +25,12 @@ export const GENERATE_MENUS_PROMPT = `
 ${INIT_PROMPT}
 Se te proporcionara informacion sobre los gustos, alergias e intolerancias, asi como la altura, peso, edad, sexo y la cantidad de ejericio que realiza a la semana el usuario.
 Si el usuario es vegetariano, vegano o celiaco, deberas generar menús de comida vegetariana, vegana o celiaca respectivamente.
-Devolverás un JSON con menús para cada dia de la semana.
+Devolverás un JSON con un menú diario.
 Tendras en cuenta los datos del usuario al generar los menús.
-Tendras en cuenta los menus de toda la semana para que sean equilibrados y sanos.
+Tendras un array con los menús de cada día de la semana, el cual puede estar vacio, parcialmente lleno o completamente lleno.
+Si existen mas mnues, los tendras en cuenta para que entre ellos sean equilibrados y sanos.
 ${CONSTANT_PROMPT}
-[
-	${JSON.stringify(DAY_EXAMPLE)},
-	// repetir el mismo formato para cada día de la semana
-]`;
+${JSON.stringify(DAY_EXAMPLE)},`;
 
 export const MENU_ITEMS_EXAMPLE = [
 	{
@@ -54,7 +52,6 @@ export const MENU_ITEMS_EXAMPLE = [
 		calories: 141
 	},
 ]
-
 
 export const GENERATE_INGRIDIENTS_PROMPT = `
 ${INIT_PROMPT}

@@ -2,14 +2,12 @@
 	import { UserPreferences } from '@/lib/stores';
 
 	import Heading from '@/components/ui/Heading.svelte';
-	import Button from '@/components/ui/Button.svelte';
 	import Text from '@/components/ui/Text.svelte';
 	import Input from '@/components/ui/Input.svelte';
 	import IconButton from '@/components/ui/IconButton.svelte';
 	import Plus from '@/assets/Plus.svelte';
 	import Minus from '@/assets/Minus.svelte';
-
-	export let nextTour;
+	import Link from '@/components/ui/Link.svelte';
 
 	function subtractAge() {
 		$UserPreferences.info.age = parseFloat($UserPreferences.info.age) - 1 + ' años';
@@ -65,5 +63,5 @@
 		</div>
 	</div>
 
-	<Button class="w-2/3 border border-neutral-200" click={nextTour}>SIGUIENTE</Button>
+	<Link href="/tour/step-5" class="w-2/3 border border-neutral-200">SIGUIENTE</Link>
 </article>

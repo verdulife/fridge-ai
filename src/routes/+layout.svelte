@@ -1,7 +1,21 @@
-<script>
+<script lang="ts">
 	import '@/app.css';
-	import Header from '@/components/Header.svelte';
+
+	import { onNavigate } from '$app/navigation';
 	import { title, description, url } from '@/lib/metadata';
+
+	import Header from '@/components/Header.svelte';
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
 
 <svelte:head>

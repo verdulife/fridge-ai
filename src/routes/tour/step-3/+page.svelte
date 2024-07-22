@@ -4,9 +4,8 @@
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Checkbox from '@/components/ui/Checkbox.svelte';
-	import Button from '@/components/ui/Button.svelte';
+	import Link from '@/components/ui/Link.svelte';
 
-	export let nextTour;
 	let currenSelection = $UserPreferences.allergens;
 
 	$: allergensSelection = allergens_options.reduce(
@@ -40,5 +39,5 @@
 		</div>
 	</div>
 
-	<Button class="w-2/3 border border-neutral-200" click={nextTour}>SIGUIENTE</Button>
+	<Link href="/tour/step-4" class="w-2/3 border border-neutral-200">SIGUIENTE</Link>
 </article>

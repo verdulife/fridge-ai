@@ -4,10 +4,9 @@
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Text from '@/components/ui/Text.svelte';
-	import Button from '@/components/ui/Button.svelte';
 	import Input from '@/components/ui/Input.svelte';
+	import Link from '@/components/ui/Link.svelte';
 
-	export let nextTour;
 	$: requiredLikes = $UserPreferences.like.length === MINIMUM_LIKE_OR_DISLIKE;
 </script>
 
@@ -23,6 +22,6 @@
 	</div>
 
 	{#if requiredLikes}
-		<Button class="w-2/3 border border-neutral-200" click={nextTour}>SIGUIENTE</Button>
+		<Link href="/tour/step-2" class="w-2/3 border border-neutral-200">SIGUIENTE</Link>
 	{/if}
 </article>
