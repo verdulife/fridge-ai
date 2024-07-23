@@ -11,7 +11,7 @@
 	</div>
 
 	<ul
-		class="flex w-full snap-x snap-mandatory scroll-p-8 gap-4 overflow-x-auto px-8 lg:scroll-p-16 lg:px-16"
+		class="flex w-full items-stretch snap-x snap-mandatory scroll-p-8 gap-4 overflow-x-auto px-8 lg:scroll-p-16 lg:px-16"
 	>
 		<li class="w-full max-w-xs shrink-0 snap-start">
 			<DishCard dish={data.breakfast}>DESAYUNO</DishCard>
