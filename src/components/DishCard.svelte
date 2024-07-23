@@ -5,10 +5,12 @@
 	import { Menus, UserPreferences, CurrentDay } from '@/lib/stores';
 
 	import Heading from '@/components/ui/Heading.svelte';
-	import Button from '@/components/ui/Button.svelte';
 	import Ai from '@/assets/Ai.svelte';
 	import Text from './ui/Text.svelte';
 	import Plus from '@/assets/Plus.svelte';
+	import Time from '@/assets/Time.svelte';
+	import Box from './ui/Box.svelte';
+	import Button from './ui/Button.svelte';
 
 	export let dish: Array<MealType>;
 	let isLoading = false;
@@ -58,46 +60,43 @@
 	}
 </script>
 
-<article
-	class="flex size-full flex-col items-start gap-4 rounded-md border border-neutral-700/20 bg-white p-6 dark:bg-neutral-900"
->
+<Box class="flex h-full w-80 flex-col items-start gap-4 p-4">
 	<header class="flex w-full items-center justify-between">
-		<span class="rounded-full bg-neutral-200 px-3 py-1 text-xs font-semibold dark:bg-neutral-950">
+		<span class="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold dark:bg-neutral-950">
 			<slot />
 		</span>
 	</header>
 
 	<Heading as="h3" class="text-lg">{dish[0].menu_label}</Heading>
 
-	<footer class="mt-auto flex w-full items-center justify-between border-t border-neutral-700/20 pt-4 dark:border-neutral-800">
-		<Text class="text-sm uppercase">{dish[0].time_to_prepare}</Text>
+	<footer
+		class="mt-auto flex w-full items-center justify-between border-t border-neutral-700/20 pt-4 dark:border-neutral-800"
+	>
+		<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
+			<Time class="size-5" />
+			{dish[0].time_to_prepare}
+		</Text>
 
 		<aside class="flex items-center gap-2">
-			<button
-				on:click={moreInfo}
-				class="flex items-center justify-center gap-2 rounded-full border border-neutral-300 bg-neutral-200 py-1 px-3 dark:border-neutral-700/40 dark:bg-neutral-800"
-			>
-				<Plus />
-			</button>
+			<Button click={moreInfo} class="px-3 py-1">
+				<Plus class="size-5" />
+			</Button>
 
-			<button
-				on:click={generateMeal}
-				class="flex items-center justify-center gap-2 rounded-full border border-neutral-300 bg-neutral-200 py-1 px-3 dark:border-neutral-700/40 dark:bg-neutral-800"
-			>
+			<Button click={generateMeal} class="flex items-center justify-center px-3 py-1">
 				{#if !isLoading}
-					<Ai />
+					<Ai class="size-5" />
 				{:else}
 					<script src="https://cdn.lordicon.com/lordicon.js"></script>
 					<lord-icon
 						src="https://cdn.lordicon.com/jpgpblwn.json"
 						trigger="loop"
 						state="loop-line"
-						colors="primary:#ffffff"
-						style="width:25px;height:25px"
+						colors={`primary:#ffffff`} 
+						style="width:20px;height:20px"
 					>
 					</lord-icon>
 				{/if}
-			</button>
+			</Button>
 		</aside>
 	</footer>
-</article>
+</Box>

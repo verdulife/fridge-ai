@@ -1,6 +1,6 @@
 <script lang="ts">
 	export let group: string;
-	export let value: string;
+	export let value: string | boolean;
 </script>
 
 <label

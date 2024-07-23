@@ -1,5 +1,12 @@
 <script lang="ts">
+	import { UserPreferences } from '@/lib/stores';
+	import toast from 'svelte-french-toast';
+
 	import Text from '@/components/ui/Text.svelte';
+	import Box from './ui/Box.svelte';
+	import Button from './ui/Button.svelte';
+	import Like from '@/assets/Like.svelte';
+	import Dislike from '@/assets/Dislike.svelte';
 
 	export let data;
 
@@ -7,18 +14,38 @@
 	$: lunchMenuItems = data?.lunch[0].menu_ingredients ?? [];
 	$: dinnerMenuItems = data?.dinner[0].menu_ingredients ?? [];
 	$: allMenuItems = [...new Set([...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems])];
+
+	function setLike(ingredient: string) {
+		$UserPreferences.like = [...$UserPreferences.like, ingredient];
+		toast.success('Añadido ingrediente que te gusta');
+	}
+
+	function setDislike(ingredient: string) {
+		$UserPreferences.dislike = [...$UserPreferences.dislike, ingredient];
+		toast.success('Añadido ingrediente que detestas');
+	}
 </script>
 
-<section class="flex flex-col gap-4 px-8 lg:px-16">
+<section class="flex flex-col gap-4 px-4 lg:px-8">
 	<Text>Ingredientes para hoy</Text>
 
 	{#if allMenuItems.length > 0}
-		<ul class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+		<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
 			{#each allMenuItems as menuItem}
 				<li class="flex w-full flex-col gap-2">
-					<article class="rounded-lg bg-white dark:bg-neutral-900 p-4">
+					<Box class="flex items-center justify-between gap-4 p-4">
 						<Text class="first-letter:uppercase">{menuItem}</Text>
-					</article>
+
+						<aside class="flex items-center gap-2">
+							<Button class="px-3 py-1" click={() => setLike(menuItem)}>
+								<Like class="size-5" />
+							</Button>
+
+							<Button class="px-3 py-1" click={() => setDislike(menuItem)}>
+								<Dislike class="size-5" />
+							</Button>
+						</aside>
+					</Box>
 				</li>
 			{/each}
 		</ul>

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { getCurrentDay } from '@/lib/utils';
 	import Heading from '@/components/ui/Heading.svelte';
+	import Button from './ui/Button.svelte';
 	import Prev from '@/assets/Prev.svelte';
 	import Next from '@/assets/Next.svelte';
 
@@ -45,22 +46,16 @@
 	}
 </script>
 
-<section class="flex items-center justify-between px-8 lg:px-16">
+<section class="flex items-end justify-between px-4 lg:px-8">
 	<Heading class="text-3xl first-letter:uppercase">{title}</Heading>
 
 	<nav class="flex gap-2">
-		<button
-			class="flex items-center justify-center rounded-md border border-neutral-300 bg-neutral-100 p-1 dark:border-neutral-600 dark:bg-neutral-800"
-			on:click={previousDay}
-		>
+		<Button click={previousDay} class="px-3 py-1">
 			<Prev />
-		</button>
+		</Button>
 
-		<button
-			class="flex items-center justify-center rounded-md border border-neutral-300 bg-neutral-100 p-1 dark:border-neutral-600 dark:bg-neutral-800"
-			on:click={nextDay}
-		>
+		<Button click={nextDay} class="px-3 py-1">
 			<Next />
-		</button>
+		</Button>
 	</nav>
 </section>

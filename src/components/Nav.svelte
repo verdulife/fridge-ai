@@ -5,7 +5,7 @@
 </script>
 
 <footer
-	class="fixed bottom-0 flex w-full max-w-6xl items-center justify-center border-x border-t border-neutral-300 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-950/70 backdrop-blur p-4"
+	class="fixed bottom-0 flex w-full max-w-6xl items-center justify-center border-x border-t border-neutral-300 dark:border-neutral-700/40 bg-neutral-50/70 dark:bg-neutral-950/70 backdrop-blur p-4"
 >
 	<nav>
 		<ul class="flex gap-6">

@@ -19,6 +19,13 @@ const defaultUserPreferences: UserPreferencesType = {
   }
 };
 
+const defaultUiPreferences = {
+  show_breakfast: true,
+  show_lunch: true,
+  show_dinner: true,
+  dark_mode: false,
+};
+
 const localUserPreferences = browser && localStorage.getItem("fridgeai-user");
 export const UserPreferences = writable(localUserPreferences ? JSON.parse(localUserPreferences) : defaultUserPreferences);
 UserPreferences.subscribe((value) => browser && (localStorage["fridgeai-user"] = JSON.stringify(value)));
@@ -30,3 +37,7 @@ Menus.subscribe((value) => browser && (localStorage["fridgeai-menus"] = JSON.str
 const localDishes = browser && localStorage.getItem("fridgeai-dishes");
 export const Dishes = writable(localDishes ? JSON.parse(localDishes) : []);
 Dishes.subscribe((value) => browser && (localStorage["fridgeai-dishes"] = JSON.stringify(value)));
+
+const localUiPreferences = browser && localStorage.getItem("fridgeai-ui");
+export const UiPreferences = writable(localUiPreferences ? JSON.parse(localUiPreferences) : defaultUiPreferences);
+UiPreferences.subscribe((value) => browser && (localStorage["fridgeai-ui"] = JSON.stringify(value)));

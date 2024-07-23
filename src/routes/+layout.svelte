@@ -4,6 +4,9 @@
 	import { onNavigate } from '$app/navigation';
 	import { title, description, url } from '@/lib/metadata';
 	import { page } from '$app/stores';
+	import { Toaster } from 'svelte-french-toast';
+	import { UiPreferences } from '@/lib/stores';
+	import { browser } from '$app/environment';
 
 	import Header from '@/components/Header.svelte';
 	import Nav from '@/components/Nav.svelte';
@@ -21,6 +24,16 @@
 	});
 
 	$: notTour = !$page.url.pathname.includes('tour');
+
+	function switchDarkMode() {
+		if (!browser) return;
+
+		$UiPreferences.darkMode
+			? document.documentElement.classList.add('dark')
+			: document.documentElement.classList.remove('dark');
+	}
+
+	$: $UiPreferences, switchDarkMode();
 </script>
 
 <svelte:head>
@@ -37,7 +50,7 @@
 <Blobs />
 
 <main
-	class="mx-auto flex min-h-screen max-w-6xl flex-col items-center border-x border-neutral-300 bg-neutral-100/70 shadow-2xl shadow-neutral-300 dark:border-neutral-800 dark:bg-neutral-950/90 dark:shadow-black"
+	class="mx-auto flex min-h-screen max-w-6xl flex-col items-center text-balance border-x border-neutral-300 bg-neutral-100/70 shadow-2xl shadow-neutral-300 dark:border-neutral-700/40 dark:bg-neutral-950/90 dark:shadow-black"
 >
 	<Header />
 	<div class="mt-24 w-full">
@@ -48,3 +61,5 @@
 		<Nav />
 	{/if}
 </main>
+
+<Toaster />

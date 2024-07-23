@@ -72,7 +72,7 @@
 	});
 </script>
 
-<main class="mb-24 flex w-full flex-col gap-8 py-8 lg:py-16">
+<main class="mb-24 flex w-full flex-col gap-8 py-4 lg:py-8">
 	<Today bind:currentDay={$CurrentDay} />
 	{#if todayMenu}
 		<TodaySlider data={todayMenu} />

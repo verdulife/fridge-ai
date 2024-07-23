@@ -1,13 +1,19 @@
 <script>
-	import { UserPreferences } from '@/lib/stores';
+	import { UserPreferences, UiPreferences } from '@/lib/stores';
+	import Radio from '@/components/ui/Radio.svelte';
 </script>
 
 <section class="mb-32 flex flex-col gap-8 px-8 lg:px-16">
 	<h1 class="text-4xl font-bold">Tus preferencias</h1>
 
+	<div class="flex items-center gap-4">
+		<Radio bind:group={$UiPreferences.darkMode} value={true}>Modo oscuro</Radio>
+		<Radio bind:group={$UiPreferences.darkMode} value={false}>Modo claro</Radio>
+	</div>
+
 	<ul class="flex flex-col gap-4">
 		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg bg-neutral-900 p-4">
+			<article class="rounded-lg bg-neutral-200 dark:bg-neutral-900 p-4">
 				<h2 class="text-xl font-bold">Ingredientes que te gustam</h2>
 				<ul class="flex flex-col gap-1">
 					{#each $UserPreferences.like as like}
