@@ -50,14 +50,14 @@
 
 	<nav class="flex gap-2">
 		<button
-			class="flex items-center justify-center rounded-md border border-neutral-600 bg-neutral-800 p-1"
+			class="flex items-center justify-center rounded-md border border-neutral-300 bg-neutral-100 p-1 dark:border-neutral-600 dark:bg-neutral-800"
 			on:click={previousDay}
 		>
 			<Prev />
 		</button>
 
 		<button
-			class="flex items-center justify-center rounded-md border border-neutral-600 bg-neutral-800 p-1"
+			class="flex items-center justify-center rounded-md border border-neutral-300 bg-neutral-100 p-1 dark:border-neutral-600 dark:bg-neutral-800"
 			on:click={nextDay}
 		>
 			<Next />

@@ -13,10 +13,10 @@
 	<Text>Ingredientes para hoy</Text>
 
 	{#if allMenuItems.length > 0}
-		<ul class="flex flex-col gap-1">
+		<ul class="grid grid-cols-1 lg:grid-cols-2 gap-1">
 			{#each allMenuItems as menuItem}
 				<li class="flex w-full flex-col gap-2">
-					<article class="rounded-lg bg-neutral-900 p-4">
+					<article class="rounded-lg bg-white dark:bg-neutral-900 p-4">
 						<Text class="first-letter:uppercase">{menuItem}</Text>
 					</article>
 				</li>

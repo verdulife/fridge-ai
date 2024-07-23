@@ -5,13 +5,13 @@
 </script>
 
 <footer
-	class="fixed bottom-0 flex w-full max-w-4xl items-center justify-center border-x border-t border-neutral-800 bg-neutral-950/70 backdrop-blur p-4"
+	class="fixed bottom-0 flex w-full max-w-6xl items-center justify-center border-x border-t border-neutral-300 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-950/70 backdrop-blur p-4"
 >
 	<nav>
 		<ul class="flex gap-6">
 			{#each routes as route}
 				<li>
-					<a href={route.path} class="size-16 flex flex-col items-center justify-center text-neutral-400 hover:text-neutral-500">
+					<a href={route.path} class="size-16 flex flex-col items-center justify-center text-neutral-800 dark:text-neutral-400">
 						<NavIcon icon={route.icon} />
 						<Text class="sr-only">{route.label}</Text>
 					</a>

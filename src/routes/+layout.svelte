@@ -7,6 +7,7 @@
 
 	import Header from '@/components/Header.svelte';
 	import Nav from '@/components/Nav.svelte';
+	import Blobs from '@/components/Blobs.svelte';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -33,8 +34,10 @@
 	<meta name="twitter:image:alt" content={title} />
 </svelte:head>
 
+<Blobs />
+
 <main
-	class="mx-auto flex min-h-screen max-w-4xl flex-col items-center border-x border-neutral-800 bg-neutral-950"
+	class="mx-auto flex min-h-screen max-w-6xl flex-col items-center border-x border-neutral-300 bg-neutral-100/70 shadow-2xl shadow-neutral-300 dark:border-neutral-800 dark:bg-neutral-950/90 dark:shadow-black"
 >
 	<Header />
 	<div class="mt-24 w-full">

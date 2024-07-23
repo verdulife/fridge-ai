@@ -54,10 +54,10 @@
 </script>
 
 <article
-	class="flex aspect-[4/3] w-full flex-col items-start gap-4 rounded-xl bg-neutral-900 px-4 py-5"
+	class="flex aspect-[4/3] w-full flex-col items-start gap-4 rounded-xl bg-white dark:bg-neutral-900 px-4 py-5"
 >
 	<header class="flex w-full items-center justify-between">
-		<span class="rounded-full bg-neutral-700 px-3 py-1 text-xs font-semibold"><slot /></span>
+		<span class="rounded-full bg-neutral-200 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold"><slot /></span>
 	</header>
 
 	<Heading as="h3" class="text-xl">{dish[0].menu_label}</Heading>
