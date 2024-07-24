@@ -1,10 +1,12 @@
+![logo](static/card.jpg)
+
 # Fridge AI 🍽
 
-This is a demo app for the Vercel AI SDK Hackathon, powered by Midudev.
+PWA para el Hackathon de SDK AI de Vercel, impulsada por Midudev.
 
-## Description
+## Descripción
 
-Get your digital fridge powered by AI. This app allows you to know your food preferences and balance your meals. Store everything in your fridge and let the AI do the rest.
+Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibrar y hacer mas sano tu menu semanal. Almacena todo en tu frigorífico y deja que la IA haga el resto.
 
 ## Features
 
