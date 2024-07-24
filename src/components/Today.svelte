@@ -46,7 +46,7 @@
 	}
 </script>
 
-<section class="flex items-end justify-between px-4 lg:px-8">
+<section class="w-full flex items-end justify-between px-4 lg:px-8">
 	<Heading class="text-3xl first-letter:uppercase">{title}</Heading>
 
 	<nav class="flex gap-2">

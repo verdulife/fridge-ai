@@ -1,4 +1,8 @@
-export const MINIMUM_LIKE_OR_DISLIKE = 4;
+export const USER_INFO_LIB: { [key: string]: string } = {
+  age: "años",
+  height: "cm",
+  weight: "kg",
+};
 
 export const allergens_options = [
   {
@@ -65,7 +69,7 @@ export const allergens_options = [
     id: "celiaco",
     name: "Celiaco",
   },
-]
+];
 
 export const gender_options = [
   {
@@ -76,7 +80,7 @@ export const gender_options = [
     id: "male",
     name: "Masculino",
   },
-]
+];
 
 export const exercise_options = [
   {
@@ -95,7 +99,7 @@ export const exercise_options = [
     id: "constant",
     name: "todos los días",
   }
-]
+];
 
 export const WEEK_DAYS = [
   "Lunes",

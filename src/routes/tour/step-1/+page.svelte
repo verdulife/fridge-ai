@@ -1,27 +1,27 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { UserPreferences } from '@/lib/stores';
-	import { MINIMUM_LIKE_OR_DISLIKE } from '@/lib/consts';
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Text from '@/components/ui/Text.svelte';
 	import Input from '@/components/ui/Input.svelte';
-	import Link from '@/components/ui/Link.svelte';
+	import Button from '@/components/ui/Button.svelte';
 
-	$: requiredLikes = $UserPreferences.like.length === MINIMUM_LIKE_OR_DISLIKE;
+	function nextStep() {
+		goto('/tour/step-2');
+	}
 </script>
 
-<article class="flex w-full max-w-sm flex-col items-center justify-center gap-12">
-	<div class="flex flex-col justify-center gap-4">
-		<Heading>Ingredientes que te <span class="text-vista-300">gusten</span></Heading>
-		<Text>Más adelante podrás ampliar esta lista</Text>
+<article class="flex w-full max-w-sm flex-col items-center">
+	<form class="flex flex-col items-center justify-center gap-4" on:submit|preventDefault={nextStep}>
+		<Heading class="w-full">Ingredientes que te <span class="text-vista-300">gusten</span></Heading>
+		<Text class="w-full">Más adelante podrás ampliar esta lista</Text>
 
-		<Input bind:value={$UserPreferences.like[0]} placeholder="Primer ingrediente" />
-		<Input bind:value={$UserPreferences.like[1]} placeholder="Segundo ingrediente" />
-		<Input bind:value={$UserPreferences.like[2]} placeholder="Tercer ingrediente" />
-		<Input bind:value={$UserPreferences.like[3]} placeholder="Cuarto ingrediente" />
-	</div>
+		<Input bind:value={$UserPreferences.like[0]} placeholder="Primer ingrediente" required />
+		<Input bind:value={$UserPreferences.like[1]} placeholder="Segundo ingrediente" required />
+		<Input bind:value={$UserPreferences.like[2]} placeholder="Tercer ingrediente" required />
+		<Input bind:value={$UserPreferences.like[3]} placeholder="Cuarto ingrediente" required />
 
-	{#if requiredLikes}
-		<Link href="/tour/step-2" class="w-2/3 border border-neutral-200">SIGUIENTE</Link>
-	{/if}
+		<Button class="w-2/3 px-6 py-3 mt-8">SIGUIENTE</Button>
+	</form>
 </article>

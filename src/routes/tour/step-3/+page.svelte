@@ -24,8 +24,8 @@
 
 <article class="flex w-full max-w-md flex-col items-center justify-center gap-12">
 	<div class="flex flex-col justify-center gap-4">
-		<Heading
-			>Tus <span class="text-vista-300">alergias</span>,
+		<Heading>
+			Tus <span class="text-vista-300">alergias</span>,
 			<span class="text-vista-300">intolerancias</span> o
 			<span class="text-vista-300">preferencias</span>
 		</Heading>
@@ -39,5 +39,5 @@
 		</div>
 	</div>
 
-	<Link href="/tour/step-4" class="w-2/3 border border-neutral-200">SIGUIENTE</Link>
+	<Link href="/tour/step-4" class="w-2/3 px-6 py-3">SIGUIENTE</Link>
 </article>

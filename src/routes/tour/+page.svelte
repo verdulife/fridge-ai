@@ -19,5 +19,11 @@
 		</Text>
 	</div>
 
-	<Link href="/tour/step-1" class="w-2/3" brand>EMPEZAR</Link>
+	<Link
+		href="/tour/step-1"
+		class="w-2/3 bg-vista-300 px-6 py-3 text-neutral-50 hover:bg-vista-400 hover:text-neutral-50"
+		brand
+	>
+		EMPEZAR
+	</Link>
 </article>

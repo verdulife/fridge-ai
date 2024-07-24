@@ -9,6 +9,8 @@
 	import Today from '@/components/Today.svelte';
 	import TodaySlider from '@/components/TodaySlider.svelte';
 	import ShoppingList from '@/components/ShoppingList.svelte';
+	import Text from '@/components/ui/Text.svelte';
+	import Box from '@/components/ui/Box.svelte';
 
 	let message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
 
@@ -72,12 +74,14 @@
 	});
 </script>
 
-<main class="mb-24 flex w-full flex-col gap-8 py-4 lg:py-8">
+<main class="mb-24 flex w-full flex-col items-start gap-8 py-4 lg:py-8">
 	<Today bind:currentDay={$CurrentDay} />
 	{#if todayMenu}
 		<TodaySlider />
 		<ShoppingList />
 	{:else}
-		<p class="scroll-p-8 px-8 lg:scroll-p-16 lg:px-16">{message}</p>
+		<Box class="ml-4 p-4 lg:ml-8">
+			<Text>{message}</Text>
+		</Box>
 	{/if}
 </main>

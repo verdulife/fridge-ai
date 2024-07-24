@@ -12,7 +12,7 @@
 
 <section class="flex w-full flex-col items-start gap-4">
 	<div class="px-4 lg:px-8">
-		<Text>Tu menú del día</Text>
+		<Text class="font-semibold">Tu menú del día</Text>
 	</div>
 
 	<ul

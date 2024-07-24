@@ -31,8 +31,8 @@
 	}
 </script>
 
-<section class="flex flex-col gap-4 px-4 lg:px-8">
-	<Text>Ingredientes para hoy</Text>
+<section class="w-full flex flex-col gap-4 px-4 lg:px-8">
+	<Text class="font-semibold">Ingredientes para hoy</Text>
 
 	{#if allMenuItems.length > 0}
 		<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">

@@ -1,67 +1,97 @@
 <script lang="ts">
 	import { UserPreferences } from '@/lib/stores';
+	import { USER_INFO_LIB } from '@/lib/consts';
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Text from '@/components/ui/Text.svelte';
-	import Input from '@/components/ui/Input.svelte';
-	import IconButton from '@/components/ui/IconButton.svelte';
+	import Button from '@/components/ui/Button.svelte';
 	import Plus from '@/assets/Plus.svelte';
 	import Minus from '@/assets/Minus.svelte';
 	import Link from '@/components/ui/Link.svelte';
 
-	function subtractAge() {
-		$UserPreferences.info.age = parseFloat($UserPreferences.info.age) - 1 + ' años';
+	function subtractFive(key: string) {
+		$UserPreferences.info[key] =
+			parseFloat($UserPreferences.info[key]) - 5 + ` ${USER_INFO_LIB[key]}`;
 	}
-	function addAge() {
-		$UserPreferences.info.age = parseFloat($UserPreferences.info.age) + 1 + ' años';
-	}
-
-	function subtractHeight() {
-		$UserPreferences.info.height = parseFloat($UserPreferences.info.height) - 1 + ' cm';
-	}
-	function addHeight() {
-		$UserPreferences.info.height = parseFloat($UserPreferences.info.height) + 1 + ' cm';
+	function addFive(key: string) {
+		$UserPreferences.info[key] =
+			parseFloat($UserPreferences.info[key]) + 5 + ` ${USER_INFO_LIB[key]}`;
 	}
 
-	function subtractWeight() {
-		$UserPreferences.info.weight = parseFloat($UserPreferences.info.weight) - 1 + ' kg';
+	function subtract(key: string) {
+		$UserPreferences.info[key] =
+			parseFloat($UserPreferences.info[key]) - 1 + ` ${USER_INFO_LIB[key]}`;
 	}
-	function addWeight() {
-		$UserPreferences.info.weight = parseFloat($UserPreferences.info.weight) + 1 + ' kg';
+
+	function add(key: string) {
+		$UserPreferences.info[key] =
+			parseFloat($UserPreferences.info[key]) + 1 + ` ${USER_INFO_LIB[key]}`;
 	}
 </script>
 
 <article class="flex w-full max-w-sm flex-col items-center justify-center gap-12">
-	<div class="flex flex-col justify-center gap-4">
+	<div class="flex w-full flex-col justify-center gap-8">
 		<Heading>Tus <span class="text-vista-300">cifras</span></Heading>
 
 		<div class="flex flex-col gap-2">
 			<Text>Cuantos años tienes</Text>
-			<div class="flex gap-3">
-				<IconButton click={subtractAge}><Minus class="size-4" /></IconButton>
-				<Input bind:value={$UserPreferences.info.age} placeholder="174cm" readonly />
-				<IconButton click={addAge}><Plus class="size-4" /></IconButton>
+			<div class="flex items-center gap-1">
+				<Button click={() => subtractFive('age')} class="flex h-full items-center px-4 py-2">
+					<Minus class="size-4" />5
+				</Button>
+				<Button click={() => subtract('age')} class="h-full px-4 py-2"
+					><Minus class="size-4" /></Button
+				>
+
+				<Heading class="grow text-center text-xl">{$UserPreferences.info.age}</Heading>
+
+				<Button click={() => add('age')} class="h-full px-4 py-2"><Plus class="size-4" /></Button>
+				<Button click={() => addFive('age')} class="flex h-full items-center px-4 py-2">
+					<Plus class="size-4" />5
+				</Button>
 			</div>
 		</div>
 
 		<div class="flex flex-col gap-2">
 			<Text>Cuanto mides</Text>
-			<div class="flex gap-3">
-				<IconButton click={subtractHeight}><Minus class="size-4" /></IconButton>
-				<Input bind:value={$UserPreferences.info.height} placeholder="174cm" readonly />
-				<IconButton click={addHeight}><Plus class="size-4" /></IconButton>
+			<div class="flex gap-1">
+				<Button click={() => subtractFive('height')} class="flex h-full items-center px-4 py-2">
+					<Minus class="size-4" />5
+				</Button>
+				<Button click={() => subtract('height')} class="h-full px-4 py-2"
+					><Minus class="size-4" /></Button
+				>
+
+				<Heading class="grow text-center text-xl">{$UserPreferences.info.height}</Heading>
+
+				<Button click={() => add('height')} class="h-full px-4 py-2"><Plus class="size-4" /></Button
+				>
+				<Button click={() => addFive('height')} class="flex h-full items-center px-4 py-2">
+					<Plus class="size-4" />5
+				</Button>
 			</div>
 		</div>
 
 		<div class="flex flex-col gap-2">
 			<Text>Cuanto pesas</Text>
-			<div class="flex gap-3">
-				<IconButton click={subtractWeight}><Minus class="size-4" /></IconButton>
-				<Input bind:value={$UserPreferences.info.weight} placeholder="89,5kg" readonly />
-				<IconButton click={addWeight}><Plus class="size-4" /></IconButton>
+			<div class="flex gap-1">
+				<Button click={() => subtractFive('weight')} class="flex h-full items-center px-4 py-2">
+					<Minus class="size-4" />5
+				</Button>
+				<Button click={() => subtract('weight')} class="h-full px-4 py-2"
+					><Minus class="size-4" /></Button
+				>
+
+				<Heading class="grow text-center text-xl">{$UserPreferences.info.weight}</Heading>
+
+				<Button click={() => add('weight')} class="h-full px-4 py-2"><Plus class="size-4" /></Button
+				>
+				<Button click={() => addFive('weight')} class="flex h-full items-center px-4 py-2">
+					<Plus class="size-4" />5
+				</Button>
 			</div>
 		</div>
 	</div>
 
-	<Link href="/tour/step-5" class="w-2/3 border border-neutral-200">SIGUIENTE</Link>
+	<Link href="/tour/step-5" class="w-2/3 px-6 py-3">SIGUIENTE</Link>
 </article>

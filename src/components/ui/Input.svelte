@@ -1,12 +1,12 @@
 <script lang="ts">
 	export let placeholder: string | null = null;
 	export let value: string;
-	export let readonly = false;
+	export let required = false;
 </script>
 
 <input
 	{placeholder}
-	{readonly}
+	{required}
 	bind:value
-	class="w-full rounded-md border border-neutral-800 bg-neutral-900 p-3 outline-none"
+	class="w-full rounded-md border p-3 outline-none dark:border-neutral-800 dark:bg-neutral-900"
 />

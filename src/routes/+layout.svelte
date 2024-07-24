@@ -49,7 +49,7 @@
 <Blobs />
 
 <main
-	class="mx-auto flex min-h-screen max-w-6xl flex-col items-center text-balance border-x border-neutral-300 bg-neutral-100/70 shadow-2xl shadow-neutral-300 dark:border-neutral-700/40 dark:bg-neutral-950/90 dark:shadow-black"
+	class="mx-auto flex min-h-screen max-w-6xl flex-col items-center text-pretty border-x border-neutral-300 bg-neutral-100/70 shadow-2xl shadow-neutral-300 dark:border-neutral-700/40 dark:bg-neutral-950/90 dark:shadow-black"
 >
 	<Header />
 	<div class="mt-24 w-full">

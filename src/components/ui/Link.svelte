@@ -1,11 +1,10 @@
-<script>
-	export let href;
-	export let brand = false;
+<script lang="ts">
+	export let href: string;
 </script>
 
 <a
 	{href}
-	class={`flex items-center justify-center gap-2 rounded-md px-6 py-3 ${brand && 'bg-gradient-to-t from-vista-500 to-vista-400'} ${$$props.class}`}
+	class={`rounded-full border border-neutral-300 text-center bg-neutral-200 text-neutral-500 transition-colors hover:text-neutral-700 dark:border-neutral-700/40 dark:bg-neutral-800 dark:hover:text-neutral-300 ${$$props.class}`}
 >
-	<slot />
+	<slot></slot>
 </a>
