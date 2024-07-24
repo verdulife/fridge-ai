@@ -74,7 +74,7 @@
 	});
 </script>
 
-<main class="flex w-full flex-col items-start gap-8 pt-4 pb-32 lg:py-8">
+<section class="flex w-full flex-col items-start gap-8 pt-4 pb-32 lg:py-8">
 	<Today bind:currentDay={$CurrentDay} />
 	{#if todayMenu}
 		<TodaySlider />
@@ -82,4 +82,4 @@
 	{:else}
 		<Text class="px-4 lg:px-8">{message}</Text>
 	{/if}
-</main>
+</section>
