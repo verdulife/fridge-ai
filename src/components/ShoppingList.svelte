@@ -1,6 +1,13 @@
 <script lang="ts">
+	import type { DayType } from '@/lib/types';
 	import { UserPreferences } from '@/lib/stores';
 	import toast from 'svelte-french-toast';
+
+	import { CurrentDay, Menus } from '@/lib/stores';
+
+	$: todayMenuIndex = $Menus.findIndex(
+		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
+	);
 
 	import Text from '@/components/ui/Text.svelte';
 	import Box from './ui/Box.svelte';
@@ -8,11 +15,9 @@
 	import Like from '@/assets/Like.svelte';
 	import Dislike from '@/assets/Dislike.svelte';
 
-	export let data;
-
-	$: breakfastMenuItems = data?.breakfast[0].menu_ingredients ?? [];
-	$: lunchMenuItems = data?.lunch[0].menu_ingredients ?? [];
-	$: dinnerMenuItems = data?.dinner[0].menu_ingredients ?? [];
+	$: breakfastMenuItems = $Menus[todayMenuIndex]?.breakfast[0].menu_ingredients ?? [];
+	$: lunchMenuItems = $Menus[todayMenuIndex]?.lunch[0].menu_ingredients ?? [];
+	$: dinnerMenuItems = $Menus[todayMenuIndex]?.dinner[0].menu_ingredients ?? [];
 	$: allMenuItems = [...new Set([...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems])];
 
 	function setLike(ingredient: string) {
@@ -31,17 +36,17 @@
 
 	{#if allMenuItems.length > 0}
 		<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
-			{#each allMenuItems as menuItem}
+			{#each allMenuItems as ingredient}
 				<li class="flex w-full flex-col gap-2">
-					<Box class="flex items-center justify-between gap-4 p-4">
-						<Text class="first-letter:uppercase">{menuItem}</Text>
+					<Box class="flex h-full items-center justify-between gap-4 p-4">
+						<Text class="first-letter:uppercase">{ingredient}</Text>
 
 						<aside class="flex items-center gap-2">
-							<Button class="px-3 py-1" click={() => setLike(menuItem)}>
+							<Button class="px-3 py-1" click={() => setLike(ingredient)}>
 								<Like class="size-5" />
 							</Button>
 
-							<Button class="px-3 py-1" click={() => setDislike(menuItem)}>
+							<Button class="px-3 py-1" click={() => setDislike(ingredient)}>
 								<Dislike class="size-5" />
 							</Button>
 						</aside>

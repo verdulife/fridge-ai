@@ -17,9 +17,6 @@ importers:
       svelte-french-toast:
         specifier: ^1.2.0
         version: 1.2.0(svelte@4.2.18)
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
     devDependencies:
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0

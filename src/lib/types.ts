@@ -15,6 +15,7 @@ export interface MealType {
   menu_label: string;
   menu_ingredients: Array<string>;
   time_to_prepare: string;
+  recipe?: string;
 }
 
 export interface DayType {

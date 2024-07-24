@@ -11,16 +11,19 @@
 	import Time from '@/assets/Time.svelte';
 	import Box from './ui/Box.svelte';
 	import Button from './ui/Button.svelte';
+	import DishDialog from './DishDialog.svelte';
 
 	export let dish: Array<MealType>;
 	let isLoading = false;
+	let open = false;
 
-	function moreInfo() {
-		console.log('more info');
+	function openDialog() {
+		open = true;
 	}
 
 	async function generateMeal() {
 		isLoading = true;
+
 		const res = await fetch('/api/generate-meal', {
 			method: 'POST',
 			headers: {
@@ -78,7 +81,7 @@
 		</Text>
 
 		<aside class="flex items-center gap-2">
-			<Button click={moreInfo} class="px-3 py-1">
+			<Button click={openDialog} class="px-3 py-1">
 				<Plus class="size-5" />
 			</Button>
 
@@ -91,7 +94,7 @@
 						src="https://cdn.lordicon.com/jpgpblwn.json"
 						trigger="loop"
 						state="loop-line"
-						colors={`primary:#ffffff`} 
+						colors={`primary:#ffffff`}
 						style="width:20px;height:20px"
 					>
 					</lord-icon>
@@ -100,3 +103,5 @@
 		</aside>
 	</footer>
 </Box>
+
+<DishDialog bind:dish bind:open />
