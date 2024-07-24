@@ -7,13 +7,13 @@
 	<h1 class="text-4xl font-bold">Tus preferencias</h1>
 
 	<div class="flex items-center gap-4">
-		<Radio bind:group={$UiPreferences.darkMode} value={true}>Modo oscuro</Radio>
-		<Radio bind:group={$UiPreferences.darkMode} value={false}>Modo claro</Radio>
+		<Radio bind:group={$UiPreferences.dark_mode} value={false}>Modo claro</Radio>
+		<Radio bind:group={$UiPreferences.dark_mode} value={true}>Modo oscuro</Radio>
 	</div>
 
 	<ul class="flex flex-col gap-4">
 		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg bg-neutral-200 dark:bg-neutral-900 p-4">
+			<article class="rounded-lg bg-neutral-200 p-4 dark:bg-neutral-900">
 				<h2 class="text-xl font-bold">Ingredientes que te gustam</h2>
 				<ul class="flex flex-col gap-1">
 					{#each $UserPreferences.like as like}

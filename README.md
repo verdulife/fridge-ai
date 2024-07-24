@@ -34,20 +34,23 @@ Get your digital fridge powered by AI. This app allows you to know your food pre
 ### To do
 
 - [x] Add all dependencies
-- [ ] Generate pages and navigation
-  - [ ] Home
+- [x] Generate pages and navigation
+- [-] Base UI
+  - [x] Home
   - [ ] Meals
   - [ ] Shopping list
   - [ ] Settings
-- [ ] Base UI
-- [ ] Prepare schemas and local storage
-- [ ] Guided init to store preferences with AI
-- [ ] Prompt engineering
-- [ ] Prompt to json
-- [ ] Prompt fine tuning
-- [ ] Autocomplete for ingredients
-- [ ] Alergia intolerancia o preferencias
-- [ ] Añadir tiempo de preparación en los platos 
-- [ ] Añadir precio aproximado del menu semanal
+- [x] Prepare schemas and local storage
+- [x] Guided init to store preferences with AI
+- [x] Prompt engineering
+- [x] Prompt to json
+- [x] Alergia intolerancia o preferencias
+- [x] Añadir tiempo de preparación en los platos
+- [ ] Mover nav al header en desktop
+- [ ] Completar dark mode
+- [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
+- [ ] Auto-completar ingredientes en tour
+- [ ] Regenerar menu diario completo
+- [ ] Historial platos generados
 - [ ] Make tests
 - [ ] Webapp landing page

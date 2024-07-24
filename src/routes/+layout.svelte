@@ -23,16 +23,15 @@
 		});
 	});
 
-	$: notTour = !$page.url.pathname.includes('tour');
-
 	function switchDarkMode() {
 		if (!browser) return;
 
-		$UiPreferences.darkMode
+		$UiPreferences.dark_mode
 			? document.documentElement.classList.add('dark')
 			: document.documentElement.classList.remove('dark');
 	}
 
+	$: notTour = !$page.url.pathname.includes('tour');
 	$: $UiPreferences, switchDarkMode();
 </script>
 
