@@ -1,3 +1,3 @@
-<section class="h-[calc(100vh-96px)] w-full flex flex-col items-center p-4 lg:p-8">
+<section class="flex flex-col items-center px-4 pt-16 pb-4 lg:px-8 lg:pt-24 lg:pb-8">
 	<slot />
 </section>

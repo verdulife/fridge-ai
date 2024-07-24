@@ -11,7 +11,7 @@
 
 <dialog
 	{open}
-	class="fixed bottom-0 z-50 h-[calc(100vh-96px)] w-full max-w-6xl overflow-hidden border-x bg-neutral-100 dark:bg-neutral-950 text-neutral-900 dark:text-neutral-300 border-neutral-300 dark:border-neutral-700/40"
+	class="fixed bottom-0 top-32 lg:top-48 border-x border-neutral-300 dark:border-neutral-700/40 z-50 size-full max-w-6xl overflow-hidden bg-neutral-100 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-300"
 >
 	<Button click={closeDialog} class="fixed right-4 top-4 ml-auto px-3 py-1">
 		<Close class="size-5" />

@@ -35,5 +35,6 @@
 		</div>
 	</div>
 
-	<Link href="/tour/end" class="w-2/3 px-6 py-3">SIGUIENTE</Link>
+	<Link href="/tour/end" class="fixed bottom-4 w-2/3 max-w-64 px-6 py-3 lg:bottom-8">SIGUIENTE</Link
+	>
 </article>

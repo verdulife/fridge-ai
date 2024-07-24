@@ -24,6 +24,6 @@
 		<Input bind:value={$UserPreferences.dislike[2]} placeholder="Tercer ingrediente" />
 		<Input bind:value={$UserPreferences.dislike[3]} placeholder="Cuarto ingrediente" />
 
-		<Button class="mt-8 w-2/3 px-6 py-3">SIGUIENTE</Button>
+		<Button class="fixed bottom-4 w-2/3 max-w-64 px-6 py-3 lg:bottom-8">SIGUIENTE</Button>
 	</form>
 </article>

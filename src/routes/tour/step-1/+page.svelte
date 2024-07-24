@@ -12,8 +12,8 @@
 	}
 </script>
 
-<article class="flex w-full max-w-sm flex-col items-center">
-	<form class="flex flex-col items-center justify-center gap-4" on:submit|preventDefault={nextStep}>
+<article class="flex max-w-sm flex-col items-center">
+	<form class="flex flex-col items-center gap-4" on:submit|preventDefault={nextStep}>
 		<Heading class="w-full">Ingredientes que te <span class="text-vista-300">gusten</span></Heading>
 		<Text class="w-full">Más adelante podrás ampliar esta lista</Text>
 
@@ -22,6 +22,6 @@
 		<Input bind:value={$UserPreferences.like[2]} placeholder="Tercer ingrediente" required />
 		<Input bind:value={$UserPreferences.like[3]} placeholder="Cuarto ingrediente" required />
 
-		<Button class="w-2/3 px-6 py-3 mt-8">SIGUIENTE</Button>
+		<Button class="fixed bottom-4 mt-8 w-2/3 max-w-64 px-6 py-3 lg:bottom-8">SIGUIENTE</Button>
 	</form>
 </article>

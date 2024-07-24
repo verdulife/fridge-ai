@@ -4,8 +4,8 @@
 	import Link from '@/components/ui/Link.svelte';
 </script>
 
-<article class="flex w-full max-w-sm flex-col items-center justify-center gap-12">
-	<div class="flex w-full flex-col items-center gap-4 text-center">
+<article class="flex max-w-sm flex-col items-center gap-12">
+	<div class="flex flex-col items-center gap-4 text-center">
 		<Heading as="h1">hola, soy tu nevera digital inteligente</Heading>
 
 		<Text>
@@ -21,7 +21,7 @@
 
 	<Link
 		href="/tour/step-1"
-		class="w-2/3 bg-vista-300 px-6 py-3 text-neutral-50 hover:bg-vista-400 hover:text-neutral-50"
+		class="fixed bottom-4 lg:bottom-8 w-2/3 max-w-64 bg-vista-300 px-6 py-3 text-neutral-50 hover:bg-vista-400 hover:text-neutral-50"
 		brand
 	>
 		EMPEZAR

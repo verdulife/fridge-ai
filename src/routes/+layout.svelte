@@ -8,9 +8,9 @@
 	import { UiPreferences } from '@/lib/stores';
 	import { browser } from '$app/environment';
 
+	import Background from '@/components/Background.svelte';
 	import Header from '@/components/Header.svelte';
 	import Nav from '@/components/Nav.svelte';
-	import Blobs from '@/components/Blobs.svelte';
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -46,13 +46,13 @@
 	<meta name="twitter:image:alt" content={title} />
 </svelte:head>
 
-<Blobs />
+<Background />
 
 <main
-	class="mx-auto flex min-h-screen max-w-6xl flex-col items-center text-pretty border-x border-neutral-300 bg-neutral-100/70 shadow-2xl shadow-neutral-300 dark:border-neutral-700/40 dark:bg-neutral-950/90 dark:shadow-black"
+	class="mx-auto min-h-screen flex max-w-6xl flex-col items-center text-pretty border-x border-neutral-300 bg-neutral-100 shadow-2xl shadow-neutral-300 dark:border-neutral-700/40 dark:bg-neutral-950 dark:shadow-black"
 >
 	<Header />
-	<div class="mt-24 w-full">
+	<div class="relative w-full">
 		<slot />
 	</div>
 

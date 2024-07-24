@@ -46,7 +46,9 @@ Get your digital fridge powered by AI. This app allows you to know your food pre
 - [x] Prompt to json
 - [x] Alergia intolerancia o preferencias
 - [x] Añadir tiempo de preparación en los platos
-- [ ] Mover nav al header en desktop
+- [x] Mover nav al header en desktop
+- [ ] Añadir cantidades en los ingredientes
+- [ ] Cambiar dialog por pagina con web view transitions (spotify)
 - [ ] Completar dark mode
 - [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
 - [ ] Auto-completar ingredientes en tour

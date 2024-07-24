@@ -54,7 +54,7 @@
 
 		<div class="flex flex-col gap-2">
 			<Text>Cuanto mides</Text>
-			<div class="flex gap-1">
+			<div class="flex items-center gap-1">
 				<Button click={() => subtractFive('height')} class="flex h-full items-center px-4 py-2">
 					<Minus class="size-4" />5
 				</Button>
@@ -74,7 +74,7 @@
 
 		<div class="flex flex-col gap-2">
 			<Text>Cuanto pesas</Text>
-			<div class="flex gap-1">
+			<div class="flex items-center gap-1">
 				<Button click={() => subtractFive('weight')} class="flex h-full items-center px-4 py-2">
 					<Minus class="size-4" />5
 				</Button>
@@ -93,5 +93,5 @@
 		</div>
 	</div>
 
-	<Link href="/tour/step-5" class="w-2/3 px-6 py-3">SIGUIENTE</Link>
+	<Link href="/tour/step-5" class="fixed bottom-4 lg:bottom-8 max-w-64 w-2/3 px-6 py-3">SIGUIENTE</Link>
 </article>

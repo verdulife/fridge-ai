@@ -41,7 +41,7 @@
 
 <Dialog bind:open>
 	<article
-		class="mx-auto flex size-full max-w-4xl flex-col items-start gap-8 overflow-y-auto overflow-x-hidden overscroll-contain px-4 py-16 lg:p-16"
+		class="mx-auto flex size-full max-w-4xl flex-col items-start gap-8 overflow-y-auto overflow-x-hidden overscroll-contain px-4 pt-16 pb-24 lg:p-16 lg:pb-32"
 	>
 		<header class="flex flex-col gap-4">
 			<Heading>{dish[0].menu_label}</Heading>
@@ -75,10 +75,16 @@
 				</Text>
 			{/if}
 
-			<Button class="flex gap-2 items-center pl-4 pr-6 py-2 mt-4" click={generateRecipe}>
+			<Button class="mt-4 flex items-center gap-2 py-2 pl-4 pr-6" click={generateRecipe}>
 				<Ai />
 				{dish[0].recipe ? 'Regenerar receta' : 'Generar receta'}
 			</Button>
 		</footer>
 	</article>
 </Dialog>
+
+<style>
+	article {
+		scrollbar-width: none;
+	}
+</style>

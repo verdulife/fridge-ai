@@ -74,14 +74,12 @@
 	});
 </script>
 
-<main class="mb-24 flex w-full flex-col items-start gap-8 py-4 lg:py-8">
+<main class="flex w-full flex-col items-start gap-8 pt-4 pb-32 lg:py-8">
 	<Today bind:currentDay={$CurrentDay} />
 	{#if todayMenu}
 		<TodaySlider />
 		<ShoppingList />
 	{:else}
-		<Box class="ml-4 p-4 lg:ml-8">
-			<Text>{message}</Text>
-		</Box>
+		<Text class="px-4 lg:px-8">{message}</Text>
 	{/if}
 </main>
