@@ -8,18 +8,23 @@ PWA para el Hackathon de SDK AI de Vercel, impulsada por Midudev.
 
 Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibrar y hacer mas sano tu menu semanal. Almacena todo en tu frigorífico y deja que la IA haga el resto.
 
-## Features
+## Funcionalidades
 
-- Store your food preferences in local storage
-- Generate a nutritionally balanced weekly meal
-- Get alternative recipes for your favorite dishes
-- Generate a shopping list for your weekly meal:
-  - Get a list of ingredients
-  - Calcule the use of ingredients each day
-  - Notify you when you are low on ingredients
-  - Reorder daily meals if you are low on ingredients to keep meal balance
+- Almacena tus preferencias alimentarias en local storage
+- Actuliza tus preferencias en cualquier momento:
+  - Ingredientes que te gustan
+  - Ingredientes que no te gustan
+  - Tiempo de preparación medio para tus platos
+  - Visualiza solo las comidas que necesitas
+- Genera un menú semanal sano y siempre equilibrado con AI
+  - Obtén recetas alternativas para tus platos
+  - Genera la receta para el plato
+- Genera una lista de compras para tu menú semanal:
+  - Listado de ingredientes por plato
+  - Listado de ingredientes por día
+  - Listado de ingredientes por semana
 
-## Tech stack
+## Tecnologías
 
 - SvelteKit
 - Vercel AI SDK
@@ -31,21 +36,19 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 
 [View in Figma](https://www.figma.com/design/SYq4uQTkuRnJQl2cuccejy/Untitled?node-id=0-1&t=LO49p6sCoPetMl4e-1)
 
----
+## TODO
 
-### To do
-
-- [x] Add all dependencies
-- [x] Generate pages and navigation
-- [-] Base UI
+- [x] Añadir todas las dependencias
+- [x] Generar páginas y navegación
+- [-] UI base
   - [x] Home
   - [ ] Meals
   - [ ] Shopping list
   - [ ] Settings
-- [x] Prepare schemas and local storage
-- [x] Guided init to store preferences with AI
+- [x] Preparar esquemas y local storage
+- [x] Inicio guiado para almacenar preferencias
 - [x] Prompt engineering
-- [x] Prompt to json
+- [x] Prompt a json
 - [x] Alergia intolerancia o preferencias
 - [x] Añadir tiempo de preparación en los platos
 - [x] Mover nav al header en desktop
@@ -56,5 +59,5 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [ ] Auto-completar ingredientes en tour
 - [ ] Regenerar menu diario completo
 - [ ] Historial platos generados
-- [ ] Make tests
+- [ ] Crear tests
 - [ ] Webapp landing page
