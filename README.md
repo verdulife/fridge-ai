@@ -40,7 +40,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 
 - [x] Añadir todas las dependencias
 - [x] Generar páginas y navegación
-- [-] UI base
+- [ ] UI base
   - [x] Home
   - [ ] Meals
   - [ ] Shopping list
