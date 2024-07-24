@@ -32,7 +32,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - Tailwind
 - TypeScript
 
-## Design prototype
+## Diseño de prototipo
 
 [View in Figma](https://www.figma.com/design/SYq4uQTkuRnJQl2cuccejy/Untitled?node-id=0-1&t=LO49p6sCoPetMl4e-1)
 
