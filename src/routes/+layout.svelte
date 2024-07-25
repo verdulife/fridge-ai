@@ -29,6 +29,10 @@
 		$UiPreferences.dark_mode
 			? document.documentElement.classList.add('dark')
 			: document.documentElement.classList.remove('dark');
+
+		$UiPreferences.dark_mode
+			? document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0a')
+			: document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f5f5f5');
 	}
 
 	$: notTour = !$page.url.pathname.includes('tour');
@@ -49,10 +53,10 @@
 <Background />
 
 <main
-	class="mx-auto flex min-h-dvh max-w-6xl flex-col items-center text-pretty border-x border-neutral-300 bg-neutral-100 shadow-2xl shadow-neutral-300 dark:border-neutral-700/40 dark:bg-neutral-950 dark:shadow-black"
+	class="mx-auto flex min-h-dvh max-w-6xl flex-col items-center text-pretty lg:border-x border-neutral-300 bg-neutral-100 shadow-2xl shadow-neutral-300 dark:border-neutral-700/40 dark:bg-neutral-950 dark:shadow-black"
 >
 	<Header />
-	<div class={`relative mt-24 w-full ${notTour && 'mb-24 mt-16 lg:mt-24 lg:mb-0'}`}>
+	<div class={`relative mt-24 w-full ${notTour && 'mb-24 mt-16 lg:mb-0 lg:mt-24'}`}>
 		<slot />
 	</div>
 
