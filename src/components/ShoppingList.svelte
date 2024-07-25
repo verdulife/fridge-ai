@@ -1,13 +1,9 @@
 <script lang="ts">
 	import type { DayType } from '@/lib/types';
+
 	import { UserPreferences } from '@/lib/stores';
-	import toast from 'svelte-french-toast';
-
 	import { CurrentDay, Menus } from '@/lib/stores';
-
-	$: todayMenuIndex = $Menus.findIndex(
-		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
-	);
+	import { setDislike, setLike } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
 	import Box from './ui/Box.svelte';
@@ -15,32 +11,14 @@
 	import Like from '@/assets/Like.svelte';
 	import Dislike from '@/assets/Dislike.svelte';
 
+	$: todayMenuIndex = $Menus.findIndex(
+		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
+	);
+
 	$: breakfastMenuItems = $Menus[todayMenuIndex]?.breakfast[0].menu_ingredients ?? [];
 	$: lunchMenuItems = $Menus[todayMenuIndex]?.lunch[0].menu_ingredients ?? [];
 	$: dinnerMenuItems = $Menus[todayMenuIndex]?.dinner[0].menu_ingredients ?? [];
 	$: allMenuItems = [...new Set([...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems])];
-
-	function setLike(ingredient: string) {
-		$UserPreferences.like = [...$UserPreferences.like, ingredient];
-		toast.success('Añadido ingrediente que te gusta');
-
-		if ($UserPreferences.dislike.includes(ingredient)) {
-			$UserPreferences.dislike = $UserPreferences.dislike.filter((item: string) => {
-				return item !== ingredient;
-			});
-		}
-	}
-
-	function setDislike(ingredient: string) {
-		$UserPreferences.dislike = [...$UserPreferences.dislike, ingredient];
-		toast.success('Añadido ingrediente que detestas');
-
-		if ($UserPreferences.like.includes(ingredient)) {
-			$UserPreferences.like = $UserPreferences.like.filter((item: string) => {
-				return item !== ingredient;
-			});
-		}
-	}
 </script>
 
 <section class="flex w-full flex-col gap-4 px-4 lg:px-8">

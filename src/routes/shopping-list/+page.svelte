@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { DayType } from '@/lib/types';
-	import toast from 'svelte-french-toast';
+
 	import { Menus, UserPreferences } from '@/lib/stores';
 	import { WEEK_DAYS } from '@/lib/consts';
+	import { setDislike, setLike } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
@@ -40,28 +41,6 @@
 		saturday_menu,
 		sunday_menu
 	];
-
-	function setLike(ingredient: string) {
-		$UserPreferences.like = [...$UserPreferences.like, ingredient];
-		toast.success('Añadido ingrediente que te gusta');
-
-		if ($UserPreferences.dislike.includes(ingredient)) {
-			$UserPreferences.dislike = $UserPreferences.dislike.filter((item: string) => {
-				return item !== ingredient;
-			});
-		}
-	}
-
-	function setDislike(ingredient: string) {
-		$UserPreferences.dislike = [...$UserPreferences.dislike, ingredient];
-		toast.success('Añadido ingrediente que detestas');
-
-		if ($UserPreferences.like.includes(ingredient)) {
-			$UserPreferences.like = $UserPreferences.like.filter((item: string) => {
-				return item !== ingredient;
-			});
-		}
-	}
 </script>
 
 <div class="flex w-full flex-col items-start gap-8 p-4 lg:p-8">

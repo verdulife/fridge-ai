@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { UserPreferences } from '@/lib/stores';
-	import { USER_INFO_LIB } from '@/lib/consts';
+	import { MAX_BODY_VALUE, USER_INFO_LIB } from '@/lib/consts';
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Text from '@/components/ui/Text.svelte';
@@ -17,7 +17,7 @@
 
 	function add(key: string) {
 		const value = parseFloat($UserPreferences.info[key]);
-		if (value > 150) return;
+		if (value > MAX_BODY_VALUE) return;
 		$UserPreferences.info[key] = value + 1 + ` ${USER_INFO_LIB[key]}`;
 	}
 </script>

@@ -13,14 +13,14 @@
 	</Text>
 
 	<Text class="text-lg">
-		Y si te preocupa tu nutricion, todos los menus tiene en cuenta tus datos para ser lo mas
-		equilibrados posible.
+		Y si te preocupa tu nutrición, todos los menús tienen en cuenta tus datos para ser lo más
+		equilibrados y sanos para ti.
 	</Text>
 </div>
 
 <Link
 	href="/tour/step-1"
-	class="fixed bottom-16 w-2/3 max-w-64 bg-vista-300 px-6 py-3 !text-neutral-50 hover:bg-vista-400 !hover:text-neutral-50"
+	class="!hover:text-neutral-50 fixed bottom-16 w-2/3 max-w-64 bg-vista-300 px-6 py-3 !text-neutral-50 hover:bg-vista-400"
 	brand
 >
 	EMPEZAR

@@ -1,3 +1,5 @@
+export const MAX_BODY_VALUE = 300;
+
 export const USER_INFO_LIB: { [key: string]: string } = {
   age: "años",
   height: "cm",
@@ -119,7 +121,7 @@ export const AWAITING_RESPONSES = [
   "Constrastando con el endocrino...",
   "Eliminando alimentos no deseados...",
   "Añadiendo alimentos deseados...",
-  "Cotejando alegrías...",
+  "Cotejando alergias...",
   "Descansando...",
   "Guardando resultados...",
   "Limpiando..."

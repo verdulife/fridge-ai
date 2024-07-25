@@ -10,15 +10,15 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 
 ## Funcionalidades
 
-- Almacena tus preferencias alimentarias en local storage
-- Actuliza tus preferencias en cualquier momento:
+- Almacena tus preferencias en local storage
+- Actuliza tus datos en cualquier momento:
   - Ingredientes que te gustan
   - Ingredientes que no te gustan
   - Tiempo de preparación medio para tus platos
   - Visualiza solo las comidas que necesitas
-- Genera un menú semanal sano y siempre equilibrado con AI
+- Genera un menú semanal sano y equilibrado con AI
   - Obtén recetas alternativas para tus platos
-  - Genera la receta para el plato
+  - Genera la preparación para la receta
 - Genera una lista de compras para tu menú semanal:
   - Listado de ingredientes por plato
   - Listado de ingredientes por día
@@ -59,5 +59,6 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [ ] Regenerar menu diario completo
 - [ ] Historial platos generados
 - [ ] Aviso instalacion PWA
+- [ ] Botón borrar datos y cookies
 - [ ] Crear tests
 - [ ] Webapp landing page
