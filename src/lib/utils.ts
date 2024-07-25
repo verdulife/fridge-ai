@@ -43,13 +43,13 @@ export function getCurrentDay(): string {
   return new Intl.DateTimeFormat("es-ES", { weekday: 'long' }).format(new Date());
 }
 
-export function setLike(ingredient: string) {
+export function setLike({ name }: IngredoemtsType) {
   UserPreferences.update((value) => {
-    value.like = [...value.like, ingredient];
+    value.like = [...value.like, name];
     toast.success('Añadido ingrediente que te gusta');
 
-    if (value.dislike.includes(ingredient)) {
-      value.dislike = value.dislike.filter((item: string) => item !== ingredient);
+    if (value.dislike.includes(name)) {
+      value.dislike = value.dislike.filter((item: string) => item !== name);
     }
 
     return value;
@@ -57,18 +57,18 @@ export function setLike(ingredient: string) {
 
 }
 
-export function setDislike(ingredient: string) {
+export function setDislike({ name }: IngredoemtsType) {
   UserPreferences.update((value) => {
-    value.dislike = [...value.dislike, ingredient];
+    value.dislike = [...value.dislike, name];
     toast.success('Añadido ingrediente que detestas');
 
-    if (value.like.includes(ingredient)) {
-      value.like = value.like.filter((item: string) => item !== ingredient);
+    if (value.like.includes(name)) {
+      value.like = value.like.filter((item: string) => item !== name);
     }
     return value;
   });
 }
 
-export function formatIngredient(ingredient: IngredoemtsType) {
-  return `${ingredient.name} (${ingredient.amount}${ingredient.unit})`;
+export function formatIngredient({ name, amount, unit }: IngredoemtsType) {
+  return `${name} (${amount}${unit ? " " : ""}${unit})`;
 }

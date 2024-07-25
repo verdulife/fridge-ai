@@ -53,7 +53,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Mover nav al header en desktop
 - [x] Regenerar menu diario completo
 - [x] Botón borrar datos y cookies
-- [ ] Añadir cantidades en los ingredientes
+- [x] Añadir cantidades en los ingredientes
 - [ ] Verificar respuestas con Zod schemas
 - [ ] Completar dark mode
 - [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)

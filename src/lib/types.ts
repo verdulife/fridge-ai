@@ -13,8 +13,8 @@ export interface UserPreferencesType {
 
 export interface IngredoemtsType {
   name: string;
-  amount: number;
-  unit: string;
+  amount: number | string;
+  unit: string | null;
 }
 
 export interface MealType {

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { MealType } from '@/lib/types';
+
 	import { readDataStream } from 'ai';
+	import { formatIngredient } from '@/lib/utils';
 
 	import Dialog from '@/components/ui/Dialog.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
@@ -41,7 +43,7 @@
 
 <Dialog bind:open>
 	<article
-		class="mx-auto flex size-full max-w-4xl flex-col items-start gap-8 overflow-y-auto overflow-x-hidden overscroll-contain px-6 pt-16 pb-24 lg:p-16 lg:pb-32"
+		class="mx-auto flex size-full max-w-4xl flex-col items-start gap-8 overflow-y-auto overflow-x-hidden overscroll-contain px-6 pb-24 pt-16 lg:p-16 lg:pb-32"
 	>
 		<header class="flex flex-col gap-4">
 			<Heading>{dish[0].menu_label}</Heading>
@@ -59,7 +61,7 @@
 				{#each dish[0].menu_ingredients as ingredient}
 					<li class="flex flex-col gap-2">
 						<Box class="flex h-full items-center justify-between gap-4 px-4 py-2">
-							<Text class="first-letter:uppercase">{ingredient}</Text>
+							<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
 						</Box>
 					</li>
 				{/each}
@@ -67,7 +69,7 @@
 		</main>
 
 		<footer class="flex flex-col items-start gap-4">
-			<Heading as="h3" class="text-xl">Receta</Heading>
+			<Heading as="h3" class="text-xl">Preparación</Heading>
 
 			{#if dish[0].recipe}
 				<Text>
@@ -77,7 +79,7 @@
 
 			<Button class="mt-4 flex items-center gap-2 py-2 pl-4 pr-6" click={generateRecipe}>
 				<Ai />
-				{dish[0].recipe ? 'Regenerar receta' : 'Generar receta'}
+				{dish[0].recipe ? 'Regenerar preparación' : 'Generar preparación'}
 			</Button>
 		</footer>
 	</article>

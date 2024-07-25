@@ -2,7 +2,7 @@
 	import type { DayType } from '@/lib/types';
 
 	import { Menus, UserPreferences } from '@/lib/stores';
-	import { setDislike, setLike } from '@/lib/utils';
+	import { formatIngredient, setDislike, setLike } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
@@ -28,16 +28,16 @@
 					{#each menu[0].breakfast[0].menu_ingredients as ingredient}
 						<li class="flex w-full flex-col gap-2">
 							<Box class="flex h-full items-center justify-between gap-4 p-4">
-								<Text class="first-letter:uppercase">{ingredient}</Text>
+								<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
 
 								<aside class="flex items-center gap-2">
-									{#if !$UserPreferences.like.includes(ingredient)}
+									{#if !$UserPreferences.like.includes(ingredient.name)}
 										<Button class="px-3 py-1" click={() => setLike(ingredient)}>
 											<Like class="size-5" />
 										</Button>
 									{/if}
 
-									{#if !$UserPreferences.dislike.includes(ingredient)}
+									{#if !$UserPreferences.dislike.includes(ingredient.name)}
 										<Button class="px-3 py-1" click={() => setDislike(ingredient)}>
 											<Dislike class="size-5" />
 										</Button>

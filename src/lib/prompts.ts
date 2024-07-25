@@ -1,29 +1,6 @@
-const INGREDIENT_EXAMPLE = `{
-	name: "",
-	amount: 0,
-	unit: ""
-}`;
-
-const MEAL_EXAMPLE = `{
-	menu_label: "",
-	menu_ingredients: [
-		${INGREDIENT_EXAMPLE}
-	],
-  time_to_prepare: ""
-}`;
-
-const DAY_EXAMPLE = `{
-	week_day: "",
-	breakfast: [
-		${MEAL_EXAMPLE}
-	],
-	lunch: [
-		${MEAL_EXAMPLE}
-	],
-	dinner: [
-		${MEAL_EXAMPLE}
-	]
-}`;
+const INGREDIENT_EXAMPLE = `{"name": "","amount": 0,"unit": ""}`;
+const MEAL_EXAMPLE = `{"menu_label": "","menu_ingredients": [${INGREDIENT_EXAMPLE}],"time_to_prepare": ""}`;
+const DAY_EXAMPLE = `{"week_day": "","breakfast": [${MEAL_EXAMPLE}],"lunch": [${MEAL_EXAMPLE}],"dinner": [${MEAL_EXAMPLE}]}`;
 
 export const GENERATE_MENUS_PROMPT = `
 Eres una API programada por expertos dietistas y nutricionistas.
@@ -37,10 +14,12 @@ Siempre que puedas, añade al titulo del menu un emoji que represente al ingredi
 Siempre que puedas, añade al nombre del ingrediente un emoji que lo represente.
 Importante:
  - El idioma español sera de España.
- - Nunca agrupes ingredientes en un mismo string.
+ - Utiliza solo las siguientes unidades de medida: "gr", "ml" o "un".
+ - Respeta los tipos del objecto de ingredientes.
+ - Para la propiedad amount, utiliza decimales en lugar de fracciones.
  - Devolverás un JSON con un menú diario.
  - Nunca devolveras mas texto que el JSON.
- - EL JSON debe estar codificado en UTF-8.
+ - EL JSON debe estar codificado en UTF-8 y minificado.
  - El JSON debe seguir estrictamente la siguiente estructura, sin añadir ni quitar ninguna propiedad:"
  ${DAY_EXAMPLE},
  `;
@@ -57,12 +36,14 @@ export const GENERATE_MEAL_PROMPT = `
  Siempre que puedas, añade al nombre del ingrediente un emoji que lo represente.
  Importante:
  - Crearas una receta nueva que tenga ingredientes diferentes al current_meal.
- - Dicha alternavia debe tener un tiempo de preparación similar al current_meal.
+ - Dicha alternativa debe tener un tiempo de preparación similar al current_meal.
  - El idioma español sera de España.
- - Nunca agrupes ingredientes en un mismo string.
+ - Utiliza solo las siguientes unidades de medida: "gr", "ml" o "un".
+ - Respeta los tipos del objecto de ingredientes.
+ - Para la propiedad amount, utiliza decimales en lugar de fracciones.
  - Devolverás un JSON con un plato a substituir.
  - Nunca devolveras mas texto que el JSON.
- - EL JSON debe estar codificado en UTF-8.
+ - EL JSON debe estar codificado en UTF-8 y minificado.
  - El JSON debe seguir estrictamente la siguiente estructura, sin añadir ni quitar ninguna propiedad:"
 ${MEAL_EXAMPLE},
 `;
@@ -79,6 +60,5 @@ No generes listas ni tablas.
 Importante:
  - El idioma español sera de España.
  - Nunca devolveras mas texto que la descripción de la preparación.
- - No me devolveras el nombre del plato.
- - No me devolveras los ingredientes del plato.
+ - No uses las cantidades de ingredientes en la descripción de la preparación.
 `;
