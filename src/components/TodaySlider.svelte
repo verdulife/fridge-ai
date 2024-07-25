@@ -4,6 +4,10 @@
 
 	import Text from '@/components/ui/Text.svelte';
 	import DishCard from '@/components/DishCard.svelte';
+	import Ai from '@/assets/Ai.svelte';
+	import Button from './ui/Button.svelte';
+
+	export let click: () => void;
 
 	$: todayMenuIndex = $Menus.findIndex(
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
@@ -11,8 +15,11 @@
 </script>
 
 <section class="flex w-full flex-col items-start gap-4">
-	<div class="px-4 lg:px-8">
+	<div class="flex w-full items-end justify-between px-4 lg:px-8">
 		<Text class="font-semibold">Tu menú del día</Text>
+		<Button class="flex items-center gap-2 px-3 py-1" {click}>
+			<Ai class="size-5" />
+		</Button>
 	</div>
 
 	<ul

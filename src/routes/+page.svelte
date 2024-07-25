@@ -1,18 +1,20 @@
 <script lang="ts">
 	import type { DayType } from '@/lib/types';
 
-	import { onMount } from 'svelte';
-	import { readDataStream } from 'ai';
+	import { browser } from '$app/environment';
 	import { CurrentDay, Menus, UserPreferences } from '@/lib/stores';
 	import { AWAITING_RESPONSES } from '@/lib/consts';
+	import { generate } from '@/lib/utils';
 
 	import Today from '@/components/Today.svelte';
 	import TodaySlider from '@/components/TodaySlider.svelte';
 	import ShoppingList from '@/components/ShoppingList.svelte';
 	import Text from '@/components/ui/Text.svelte';
-	import Box from '@/components/ui/Box.svelte';
+	import Button from '@/components/ui/Button.svelte';
+	import Ai from '@/assets/Ai.svelte';
 
 	let message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
+	let success = true;
 
 	$: todayMenu = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay);
 	$: allMenuTitles = $Menus.map((menu: DayType) => {
@@ -24,39 +26,29 @@
 		};
 	});
 
-	const generateTodaysMenu = async () => {
-		const res = await fetch('/api/generate-today-menu', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				user_preferences: $UserPreferences,
-				menu_day: $CurrentDay,
-				week_menus: allMenuTitles
-			})
+	async function generateTodaysMenu() {
+		if (todayMenu) {
+			$Menus = $Menus.filter((menu: DayType) => menu !== todayMenu);
+			todayMenu = null;
+		}
+
+		const menu = await generate('/api/generate-today-menu', {
+			user_preferences: $UserPreferences,
+			menu_day: $CurrentDay,
+			week_menus: allMenuTitles
 		});
 
-		if (!res.ok || !res.body) return;
-
-		const reader = res.body.getReader();
-		let data = '';
-
-		for await (const { type, value } of readDataStream(reader)) {
-			if (type === 'text') {
-				data += value;
-			}
-		}
+		console.log(menu);
 
 		try {
-			const parsedData = JSON.parse(data);
-			$Menus = [...$Menus, parsedData];
-			return parsedData;
-		} catch (error) {
+			$Menus = [...$Menus, menu];
+			success = true;
+			return todayMenu;
+		} catch (err) {
+			success = false;
 			alert('Error al generar menús. Intentalo de nuevo.');
-			return {};
 		}
-	};
+	}
 
 	function simulateLoading() {
 		setInterval(() => {
@@ -64,19 +56,22 @@
 		}, 2000);
 	}
 
-	onMount(() => {
-		if (todayMenu) return;
-
+	$: if (browser && !todayMenu) {
 		simulateLoading();
 		generateTodaysMenu();
-	});
+	}
 </script>
 
 <div class="flex w-full flex-col items-start gap-8 py-6 lg:py-8">
 	<Today bind:currentDay={$CurrentDay} />
 	{#if todayMenu}
-		<TodaySlider />
+		<TodaySlider click={generateTodaysMenu} />
 		<ShoppingList />
+	{:else if !success}
+		<Button click={generateTodaysMenu} class="ml-4 flex items-center gap-2 py-2 pl-4 pr-6 lg:ml-8">
+			<Ai />
+			Generar menú
+		</Button>
 	{:else}
 		<Text class="px-4 lg:px-8">{message}</Text>
 	{/if}

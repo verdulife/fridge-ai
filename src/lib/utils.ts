@@ -1,5 +1,29 @@
+import { readDataStream } from 'ai';
 import { UserPreferences } from '@/lib/stores';
 import toast from 'svelte-french-toast';
+
+export async function generate(url: string, input: any) {
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(input)
+  });
+
+  if (!res.ok || !res.body) return;
+  const reader = res.body.getReader();
+  let data = '';
+
+  for await (const { type, value } of readDataStream(reader)) {
+    if (type === 'text') data += value;
+  }
+
+  try {
+    const parsedData = JSON.parse(data);
+    return parsedData;
+  } catch (err : any) {
+    throw new Error(err);
+  }
+};
 
 export function getCurrentDay(): string {
   return new Intl.DateTimeFormat("es-ES", { weekday: 'long' }).format(new Date());
