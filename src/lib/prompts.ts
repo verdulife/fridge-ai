@@ -60,5 +60,6 @@ No generes listas ni tablas.
 Importante:
  - El idioma español sera de España.
  - Nunca devolveras mas texto que la descripción de la preparación.
+ - No uses el titulo del plato en la descripción de la preparación.
  - No uses las cantidades de ingredientes en la descripción de la preparación.
 `;
