@@ -3,10 +3,8 @@
 </script>
 
 <label
-	class={`rounded-full border border-neutral-400 px-4 py-2 text-sm text-neutral-400 ${checked && '!border-vista-400 bg-vista-400 !text-neutral-50'}`}
+	class={`0 rounded-full border border-neutral-400 px-4 py-2 text-sm ${checked && '!border-vista-300 bg-vista-300 text-neutral-800'}`}
 >
-	<span>
-		<slot />
-	</span>
-	<input type="checkbox" class="appearance-none" bind:checked />
+	<slot></slot>
+	<input type="checkbox" class="hidden" bind:checked />
 </label>

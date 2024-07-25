@@ -22,24 +22,20 @@
 		));
 </script>
 
-<article class="flex w-full max-w-md flex-col items-center justify-center gap-12">
-	<div class="flex flex-col justify-center gap-4">
-		<Heading>
-			Tus <span class="text-vista-300">alergias</span>,
-			<span class="text-vista-300">intolerancias</span> o
-			<span class="text-vista-300">preferencias</span>
-		</Heading>
+<div class="flex flex-col justify-center gap-4">
+	<Heading>
+		Tus <span class="text-vista-300">alergias</span>,
+		<span class="text-vista-300">intolerancias</span> o
+		<span class="text-vista-300">preferencias</span>
+	</Heading>
 
-		<div class="flex flex-wrap items-start justify-start gap-1">
-			{#each allergens_options as allergen}
-				<Checkbox bind:checked={allergensSelection[allergen.id]}>
-					{allergen.name}
-				</Checkbox>
-			{/each}
-		</div>
+	<div class="flex flex-wrap items-start justify-start gap-1">
+		{#each allergens_options as allergen}
+			<Checkbox bind:checked={allergensSelection[allergen.id]}>
+				{allergen.name}
+			</Checkbox>
+		{/each}
 	</div>
+</div>
 
-	<Link href="/tour/step-4" class="fixed bottom-4 w-2/3 max-w-64 px-6 py-3 lg:bottom-8"
-		>SIGUIENTE</Link
-	>
-</article>
+<Link href="/tour/step-4" class="fixed bottom-16 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Link>

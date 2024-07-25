@@ -25,8 +25,6 @@
 	});
 
 	const generateTodaysMenu = async () => {
-		simulateLoading();
-
 		const res = await fetch('/api/generate-today-menu', {
 			method: 'POST',
 			headers: {
@@ -69,12 +67,12 @@
 	onMount(() => {
 		if (todayMenu) return;
 
-		generateTodaysMenu();
 		simulateLoading();
+		generateTodaysMenu();
 	});
 </script>
 
-<section class="flex w-full flex-col items-start gap-8 pt-4 pb-32 lg:py-8">
+<div class="flex w-full flex-col items-start gap-8 py-6 lg:py-8">
 	<Today bind:currentDay={$CurrentDay} />
 	{#if todayMenu}
 		<TodaySlider />
@@ -82,4 +80,4 @@
 	{:else}
 		<Text class="px-4 lg:px-8">{message}</Text>
 	{/if}
-</section>
+</div>

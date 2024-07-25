@@ -41,7 +41,7 @@
 
 <Dialog bind:open>
 	<article
-		class="mx-auto flex size-full max-w-4xl flex-col items-start gap-8 overflow-y-auto overflow-x-hidden overscroll-contain px-4 pt-16 pb-24 lg:p-16 lg:pb-32"
+		class="mx-auto flex size-full max-w-4xl flex-col items-start gap-8 overflow-y-auto overflow-x-hidden overscroll-contain px-6 pt-16 pb-24 lg:p-16 lg:pb-32"
 	>
 		<header class="flex flex-col gap-4">
 			<Heading>{dish[0].menu_label}</Heading>

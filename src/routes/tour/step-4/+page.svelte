@@ -9,89 +9,69 @@
 	import Minus from '@/assets/Minus.svelte';
 	import Link from '@/components/ui/Link.svelte';
 
-	function subtractFive(key: string) {
-		$UserPreferences.info[key] =
-			parseFloat($UserPreferences.info[key]) - 5 + ` ${USER_INFO_LIB[key]}`;
-	}
-	function addFive(key: string) {
-		$UserPreferences.info[key] =
-			parseFloat($UserPreferences.info[key]) + 5 + ` ${USER_INFO_LIB[key]}`;
-	}
-
 	function subtract(key: string) {
-		$UserPreferences.info[key] =
-			parseFloat($UserPreferences.info[key]) - 1 + ` ${USER_INFO_LIB[key]}`;
+		const value = parseFloat($UserPreferences.info[key]);
+		if (value < 1) return;
+		$UserPreferences.info[key] = value - 1 + ` ${USER_INFO_LIB[key]}`;
 	}
 
 	function add(key: string) {
-		$UserPreferences.info[key] =
-			parseFloat($UserPreferences.info[key]) + 1 + ` ${USER_INFO_LIB[key]}`;
+		const value = parseFloat($UserPreferences.info[key]);
+		if (value > 150) return;
+		$UserPreferences.info[key] = value + 1 + ` ${USER_INFO_LIB[key]}`;
 	}
 </script>
 
-<article class="flex w-full max-w-sm flex-col items-center justify-center gap-12">
-	<div class="flex w-full flex-col justify-center gap-8">
-		<Heading>Tus <span class="text-vista-300">cifras</span></Heading>
+<div class="flex w-full flex-col gap-4">
+	<Heading>Tu y tu <span class="text-vista-300">cuerpo</span></Heading>
 
-		<div class="flex flex-col gap-2">
-			<Text>Cuantos años tienes</Text>
-			<div class="flex items-center gap-1">
-				<Button click={() => subtractFive('age')} class="flex h-full items-center px-4 py-2">
-					<Minus class="size-4" />5
+	<div class="flex w-full flex-col gap-2">
+		<Text>Edad</Text>
+		<div class="flex items-center justify-between gap-1">
+			<Heading class="text-2xl">{$UserPreferences.info.age}</Heading>
+
+			<div>
+				<Button click={() => subtract('age')} class="px-4 py-2">
+					<Minus class="size-4" />
 				</Button>
-				<Button click={() => subtract('age')} class="h-full px-4 py-2"
-					><Minus class="size-4" /></Button
-				>
-
-				<Heading class="grow text-center text-xl">{$UserPreferences.info.age}</Heading>
-
-				<Button click={() => add('age')} class="h-full px-4 py-2"><Plus class="size-4" /></Button>
-				<Button click={() => addFive('age')} class="flex h-full items-center px-4 py-2">
-					<Plus class="size-4" />5
-				</Button>
-			</div>
-		</div>
-
-		<div class="flex flex-col gap-2">
-			<Text>Cuanto mides</Text>
-			<div class="flex items-center gap-1">
-				<Button click={() => subtractFive('height')} class="flex h-full items-center px-4 py-2">
-					<Minus class="size-4" />5
-				</Button>
-				<Button click={() => subtract('height')} class="h-full px-4 py-2"
-					><Minus class="size-4" /></Button
-				>
-
-				<Heading class="grow text-center text-xl">{$UserPreferences.info.height}</Heading>
-
-				<Button click={() => add('height')} class="h-full px-4 py-2"><Plus class="size-4" /></Button
-				>
-				<Button click={() => addFive('height')} class="flex h-full items-center px-4 py-2">
-					<Plus class="size-4" />5
-				</Button>
-			</div>
-		</div>
-
-		<div class="flex flex-col gap-2">
-			<Text>Cuanto pesas</Text>
-			<div class="flex items-center gap-1">
-				<Button click={() => subtractFive('weight')} class="flex h-full items-center px-4 py-2">
-					<Minus class="size-4" />5
-				</Button>
-				<Button click={() => subtract('weight')} class="h-full px-4 py-2"
-					><Minus class="size-4" /></Button
-				>
-
-				<Heading class="grow text-center text-xl">{$UserPreferences.info.weight}</Heading>
-
-				<Button click={() => add('weight')} class="h-full px-4 py-2"><Plus class="size-4" /></Button
-				>
-				<Button click={() => addFive('weight')} class="flex h-full items-center px-4 py-2">
-					<Plus class="size-4" />5
+				<Button click={() => add('age')} class="px-4 py-2">
+					<Plus class="size-4" />
 				</Button>
 			</div>
 		</div>
 	</div>
 
-	<Link href="/tour/step-5" class="fixed bottom-4 lg:bottom-8 max-w-64 w-2/3 px-6 py-3">SIGUIENTE</Link>
-</article>
+	<div class="flex w-full flex-col gap-2">
+		<Text>Altura</Text>
+		<div class="flex items-center justify-between gap-1">
+			<Heading class="text-2xl">{$UserPreferences.info.height}</Heading>
+
+			<div>
+				<Button click={() => subtract('height')} class="px-4 py-2">
+					<Minus class="size-4" />
+				</Button>
+				<Button click={() => add('height')} class="px-4 py-2">
+					<Plus class="size-4" />
+				</Button>
+			</div>
+		</div>
+	</div>
+
+	<div class="flex w-full flex-col gap-2">
+		<Text>Peso</Text>
+		<div class="flex items-center justify-between gap-1">
+			<Heading class="text-2xl">{$UserPreferences.info.weight}</Heading>
+
+			<div>
+				<Button click={() => subtract('weight')} class="px-4 py-2">
+					<Minus class="size-4" />
+				</Button>
+				<Button click={() => add('weight')} class="px-4 py-2">
+					<Plus class="size-4" />
+				</Button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<Link href="/tour/step-5" class="fixed bottom-16 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Link>

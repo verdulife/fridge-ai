@@ -26,3 +26,9 @@ export interface DayType {
 }
 
 export type WeekType = Array<DayType>;
+
+export interface RouteType {
+  path: string;
+  label: string;
+  icon: string;
+}

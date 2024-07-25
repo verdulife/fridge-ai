@@ -1,7 +1,15 @@
 <script lang="ts">
 	import type { DayType } from '@/lib/types';
-	import { Menus } from '@/lib/stores';
+	import toast from 'svelte-french-toast';
+	import { Menus, UserPreferences } from '@/lib/stores';
 	import { WEEK_DAYS } from '@/lib/consts';
+
+	import Text from '@/components/ui/Text.svelte';
+	import Heading from '@/components/ui/Heading.svelte';
+	import Box from '@/components/ui/Box.svelte';
+	import Button from '@/components/ui/Button.svelte';
+	import Like from '@/assets/Like.svelte';
+	import Dislike from '@/assets/Dislike.svelte';
 
 	const monday_menu = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === 'lunes');
 	const tuesday_menu = $Menus.find(
@@ -32,49 +40,62 @@
 		saturday_menu,
 		sunday_menu
 	];
+
+	function setLike(ingredient: string) {
+		$UserPreferences.like = [...$UserPreferences.like, ingredient];
+		toast.success('Añadido ingrediente que te gusta');
+
+		if ($UserPreferences.dislike.includes(ingredient)) {
+			$UserPreferences.dislike = $UserPreferences.dislike.filter((item: string) => {
+				return item !== ingredient;
+			});
+		}
+	}
+
+	function setDislike(ingredient: string) {
+		$UserPreferences.dislike = [...$UserPreferences.dislike, ingredient];
+		toast.success('Añadido ingrediente que detestas');
+
+		if ($UserPreferences.like.includes(ingredient)) {
+			$UserPreferences.like = $UserPreferences.like.filter((item: string) => {
+				return item !== ingredient;
+			});
+		}
+	}
 </script>
 
-<section class="mb-32 flex flex-col gap-8 px-8 lg:px-16">
-	<h1 class="text-4xl font-bold">Tus menús</h1>
+<div class="flex w-full flex-col items-start gap-8 p-4 lg:p-8">
+	<Heading as="h1" class="text-4xl font-bold">Tu lista de la compra</Heading>
 
 	{#each week_menus as menu, index}
-		<h2 class="text-xl font-bold">{WEEK_DAYS[index]}</h2>
-		<ul class="flex flex-col gap-1">
-			<li class="flex w-full max-w-xs shrink-0 snap-start">
-				<article class="rounded-lg bg-neutral-900 p-4">
-					{#if menu}
-						<ul>
-							{#each menu.breakfast[0].menu_ingredients as item}
-								<li>{item}</li>
-							{/each}
-						</ul>
-					{:else}
-						<button>Generar menú</button>
-					{/if}
-				</article>
-				<article class="rounded-lg bg-neutral-900 p-4">
-					{#if menu}
-						<ul>
-							{#each menu.dinner[0].menu_ingredients as item}
-								<li>{item}</li>
-							{/each}
-						</ul>
-					{:else}
-						<button>Generar menú</button>
-					{/if}
-				</article>
-				<article class="rounded-lg bg-neutral-900 p-4">
-					{#if menu}
-						<ul>
-							{#each menu.lunch[0].menu_ingredients as item}
-								<li>{item}</li>
-							{/each}
-						</ul>
-					{:else}
-						<button>Generar menú</button>
-					{/if}
-				</article>
-			</li>
-		</ul>
+		<section class="flex w-full flex-col gap-4">
+			<Text class="font-semibold">{WEEK_DAYS[index]}</Text>
+
+			{#if menu}
+				<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
+					{#each menu.breakfast[0].menu_ingredients as ingredient}
+						<li class="flex w-full flex-col gap-2">
+							<Box class="flex h-full items-center justify-between gap-4 p-4">
+								<Text class="first-letter:uppercase">{ingredient}</Text>
+
+								<aside class="flex items-center gap-2">
+									{#if !$UserPreferences.like.includes(ingredient)}
+										<Button class="px-3 py-1" click={() => setLike(ingredient)}>
+											<Like class="size-5" />
+										</Button>
+									{/if}
+
+									{#if !$UserPreferences.dislike.includes(ingredient)}
+										<Button class="px-3 py-1" click={() => setDislike(ingredient)}>
+											<Dislike class="size-5" />
+										</Button>
+									{/if}
+								</aside>
+							</Box>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</section>
 	{/each}
-</section>
+</div>

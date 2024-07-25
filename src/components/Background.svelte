@@ -1,4 +1,4 @@
-<div class="fixed inset-0 -z-10"></div>
+<div class="hidden lg:block fixed inset-0 -z-10"></div>
 
 <style lang="postcss">
 	div {

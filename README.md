@@ -42,8 +42,8 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Generar páginas y navegación
 - [ ] UI base
   - [x] Home
-  - [ ] Meals
-  - [ ] Shopping list
+  - [x] Meals
+  - [x] Shopping list
   - [ ] Settings
 - [x] Preparar esquemas y local storage
 - [x] Inicio guiado para almacenar preferencias
@@ -53,7 +53,6 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Añadir tiempo de preparación en los platos
 - [x] Mover nav al header en desktop
 - [ ] Añadir cantidades en los ingredientes
-- [ ] Cambiar dialog por pagina con web view transitions (spotify)
 - [ ] Completar dark mode
 - [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
 - [ ] Auto-completar ingredientes en tour

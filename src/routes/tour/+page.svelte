@@ -4,26 +4,24 @@
 	import Link from '@/components/ui/Link.svelte';
 </script>
 
-<article class="flex max-w-sm flex-col items-center gap-12">
-	<div class="flex flex-col items-center gap-4 text-center">
-		<Heading as="h1">hola, soy tu nevera digital inteligente</Heading>
+<div class="flex flex-col gap-4">
+	<Heading as="h1">Tu <span class="text-vista-300">nevera</span> virtual esta aquí</Heading>
 
-		<Text>
-			Olvídate para siempre lo que cocinar, si lo que cocinas es sano y equilibrado y si te hace
-			falta comprar algo en el super.
-		</Text>
+	<Text class="text-lg">
+		Con fridge ai, tendrás tu menu semanal personalizado, alternativas para no aburrirte y la lista
+		de la compra en un solo lugar.
+	</Text>
 
-		<Text>
-			Menú semanal, macronutrientes, kilocalorías, la lista de la compra, aquí lo tienes todo y
-			gratuito.
-		</Text>
-	</div>
+	<Text class="text-lg">
+		Y si te preocupa tu nutricion, todos los menus tiene en cuenta tus datos para ser lo mas
+		equilibrados posible.
+	</Text>
+</div>
 
-	<Link
-		href="/tour/step-1"
-		class="fixed bottom-4 lg:bottom-8 w-2/3 max-w-64 bg-vista-300 px-6 py-3 text-neutral-50 hover:bg-vista-400 hover:text-neutral-50"
-		brand
-	>
-		EMPEZAR
-	</Link>
-</article>
+<Link
+	href="/tour/step-1"
+	class="fixed bottom-16 w-2/3 max-w-64 bg-vista-300 px-6 py-3 !text-neutral-50 hover:bg-vista-400 !hover:text-neutral-50"
+	brand
+>
+	EMPEZAR
+</Link>
