@@ -1,5 +1,8 @@
+import type { DayType, IngredoemtsType } from './types';
+
+import { get } from 'svelte/store';
+import { Menus, UserPreferences } from '@/lib/stores';
 import { readDataStream } from 'ai';
-import { UserPreferences } from '@/lib/stores';
 import toast from 'svelte-french-toast';
 
 export async function generate(url: string, input: any) {
@@ -20,10 +23,21 @@ export async function generate(url: string, input: any) {
   try {
     const parsedData = JSON.parse(data);
     return parsedData;
-  } catch (err : any) {
-    throw new Error(err);
+  } catch (err) {
+    return err;
   }
 };
+
+export function allMenuTitles() {
+  const menus = get(Menus);
+
+  return menus.map((menu: DayType) => ({
+    weekDay: menu.week_day,
+    breakfast: menu.breakfast[0].menu_label,
+    lunch: menu.lunch[0].menu_label,
+    dinner: menu.dinner[0].menu_label
+  }));
+}
 
 export function getCurrentDay(): string {
   return new Intl.DateTimeFormat("es-ES", { weekday: 'long' }).format(new Date());
@@ -53,4 +67,8 @@ export function setDislike(ingredient: string) {
     }
     return value;
   });
+}
+
+export function formatIngredient(ingredient: IngredoemtsType) {
+  return `${ingredient.name} (${ingredient.amount}${ingredient.unit})`;
 }

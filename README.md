@@ -38,28 +38,27 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 
 ## TODO
 
-- [x] Añadir todas las dependencias
 - [x] Generar páginas y navegación
+- [x] Preparar esquemas y local storage
+- [x] Inicio guiado para almacenar preferencias
 - [ ] UI base
   - [x] Home
   - [x] Meals
   - [x] Shopping list
   - [ ] Settings
-- [x] Preparar esquemas y local storage
-- [x] Inicio guiado para almacenar preferencias
 - [x] Prompt engineering
 - [x] Prompt a json
 - [x] Alergia intolerancia o preferencias
 - [x] Añadir tiempo de preparación en los platos
 - [x] Mover nav al header en desktop
+- [x] Regenerar menu diario completo
+- [x] Botón borrar datos y cookies
 - [ ] Añadir cantidades en los ingredientes
 - [ ] Verificar respuestas con Zod schemas
 - [ ] Completar dark mode
 - [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
 - [ ] Auto-completar ingredientes en tour
-- [ ] Regenerar menu diario completo
 - [ ] Historial platos generados
 - [ ] Aviso instalacion PWA
-- [ ] Botón borrar datos y cookies
 - [ ] Crear tests
 - [ ] Webapp landing page

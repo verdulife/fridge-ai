@@ -3,7 +3,7 @@
 
 	import { UserPreferences } from '@/lib/stores';
 	import { CurrentDay, Menus } from '@/lib/stores';
-	import { setDislike, setLike } from '@/lib/utils';
+	import { formatIngredient, setDislike, setLike } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
 	import Box from './ui/Box.svelte';
@@ -29,7 +29,7 @@
 			{#each allMenuItems as ingredient}
 				<li class="flex w-full flex-col gap-2">
 					<Box class="flex h-full items-center justify-between gap-4 p-4">
-						<Text class="first-letter:uppercase">{ingredient}</Text>
+						<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
 
 						<aside class="flex items-center gap-2">
 							{#if !$UserPreferences.like.includes(ingredient)}

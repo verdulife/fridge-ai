@@ -4,7 +4,7 @@
 	import { browser } from '$app/environment';
 	import { CurrentDay, Menus, UserPreferences } from '@/lib/stores';
 	import { AWAITING_RESPONSES } from '@/lib/consts';
-	import { generate } from '@/lib/utils';
+	import { allMenuTitles, generate } from '@/lib/utils';
 
 	import Today from '@/components/Today.svelte';
 	import TodaySlider from '@/components/TodaySlider.svelte';
@@ -17,34 +17,24 @@
 	let success = true;
 
 	$: todayMenu = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay);
-	$: allMenuTitles = $Menus.map((menu: DayType) => {
-		return {
-			weekDay: menu.week_day,
-			breakfast: menu.breakfast[0].menu_label,
-			lunch: menu.lunch[0].menu_label,
-			dinner: menu.dinner[0].menu_label
-		};
-	});
 
 	async function generateTodaysMenu() {
+		success = true;
+
 		if (todayMenu) {
-			$Menus = $Menus.filter((menu: DayType) => menu !== todayMenu);
+			$Menus = $Menus.filter((menu: DayType) => menu.week_day !== todayMenu.week_day);
 			todayMenu = null;
 		}
 
 		const menu = await generate('/api/generate-today-menu', {
 			user_preferences: $UserPreferences,
 			menu_day: $CurrentDay,
-			week_menus: allMenuTitles
+			week_menus: allMenuTitles()
 		});
 
-		console.log(menu);
-
-		try {
+		if (menu.week_day) {
 			$Menus = [...$Menus, menu];
-			success = true;
-			return todayMenu;
-		} catch (err) {
+		} else {
 			success = false;
 			alert('Error al generar menús. Intentalo de nuevo.');
 		}

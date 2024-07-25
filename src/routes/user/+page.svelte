@@ -1,9 +1,20 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { UserPreferences, UiPreferences } from '@/lib/stores';
+
 	import Radio from '@/components/ui/Radio.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
 	import Box from '@/components/ui/Box.svelte';
 	import Text from '@/components/ui/Text.svelte';
+	import Button from '@/components/ui/Button.svelte';
+
+	function deleteLocalData() {
+		const check = confirm('¿Estás seguro de que quieres borrar tus datos y cookies?');
+		if (!check) return;
+
+		localStorage.clear();
+		goto('/tour?rc=true');
+	}
 </script>
 
 <div class="flex w-full flex-col items-start gap-8 p-4 lg:p-8">
@@ -19,12 +30,12 @@
 
 	<ul class="flex flex-col gap-4">
 		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg dark:bg-neutral-900 p-4">
+			<article class="rounded-lg p-4 dark:bg-neutral-900">
 				<h2 class="text-xl font-bold">Ingredientes que te gustam</h2>
 				<ul class="flex flex-col gap-1">
 					{#each $UserPreferences.like as like}
 						<li class="flex w-full max-w-xs shrink-0 snap-start">
-							<article class="rounded-lg dark:bg-neutral-900 p-4">
+							<article class="rounded-lg p-4 dark:bg-neutral-900">
 								<h3 class="text-lg font-bold">{like}</h3>
 							</article>
 						</li>
@@ -33,12 +44,12 @@
 			</article>
 		</li>
 		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg dark:bg-neutral-900 p-4">
+			<article class="rounded-lg p-4 dark:bg-neutral-900">
 				<h2 class="text-xl font-bold">Ingredientes que detestas</h2>
 				<ul class="flex flex-col gap-1">
 					{#each $UserPreferences.dislike as dislike}
 						<li class="flex w-full max-w-xs shrink-0 snap-start">
-							<article class="rounded-lg dark:bg-neutral-900 p-4">
+							<article class="rounded-lg p-4 dark:bg-neutral-900">
 								<h3 class="text-lg font-bold">{dislike}</h3>
 							</article>
 						</li>
@@ -47,12 +58,12 @@
 			</article>
 		</li>
 		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg dark:bg-neutral-900 p-4">
+			<article class="rounded-lg p-4 dark:bg-neutral-900">
 				<h2 class="text-xl font-bold">Alergias, intolerancias y preferencias</h2>
 				<ul class="flex flex-col gap-1">
 					{#each $UserPreferences.allergens as allergen}
 						<li class="flex w-full max-w-xs shrink-0 snap-start">
-							<article class="rounded-lg dark:bg-neutral-900 p-4">
+							<article class="rounded-lg p-4 dark:bg-neutral-900">
 								<h3 class="text-lg font-bold">{allergen}</h3>
 							</article>
 						</li>
@@ -61,35 +72,35 @@
 			</article>
 		</li>
 		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg dark:bg-neutral-900 p-4">
+			<article class="rounded-lg p-4 dark:bg-neutral-900">
 				<h2 class="text-xl font-bold">Tus datos</h2>
 				<ul class="flex flex-col gap-1">
 					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg dark:bg-neutral-900 p-4">
+						<article class="rounded-lg p-4 dark:bg-neutral-900">
 							<h3 class="text-lg font-bold">Altura</h3>
 							<p class="text-lg font-bold">{$UserPreferences.info.height}</p>
 						</article>
 					</li>
 					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg dark:bg-neutral-900 p-4">
+						<article class="rounded-lg p-4 dark:bg-neutral-900">
 							<h3 class="text-lg font-bold">Peso</h3>
 							<p class="text-lg font-bold">{$UserPreferences.info.weight}</p>
 						</article>
 					</li>
 					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg dark:bg-neutral-900 p-4">
+						<article class="rounded-lg p-4 dark:bg-neutral-900">
 							<h3 class="text-lg font-bold">Edad</h3>
 							<p class="text-lg font-bold">{$UserPreferences.info.age}</p>
 						</article>
 					</li>
 					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg dark:bg-neutral-900 p-4">
+						<article class="rounded-lg p-4 dark:bg-neutral-900">
 							<h3 class="text-lg font-bold">Género</h3>
 							<p class="text-lg font-bold">{$UserPreferences.info.gender}</p>
 						</article>
 					</li>
 					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg dark:bg-neutral-900 p-4">
+						<article class="rounded-lg p-4 dark:bg-neutral-900">
 							<h3 class="text-lg font-bold">Tipo de ejercicio</h3>
 							<p class="text-lg font-bold">{$UserPreferences.info.weekly_exercise}</p>
 						</article>
@@ -98,4 +109,11 @@
 			</article>
 		</li>
 	</ul>
+
+	<section class="flex w-full flex-col items-start gap-4">
+		<Text class="font-semibold">Borrar datos y cookies</Text>
+		<Button class="w-full max-w-64 gap-2 self-center px-3 py-2" click={deleteLocalData}
+			>Borrar datos y cookies</Button
+		>
+	</section>
 </div>

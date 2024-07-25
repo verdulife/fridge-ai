@@ -15,6 +15,7 @@ export async function POST({ request }) {
 
   const result = await streamText({
     model: cohere('command-r-plus'),
+    seed: 137,
     messages: [
       {
         role: 'user',

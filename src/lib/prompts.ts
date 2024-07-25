@@ -1,6 +1,14 @@
+const INGREDIENT_EXAMPLE = `{
+	name: "",
+	amount: 0,
+	unit: ""
+}`;
+
 const MEAL_EXAMPLE = `{
 	menu_label: "",
-	menu_ingredients: [],
+	menu_ingredients: [
+		${INGREDIENT_EXAMPLE}
+	],
   time_to_prepare: ""
 }`;
 
