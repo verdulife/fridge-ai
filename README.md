@@ -58,5 +58,6 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [ ] Auto-completar ingredientes en tour
 - [ ] Regenerar menu diario completo
 - [ ] Historial platos generados
+- [ ] Aviso instalacion PWA
 - [ ] Crear tests
 - [ ] Webapp landing page
