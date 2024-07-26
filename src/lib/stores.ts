@@ -3,23 +3,26 @@ import type { UserPreferencesType } from '@/lib/types';
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 import { getCurrentDay } from '@/lib/utils';
+import { average_preparation_options, exercise_options, gender_options } from '@/lib/consts';
 
 export const CurrentDay = writable(getCurrentDay());
 
-const defaultUserPreferences: UserPreferencesType = {
+export const defaultUserPreferences: UserPreferencesType = {
   like: [],
   dislike: [],
   allergens: [],
   info: {
-    height: "160 cm",
-    weight: "60 kg",
+    created_at: new Date().getFullYear().toString(),
+    height: "165 cm",
+    weight: "70 kg",
     age: "30 años",
-    gender: "female",
-    weekly_exercise: "none",
-  }
+    gender: gender_options[0].id,
+    weekly_exercise: exercise_options[0].id,
+  },
+  average_preparation_time_per_dish: average_preparation_options[0].id,
 };
 
-const defaultUiPreferences = {
+export const defaultUiPreferences = {
   show_breakfast: true,
   show_lunch: true,
   show_dinner: true,

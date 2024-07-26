@@ -1,123 +1,239 @@
-<script>
+<script lang="ts">
 	import { goto } from '$app/navigation';
-	import { UserPreferences, UiPreferences, Menus } from '@/lib/stores';
+	import {
+		allergens_options,
+		average_preparation_options,
+		CONFIRM_MESSAGES,
+		exercise_options,
+		USER_INFO_LIB,
+		MAX_BODY_VALUE
+	} from '@/lib/consts';
+	import {
+		UserPreferences,
+		UiPreferences,
+		Menus,
+		defaultUserPreferences,
+		defaultUiPreferences
+	} from '@/lib/stores';
 
 	import Radio from '@/components/ui/Radio.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
 	import Box from '@/components/ui/Box.svelte';
 	import Text from '@/components/ui/Text.svelte';
 	import Button from '@/components/ui/Button.svelte';
+	import Sun from '@/assets/Sun.svelte';
+	import Moon from '@/assets/Moon.svelte';
+	import Checkbox from '@/components/ui/Checkbox.svelte';
+	import Time from '@/assets/Time.svelte';
+	import Minus from '@/assets/Minus.svelte';
+	import Plus from '@/assets/Plus.svelte';
+
+	let currenSelection = $UserPreferences.allergens;
+
+	$: allergensSelection = allergens_options.reduce(
+		(acc, allergen) => {
+			acc[allergen.id] = currenSelection.includes(allergen.id);
+			return acc;
+		},
+		{} as { [key: string]: boolean }
+	);
+
+	$: allergensSelection,
+		($UserPreferences.allergens = Object.keys(allergensSelection).filter(
+			(key) => allergensSelection[key]
+		));
+
+	function subtract(key: string) {
+		const value = parseFloat($UserPreferences.info[key]);
+		if (value < 1) return;
+		$UserPreferences.info[key] = value - 1 + ` ${USER_INFO_LIB[key]}`;
+	}
+
+	function add(key: string) {
+		const value = parseFloat($UserPreferences.info[key]);
+		if (value > MAX_BODY_VALUE) return;
+		$UserPreferences.info[key] = value + 1 + ` ${USER_INFO_LIB[key]}`;
+	}
 
 	function deleteLocalData() {
-		const check = confirm('¿Estás seguro de que quieres borrar tus datos y cookies?');
+		const check = confirm(CONFIRM_MESSAGES.delete_data);
 		if (!check) return;
 
-		$UserPreferences = {};
+		$UiPreferences = defaultUiPreferences;
+		$UserPreferences = defaultUserPreferences;
 		$Menus = [];
-		$UiPreferences = {};
 		localStorage.clear();
 
 		goto('/tour?rc=true');
 	}
 </script>
 
-<div class="flex w-full flex-col items-start gap-8 p-4 lg:p-8">
-	<Heading as="h1" class="text-4xl font-bold">Tus preferencias</Heading>
+<div class="mx-auto flex w-full max-w-3xl flex-col items-start gap-2 p-4 lg:p-8">
+	<Heading class="!text-2xl font-bold lg:mb-2">Ajustes visuales</Heading>
 
-	<Box class="flex w-full items-center justify-between p-4">
+	<Box class="flex w-full flex-col p-4">
 		<Text class="font-semibold">Tema</Text>
-		<div class="flex items-center gap-1">
-			<Radio bind:group={$UiPreferences.dark_mode} value={false}>Modo claro</Radio>
-			<Radio bind:group={$UiPreferences.dark_mode} value={true}>Modo oscuro</Radio>
+		<Text class="text-sm text-neutral-400">Cambia el modo de color de la aplicación.</Text>
+
+		<div class="mt-4 flex items-center gap-1">
+			<Radio
+				bind:group={$UiPreferences.dark_mode}
+				value={false}
+				class="flex items-center pl-3 pr-4 lg:gap-1"
+			>
+				<Sun class="h-4 w-4" />
+				Modo claro
+			</Radio>
+			<Radio
+				bind:group={$UiPreferences.dark_mode}
+				value={true}
+				class="flex items-center pl-3 pr-4 lg:gap-1"
+			>
+				<Moon class="h-4 w-4" />
+				Modo oscuro
+			</Radio>
 		</div>
 	</Box>
 
-	<ul class="flex flex-col gap-4">
-		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg p-4 dark:bg-neutral-900">
-				<h2 class="text-xl font-bold">Ingredientes que te gustam</h2>
-				<ul class="flex flex-col gap-1">
-					{#each $UserPreferences.like as like}
-						<li class="flex w-full max-w-xs shrink-0 snap-start">
-							<article class="rounded-lg p-4 dark:bg-neutral-900">
-								<h3 class="text-lg font-bold">{like}</h3>
-							</article>
-						</li>
-					{/each}
-				</ul>
-			</article>
-		</li>
-		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg p-4 dark:bg-neutral-900">
-				<h2 class="text-xl font-bold">Ingredientes que detestas</h2>
-				<ul class="flex flex-col gap-1">
-					{#each $UserPreferences.dislike as dislike}
-						<li class="flex w-full max-w-xs shrink-0 snap-start">
-							<article class="rounded-lg p-4 dark:bg-neutral-900">
-								<h3 class="text-lg font-bold">{dislike}</h3>
-							</article>
-						</li>
-					{/each}
-				</ul>
-			</article>
-		</li>
-		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg p-4 dark:bg-neutral-900">
-				<h2 class="text-xl font-bold">Alergias, intolerancias y preferencias</h2>
-				<ul class="flex flex-col gap-1">
-					{#each $UserPreferences.allergens as allergen}
-						<li class="flex w-full max-w-xs shrink-0 snap-start">
-							<article class="rounded-lg p-4 dark:bg-neutral-900">
-								<h3 class="text-lg font-bold">{allergen}</h3>
-							</article>
-						</li>
-					{/each}
-				</ul>
-			</article>
-		</li>
-		<li class="flex w-full flex-col gap-2">
-			<article class="rounded-lg p-4 dark:bg-neutral-900">
-				<h2 class="text-xl font-bold">Tus datos</h2>
-				<ul class="flex flex-col gap-1">
-					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg p-4 dark:bg-neutral-900">
-							<h3 class="text-lg font-bold">Altura</h3>
-							<p class="text-lg font-bold">{$UserPreferences.info.height}</p>
-						</article>
-					</li>
-					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg p-4 dark:bg-neutral-900">
-							<h3 class="text-lg font-bold">Peso</h3>
-							<p class="text-lg font-bold">{$UserPreferences.info.weight}</p>
-						</article>
-					</li>
-					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg p-4 dark:bg-neutral-900">
-							<h3 class="text-lg font-bold">Edad</h3>
-							<p class="text-lg font-bold">{$UserPreferences.info.age}</p>
-						</article>
-					</li>
-					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg p-4 dark:bg-neutral-900">
-							<h3 class="text-lg font-bold">Género</h3>
-							<p class="text-lg font-bold">{$UserPreferences.info.gender}</p>
-						</article>
-					</li>
-					<li class="flex w-full max-w-xs shrink-0 snap-start">
-						<article class="rounded-lg p-4 dark:bg-neutral-900">
-							<h3 class="text-lg font-bold">Tipo de ejercicio</h3>
-							<p class="text-lg font-bold">{$UserPreferences.info.weekly_exercise}</p>
-						</article>
-					</li>
-				</ul>
-			</article>
-		</li>
-	</ul>
+	<Box class="flex w-full flex-col p-4">
+		<Text class="font-semibold">Comidas</Text>
+		<Text class="text-sm text-neutral-400">Activa o desactiva las comidas que deseas ver.</Text>
 
-	<section class="flex w-full flex-col items-start gap-4">
-		<Text class="font-semibold">Borrar datos y cookies</Text>
-		<Button class="w-full max-w-64 gap-2 self-center px-3 py-2" click={deleteLocalData}
+		<div class="mt-4 flex flex-col gap-2">
+			<div class="flex items-center justify-between gap-1">
+				<Text class="text-sm">Desayuno</Text>
+				<Checkbox bind:checked={$UiPreferences.show_breakfast} class="text-sm">
+					{$UiPreferences.show_breakfast ? 'Visible' : 'Oculto'}
+				</Checkbox>
+			</div>
+
+			<hr class="border-neutral-700/20" />
+
+			<div class="flex items-center justify-between gap-1">
+				<Text class="text-sm">Almuerzo</Text>
+				<Checkbox bind:checked={$UiPreferences.show_lunch} class="text-sm">
+					{$UiPreferences.show_lunch ? 'Visible' : 'Oculto'}
+				</Checkbox>
+			</div>
+
+			<hr class="border-neutral-700/20" />
+
+			<div class="flex items-center justify-between gap-1">
+				<Text class="text-sm">Cena</Text>
+				<Checkbox bind:checked={$UiPreferences.show_dinner} class="text-sm">
+					{$UiPreferences.show_dinner ? 'Visible' : 'Oculto'}
+				</Checkbox>
+			</div>
+		</div>
+	</Box>
+
+	<Heading class="mt-6 !text-2xl font-bold lg:mb-2">Preferencias</Heading>
+
+	<Box class="flex w-full flex-col p-4">
+		<Text class="font-semibold">Tiempo de cocina</Text>
+		<Text class="text-sm text-neutral-400">
+			Elije el tiempo medio de preparación de tus platos.
+		</Text>
+
+		<div class="mt-4 flex flex-wrap gap-1">
+			{#each average_preparation_options as average}
+				<Radio
+					bind:group={$UserPreferences.average_preparation_time_per_dish}
+					value={average.id}
+					class="flex items-center gap-1 pl-3 pr-4"
+				>
+					<Time class="h-4 w-4" />
+					{average.name}
+				</Radio>
+			{/each}
+		</div>
+	</Box>
+
+	<Box class="flex w-full flex-col p-4">
+		<Text class="font-semibold">Alergias, intolerancias y preferencias</Text>
+		<Text class="text-sm text-neutral-400">Activa o desactiva según tus necesidades.</Text>
+
+		<div class="mt-4 flex flex-wrap items-start justify-start gap-1">
+			{#each allergens_options as allergen}
+				<Checkbox bind:checked={allergensSelection[allergen.id]}>
+					{allergen.name}
+				</Checkbox>
+			{/each}
+		</div>
+	</Box>
+
+	<Heading class="mt-6 !text-2xl font-bold lg:mb-2">Tus datos</Heading>
+
+	<Box class="flex w-full flex-col p-4">
+		<Text class="font-semibold">Tu cuerpo</Text>
+		<Text class="text-sm text-neutral-400">
+			Actualiza periodicamente tus datos de peso y altura.
+		</Text>
+
+		<div class="mt-4 flex flex-col gap-2">
+			<div class="flex w-full flex-col">
+				<Text>Peso</Text>
+				<div class="flex items-center justify-between">
+					<Heading class="!text-2xl">{$UserPreferences.info.weight}</Heading>
+
+					<div>
+						<Button click={() => subtract('weight')} class="px-4 py-2">
+							<Minus class="size-4" />
+						</Button>
+						<Button click={() => add('weight')} class="px-4 py-2">
+							<Plus class="size-4" />
+						</Button>
+					</div>
+				</div>
+			</div>
+
+			<hr class="border-neutral-700/20" />
+
+			<div class="flex w-full flex-col">
+				<Text>Altura</Text>
+				<div class="flex items-center justify-between">
+					<Heading class="!text-2xl">{$UserPreferences.info.height}</Heading>
+
+					<div>
+						<Button click={() => subtract('height')} class="px-4 py-2">
+							<Minus class="size-4" />
+						</Button>
+						<Button click={() => add('height')} class="px-4 py-2">
+							<Plus class="size-4" />
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</Box>
+
+	<Box class="flex w-full flex-col items-start gap-4 p-4">
+		<Text class="font-semibold">Ejercicio semanal</Text>
+		<Text class="text-sm text-neutral-400">
+			Define cuanto tiempo le dedicas a hacer ejercicio o deporte semanalmente.
+		</Text>
+
+		<div class="mt-4 flex flex-wrap items-start justify-start gap-1">
+			{#each exercise_options as exercise}
+				<Radio
+					bind:group={$UserPreferences.info.weekly_exercise}
+					value={exercise.id}
+					class="flex items-center gap-1 pl-3 pr-4"
+				>
+					{exercise.name}
+				</Radio>
+			{/each}
+		</div>
+	</Box>
+
+	<Box class="flex w-full flex-col items-start p-4">
+		<Text class="font-semibold">Datos y cookies</Text>
+		<Text class="text-sm text-neutral-400">Borra tus datos y cookies de la aplicación.</Text>
+
+		<Button
+			click={deleteLocalData}
+			class="mt-4 gap-2 !border-red-600 !bg-red-200 px-3 py-2 dark:!bg-red-500/20 dark:!text-red-50"
 			>Borrar datos y cookies</Button
 		>
-	</section>
+	</Box>
 </div>

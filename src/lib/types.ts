@@ -3,12 +3,14 @@ export interface UserPreferencesType {
   dislike: string[];
   allergens: string[];
   info: {
+    created_at: string;
     weight: string;
     height: string;
     age: string;
     gender: string;
     weekly_exercise: string;
-  }
+  },
+  average_preparation_time_per_dish: string;
 };
 
 export interface IngredientsType {

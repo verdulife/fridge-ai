@@ -8,5 +8,5 @@
 	{placeholder}
 	{required}
 	bind:value
-	class="w-full rounded-md border p-3 outline-none dark:border-neutral-800 dark:bg-neutral-900"
+	class={`w-full rounded-md border p-3 outline-none dark:border-neutral-800 dark:bg-neutral-900 ${$$props.class}`}
 />

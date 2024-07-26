@@ -2,7 +2,7 @@
 	import type { MealType } from '@/lib/types';
 
 	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
-	import { UI_COLORS } from '@/lib/consts';
+	import { ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
 	import { generate } from '@/lib/utils';
 
 	import Heading from '@/components/ui/Heading.svelte';
@@ -34,7 +34,7 @@
 		if (menu_label) {
 			dish[0] = { menu_label, menu_ingredients, time_to_prepare };
 		} else {
-			alert('Error al generar menú. Intenta nuevamente.');
+			alert(ERROR_PROMPT);
 		}
 
 		isLoading = false;
@@ -55,7 +55,9 @@
 	>
 		<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
 			<Time class="size-5" />
-			{dish[0].time_to_prepare}
+			{!Number(dish[0].time_to_prepare)
+				? dish[0].time_to_prepare
+				: `${dish[0].time_to_prepare} minutos`}
 		</Text>
 
 		<aside class="flex items-center gap-2">

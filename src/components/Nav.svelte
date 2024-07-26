@@ -19,7 +19,7 @@
 				<li>
 					<a
 						href={route.path}
-						class={`flex size-16 items-center justify-center gap-2 rounded-full text-neutral-400 lg:size-auto lg:py-2 lg:pl-4 lg:pr-5 lg:text-neutral-800 dark:text-neutral-600 ${isActive(route) && 'text-neutral-800 lg:border lg:border-neutral-300 lg:bg-neutral-50 lg:text-neutral-800 dark:text-neutral-200 dark:lg:border-neutral-700 dark:lg:bg-neutral-800'}`}
+						class={`flex size-16 items-center justify-center gap-2 rounded-full text-neutral-400 lg:size-auto lg:py-2 lg:pl-4 lg:pr-5 lg:text-neutral-800 dark:text-neutral-600 ${isActive(route) && 'text-neutral-800 lg:border lg:border-neutral-300 lg:bg-neutral-50 lg:text-neutral-800 dark:!text-neutral-200 dark:lg:border-neutral-700 dark:lg:bg-neutral-800'}`}
 					>
 						<NavIcon icon={route.icon} />
 						<Text class="sr-only lg:not-sr-only">{route.label}</Text>

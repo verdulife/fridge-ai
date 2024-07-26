@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { DayType, IngredientsType } from '@/lib/types';
 
-	import { UserPreferences } from '@/lib/stores';
+	import { UserPreferences, UiPreferences } from '@/lib/stores';
 	import { CurrentDay, Menus } from '@/lib/stores';
 	import { formatIngredient, setDislike, setLike } from '@/lib/utils';
 
@@ -15,9 +15,15 @@
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
 	);
 
-	$: breakfastMenuItems = $Menus[todayMenuIndex]?.breakfast[0].menu_ingredients ?? [];
-	$: lunchMenuItems = $Menus[todayMenuIndex]?.lunch[0].menu_ingredients ?? [];
-	$: dinnerMenuItems = $Menus[todayMenuIndex]?.dinner[0].menu_ingredients ?? [];
+	$: breakfastMenuItems = $UiPreferences
+		? ($Menus[todayMenuIndex]?.breakfast[0].menu_ingredients ?? [])
+		: [];
+	$: lunchMenuItems = $UiPreferences
+		? ($Menus[todayMenuIndex]?.lunch[0].menu_ingredients ?? [])
+		: [];
+	$: dinnerMenuItems = $UiPreferences
+		? ($Menus[todayMenuIndex]?.dinner[0].menu_ingredients ?? [])
+		: [];
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 
 	$: groupedIngredients = Object.groupBy(allMenuItems, ({ name }: IngredientsType) => name);

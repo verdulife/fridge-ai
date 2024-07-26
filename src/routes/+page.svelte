@@ -3,7 +3,7 @@
 
 	import { browser } from '$app/environment';
 	import { CurrentDay, Menus, UserPreferences } from '@/lib/stores';
-	import { AWAITING_RESPONSES } from '@/lib/consts';
+	import { AWAITING_RESPONSES, ERROR_PROMPT } from '@/lib/consts';
 	import { allMenuTitles, generate } from '@/lib/utils';
 
 	import Today from '@/components/Today.svelte';
@@ -36,7 +36,7 @@
 			$Menus = [...$Menus, { week_day, breakfast, lunch, dinner }];
 		} else {
 			success = false;
-			alert('Error al generar menús. Intentalo de nuevo.');
+			alert(ERROR_PROMPT);
 		}
 	}
 

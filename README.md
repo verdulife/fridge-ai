@@ -45,7 +45,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
   - [x] Home
   - [x] Meals
   - [x] Shopping list
-  - [ ] Settings
+  - [x] Settings
 - [x] Prompt engineering
 - [x] Prompt a json
 - [x] Alergia intolerancia o preferencias
@@ -57,15 +57,15 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Revisar ingredientes en route shopping list
 - [x] Usar desctruccturacion para excluir posibles resuktados extra de la AI
 - [x] Limpirar stores al borrar datos y cookies
+- [x] Completar dark mode
+- [x] Texto descriptivo en route menus y shopping list debajo del titulo
+- [x] Añadir tiempo de preparación medio en los ajustes del usuario
+- [x] Añadir comidas a visualizar en los ajustes del usuario
+- [ ] Usar sveltekit page transitions
 - [ ] Tooltips de uso en route home para la primera visita
-- [ ] Texto descriptivo en route menus y shopping list debajo del titulo
 - [ ] Boton de agrupar por en la route shopping list
-- [ ] Añadir tiempo de preparación medio en los ajustes del usuario
-- [ ] Añadir comidas a visualizar en los ajustes del usuario
-- [ ] Completar dark mode
 - [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
 - [ ] Auto-completar ingredientes en tour
-- [ ] Historial platos generados
 - [ ] Aviso instalacion PWA
 - [ ] Crear tests
 - [ ] Crear CHANGELOG.md

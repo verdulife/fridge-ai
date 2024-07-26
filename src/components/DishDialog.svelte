@@ -49,7 +49,9 @@
 
 			<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
 				<Time class="size-5" />
-				{dish[0].time_to_prepare}
+				{!Number(dish[0].time_to_prepare)
+					? dish[0].time_to_prepare
+					: `${dish[0].time_to_prepare} minutos`}
 			</Text>
 		</header>
 

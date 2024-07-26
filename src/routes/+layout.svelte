@@ -6,7 +6,7 @@
 	import { title, description, url } from '@/lib/metadata';
 	import { page } from '$app/stores';
 	import { Toaster } from 'svelte-french-toast';
-	import { UiPreferences } from '@/lib/stores';
+	import { UiPreferences, UserPreferences } from '@/lib/stores';
 	import { browser } from '$app/environment';
 	import { UI_COLORS } from '@/lib/consts';
 
@@ -41,8 +41,23 @@
 					?.setAttribute('content', UI_COLORS.bg_light);
 	}
 
+	function updateUserAge() {
+		if (!browser) return;
+
+		const user_age = $UserPreferences.info.age.replace(' años', '');
+		const born_date = Number($UserPreferences.info.created_at) - Number(user_age);
+		const currentYear = new Date().getFullYear();
+		const updatedAge = currentYear - born_date;
+
+		if (updatedAge > +user_age) {
+			$UserPreferences.info.age = updatedAge + ' años';
+			alert(`Felices ${updatedAge}! 🎉`);
+		}
+	}
+
 	$: notTour = !$page.url.pathname.includes('tour');
 	$: $UiPreferences, switchDarkMode();
+	$: $UserPreferences.info.age, updateUserAge();
 </script>
 
 <svelte:head>
