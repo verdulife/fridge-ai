@@ -1,6 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { UserPreferences, UiPreferences } from '@/lib/stores';
+	import { UserPreferences, UiPreferences, Menus } from '@/lib/stores';
 
 	import Radio from '@/components/ui/Radio.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
@@ -12,7 +12,11 @@
 		const check = confirm('¿Estás seguro de que quieres borrar tus datos y cookies?');
 		if (!check) return;
 
+		$UserPreferences = {};
+		$Menus = [];
+		$UiPreferences = {};
 		localStorage.clear();
+
 		goto('/tour?rc=true');
 	}
 </script>

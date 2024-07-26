@@ -1,3 +1,5 @@
+export const UI_COLORS = { bg_light: "#f5f5f5", bg_dark: "#0a0a0a", btn_light: "#404040", btn_dark: "#d4d4d4" };
+
 export const MAX_BODY_VALUE = 300;
 
 export const USER_INFO_LIB: { [key: string]: string } = {
@@ -91,7 +93,7 @@ export const exercise_options = [
   },
   {
     id: "low",
-    name: "1-2 veces/semana",
+    name: "0-2 veces/semana",
   },
   {
     id: "medium",

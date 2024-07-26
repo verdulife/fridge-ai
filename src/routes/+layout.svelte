@@ -8,6 +8,7 @@
 	import { Toaster } from 'svelte-french-toast';
 	import { UiPreferences } from '@/lib/stores';
 	import { browser } from '$app/environment';
+	import { UI_COLORS } from '@/lib/consts';
 
 	import Background from '@/components/Background.svelte';
 	import Header from '@/components/Header.svelte';
@@ -32,8 +33,12 @@
 			: document.documentElement.classList.remove('dark');
 
 		$UiPreferences.dark_mode
-			? document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0a0a0a')
-			: document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#f5f5f5');
+			? document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute('content', UI_COLORS.bg_dark)
+			: document
+					.querySelector('meta[name="theme-color"]')
+					?.setAttribute('content', UI_COLORS.bg_light);
 	}
 
 	$: notTour = !$page.url.pathname.includes('tour');

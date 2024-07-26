@@ -56,7 +56,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Añadir cantidades en los ingredientes
 - [x] Revisar ingredientes en route shopping list
 - [x] Usar desctruccturacion para excluir posibles resuktados extra de la AI
-- [ ] Limpirar stores al borrar datos y cookies
+- [x] Limpirar stores al borrar datos y cookies
 - [ ] Tooltips de uso en route home para la primera visita
 - [ ] Texto descriptivo en route menus y shopping list debajo del titulo
 - [ ] Boton de agrupar por en la route shopping list
@@ -68,4 +68,6 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [ ] Historial platos generados
 - [ ] Aviso instalacion PWA
 - [ ] Crear tests
+- [ ] Crear CHANGELOG.md
 - [ ] Webapp landing page
+- [ ] Añadir mas idiomas

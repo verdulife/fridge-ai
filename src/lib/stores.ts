@@ -34,10 +34,6 @@ const localMenus = browser && localStorage.getItem("fridgeai-menus");
 export const Menus = writable(localMenus ? JSON.parse(localMenus) : []);
 Menus.subscribe((value) => browser && (localStorage["fridgeai-menus"] = JSON.stringify(value)));
 
-const localDishes = browser && localStorage.getItem("fridgeai-dishes");
-export const Dishes = writable(localDishes ? JSON.parse(localDishes) : []);
-Dishes.subscribe((value) => browser && (localStorage["fridgeai-dishes"] = JSON.stringify(value)));
-
 const localUiPreferences = browser && localStorage.getItem("fridgeai-ui");
 export const UiPreferences = writable(localUiPreferences ? JSON.parse(localUiPreferences) : defaultUiPreferences);
 UiPreferences.subscribe((value) => browser && (localStorage["fridgeai-ui"] = JSON.stringify(value)));

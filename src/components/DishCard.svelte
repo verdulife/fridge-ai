@@ -1,17 +1,18 @@
 <script lang="ts">
-	import type { DayType, MealType } from '@/lib/types';
+	import type { MealType } from '@/lib/types';
 
-	import { readDataStream } from 'ai';
-	import { Menus, UserPreferences, CurrentDay } from '@/lib/stores';
+	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
+	import { UI_COLORS } from '@/lib/consts';
+	import { generate } from '@/lib/utils';
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Ai from '@/assets/Ai.svelte';
-	import Text from './ui/Text.svelte';
+	import Text from '@/components/ui/Text.svelte';
 	import Plus from '@/assets/Plus.svelte';
 	import Time from '@/assets/Time.svelte';
-	import Box from './ui/Box.svelte';
-	import Button from './ui/Button.svelte';
-	import DishDialog from './DishDialog.svelte';
+	import Box from '@/components/ui/Box.svelte';
+	import Button from '@/components/ui/Button.svelte';
+	import DishDialog from '@/components/DishDialog.svelte';
 
 	export let dish: Array<MealType>;
 	let isLoading = false;
@@ -24,39 +25,16 @@
 	async function generateMeal() {
 		isLoading = true;
 
-		const res = await fetch('/api/generate-meal', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({
-				user_preferences: $UserPreferences,
-				current_meal: dish[0],
-				week_menus: $Menus
-			})
+		const { menu_label, menu_ingredients, time_to_prepare } = await generate('/api/generate-meal', {
+			user_preferences: $UserPreferences,
+			current_meal: dish[0],
+			week_menus: $Menus
 		});
 
-		if (!res.ok || !res.body) return;
-
-		const reader = res.body.getReader();
-		let data = '';
-
-		for await (const { type, value } of readDataStream(reader)) {
-			if (type === 'text') {
-				data += value;
-			}
-		}
-
-		try {
-			const parsedData = JSON.parse(data);
-			const todayMenu = $Menus.find(
-				(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
-			);
-			todayMenu.breakfast = [parsedData, ...todayMenu.breakfast];
-			dish[0] = parsedData;
-		} catch (error) {
-			alert('Error al generar menús. Intenta nuevamente.');
-			return {};
+		if (menu_label) {
+			dish[0] = { menu_label, menu_ingredients, time_to_prepare };
+		} else {
+			alert('Error al generar menú. Intenta nuevamente.');
 		}
 
 		isLoading = false;
@@ -94,7 +72,7 @@
 						src="https://cdn.lordicon.com/jpgpblwn.json"
 						trigger="loop"
 						state="loop-line"
-						colors={`primary:#ffffff`}
+						colors={`primary:${$UiPreferences.dark_mode ? UI_COLORS.btn_dark : UI_COLORS.btn_light}`}
 						style="width:20px;height:20px"
 					>
 					</lord-icon>

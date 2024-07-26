@@ -29,7 +29,6 @@
 		});
 
 		if (!res.ok || !res.body) return;
-
 		const reader = res.body.getReader();
 		dish[0].recipe = '';
 

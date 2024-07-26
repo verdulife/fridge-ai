@@ -9,6 +9,10 @@
 	$: groupMenusByDay = Object.groupBy($Menus, ({ week_day }: DayType) =>
 		week_day.toLocaleLowerCase()
 	);
+
+	function getMenuIndexByDay(day: string) {
+		return $Menus.findIndex((menu: DayType) => menu.week_day.toLocaleLowerCase() === day);
+	}
 </script>
 
 <div class="flex w-full flex-col items-start gap-8 py-6 lg:py-8">
@@ -27,15 +31,15 @@
 							class="flex w-full snap-x snap-mandatory scroll-p-4 items-stretch gap-2 overflow-x-auto px-4 lg:scroll-p-8 lg:px-8"
 						>
 							<li class="shrink-0 snap-start">
-								<DishCard bind:dish={menu[0].breakfast}>DESAYUNO</DishCard>
+								<DishCard bind:dish={$Menus[getMenuIndexByDay(day)].breakfast}>DESAYUNO</DishCard>
 							</li>
 
 							<li class="shrink-0 snap-start">
-								<DishCard bind:dish={menu[0].lunch}>COMIDA</DishCard>
+								<DishCard bind:dish={$Menus[getMenuIndexByDay(day)].lunch}>COMIDA</DishCard>
 							</li>
 
 							<li class="shrink-0 snap-start">
-								<DishCard bind:dish={menu[0].dinner}>CENA</DishCard>
+								<DishCard bind:dish={$Menus[getMenuIndexByDay(day)].dinner}>CENA</DishCard>
 							</li>
 						</ul>
 					</li>
@@ -44,3 +48,9 @@
 		</section>
 	{/each}
 </div>
+
+<style>
+	ul {
+		scrollbar-width: none;
+	}
+</style>
