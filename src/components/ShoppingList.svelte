@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { DayType, IngredoemtsType } from '@/lib/types';
+	import type { DayType, IngredientsType } from '@/lib/types';
 
 	import { UserPreferences } from '@/lib/stores';
 	import { CurrentDay, Menus } from '@/lib/stores';
@@ -20,22 +20,12 @@
 	$: dinnerMenuItems = $Menus[todayMenuIndex]?.dinner[0].menu_ingredients ?? [];
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 
-	$: mergedMenuItems =
-		allMenuItems.reduce((acc, curr) => {
-			const existingIngredient = acc.find(({ name }: IngredoemtsType) => name === curr.name);
-
-			if (existingIngredient) {
-				if (isNaN(existingIngredient.amount)) {
-					existingIngredient.amount = curr.amount;
-				} else {
-					existingIngredient.amount += curr.amount;
-				}
-			} else {
-				acc.push(curr);
-			}
-
-			return acc;
-		}, []) ?? [];
+	$: groupedIngredients = Object.groupBy(allMenuItems, ({ name }: IngredientsType) => name);
+	$: mergedMenuItems = Object.entries(groupedIngredients).map(([name, ingredients]) => ({
+		name,
+		amount: ingredients?.reduce((acc, curr) => Number(acc) + Number(curr.amount), 0),
+		unit: ingredients?.[0]?.unit
+	})) as IngredientsType[];
 </script>
 
 <section class="flex w-full flex-col gap-4 px-4 lg:px-8">

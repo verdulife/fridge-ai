@@ -26,14 +26,14 @@
 			todayMenu = null;
 		}
 
-		const menu = await generate('/api/generate-today-menu', {
+		const { week_day, breakfast, lunch, dinner } = await generate('/api/generate-today-menu', {
 			user_preferences: $UserPreferences,
 			menu_day: $CurrentDay,
 			week_menus: allMenuTitles()
 		});
 
-		if (menu.week_day) {
-			$Menus = [...$Menus, menu];
+		if (week_day) {
+			$Menus = [...$Menus, { week_day, breakfast, lunch, dinner }];
 		} else {
 			success = false;
 			alert('Error al generar menús. Intentalo de nuevo.');

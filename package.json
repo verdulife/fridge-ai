@@ -38,6 +38,7 @@
 	"dependencies": {
 		"@ai-sdk/cohere": "^0.0.5",
 		"ai": "^3.2.27",
+		"groupby-polyfill": "^1.0.0",
 		"svelte-french-toast": "^1.2.0"
 	}
 }

@@ -11,7 +11,7 @@ export interface UserPreferencesType {
   }
 };
 
-export interface IngredoemtsType {
+export interface IngredientsType {
   name: string;
   amount: number | string;
   unit: string | null;
@@ -19,7 +19,7 @@ export interface IngredoemtsType {
 
 export interface MealType {
   menu_label: string;
-  menu_ingredients: Array<IngredoemtsType>;
+  menu_ingredients: Array<IngredientsType>;
   time_to_prepare: string;
   recipe?: string;
 }

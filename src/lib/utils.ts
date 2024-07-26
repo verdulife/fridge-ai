@@ -1,4 +1,4 @@
-import type { DayType, IngredoemtsType } from './types';
+import type { DayType, IngredientsType } from './types';
 
 import { get } from 'svelte/store';
 import { Menus, UserPreferences } from '@/lib/stores';
@@ -43,7 +43,7 @@ export function getCurrentDay(): string {
   return new Intl.DateTimeFormat("es-ES", { weekday: 'long' }).format(new Date());
 }
 
-export function setLike({ name }: IngredoemtsType) {
+export function setLike({ name }: IngredientsType) {
   UserPreferences.update((value) => {
     value.like = [...value.like, name];
     toast.success('Añadido ingrediente que te gusta');
@@ -57,7 +57,7 @@ export function setLike({ name }: IngredoemtsType) {
 
 }
 
-export function setDislike({ name }: IngredoemtsType) {
+export function setDislike({ name }: IngredientsType) {
   UserPreferences.update((value) => {
     value.dislike = [...value.dislike, name];
     toast.success('Añadido ingrediente que detestas');
@@ -69,6 +69,6 @@ export function setDislike({ name }: IngredoemtsType) {
   });
 }
 
-export function formatIngredient({ name, amount, unit }: IngredoemtsType) {
+export function formatIngredient({ name, amount, unit }: IngredientsType) {
   return `${name} (${amount}${unit ? " " : ""}${unit})`;
 }
