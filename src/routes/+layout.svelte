@@ -77,7 +77,7 @@
 	class="mx-auto flex min-h-dvh max-w-6xl flex-col items-center text-pretty border-neutral-300 bg-neutral-100 shadow-2xl shadow-neutral-300 lg:border-x dark:border-neutral-700/40 dark:bg-neutral-950 dark:shadow-black"
 >
 	<Header />
-	<div class={`relative mt-24 w-full ${notTour && 'mb-24 mt-16 lg:mb-0 lg:mt-24'}`}>
+	<div id="content" class={`relative mt-24 w-full ${notTour && 'mb-24 mt-16 lg:mb-0 lg:mt-24'}`}>
 		<slot />
 	</div>
 

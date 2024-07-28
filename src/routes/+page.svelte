@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { DayType } from '@/lib/types';
 
+	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import { CurrentDay, Menus, UserPreferences } from '@/lib/stores';
+	import { CurrentDay, Menus, UserPreferences, UiPreferences } from '@/lib/stores';
 	import { AWAITING_RESPONSES, ERROR_PROMPT } from '@/lib/consts';
 	import { allMenuTitles, generate } from '@/lib/utils';
 
@@ -13,6 +14,7 @@
 	import Button from '@/components/ui/Button.svelte';
 	import Ai from '@/assets/Ai.svelte';
 
+	let guide: any;
 	let message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
 	let success = true;
 
@@ -50,9 +52,16 @@
 		simulateLoading();
 		generateTodaysMenu();
 	}
+
+	onMount(async () => {
+		if ($UiPreferences.guide_done) return;
+		guide = (await import('@/components/Guide.svelte')).default;
+	});
 </script>
 
-<div class="flex w-full flex-col items-start gap-8 py-6 lg:py-8">
+<div id="welcome" class="flex w-full flex-col items-start gap-8 py-6 lg:py-8">
+	<svelte:component this={guide} />
+
 	<Today bind:currentDay={$CurrentDay} />
 	{#if todayMenu}
 		<TodaySlider click={generateTodaysMenu} />

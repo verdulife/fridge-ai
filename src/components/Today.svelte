@@ -46,10 +46,10 @@
 	}
 </script>
 
-<section class="w-full flex items-end justify-between px-4 lg:px-8">
+<section class="flex w-full items-end justify-between px-4 lg:px-8">
 	<Heading class="text-3xl first-letter:uppercase">{title}</Heading>
 
-	<nav class="flex gap-2">
+	<nav id="prev_next_days" class="flex gap-2">
 		<Button click={previousDay} class="px-3 py-1">
 			<Prev />
 		</Button>

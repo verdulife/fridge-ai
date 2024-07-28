@@ -61,12 +61,10 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Texto descriptivo en route menus y shopping list debajo del titulo
 - [x] Añadir tiempo de preparación medio en los ajustes del usuario
 - [x] Añadir comidas a visualizar en los ajustes del usuario
-- [ ] Usar sveltekit page transitions
-- [ ] Tooltips de uso en route home para la primera visita
-- [ ] Boton de agrupar por en la route shopping list
+- [x] Tooltips de uso en route home para la primera visita
 - [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
 - [ ] Auto-completar ingredientes en tour
-- [ ] Aviso instalacion PWA
+- [ ] Boton de agrupar por en la route shopping list
 - [ ] Crear tests
 - [ ] Crear CHANGELOG.md
 - [ ] Webapp landing page

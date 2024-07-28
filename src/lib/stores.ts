@@ -23,6 +23,7 @@ export const defaultUserPreferences: UserPreferencesType = {
 };
 
 export const defaultUiPreferences = {
+  guide_done: false,
   show_breakfast: true,
   show_lunch: true,
   show_dinner: true,

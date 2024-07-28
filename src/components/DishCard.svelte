@@ -61,11 +61,14 @@
 		</Text>
 
 		<aside class="flex items-center gap-2">
-			<Button click={openDialog} class="px-3 py-1">
+			<Button click={openDialog} class="more_info_dish px-3 py-1">
 				<Plus class="size-5" />
 			</Button>
 
-			<Button click={generateMeal} class="flex items-center justify-center px-3 py-1">
+			<Button
+				click={generateMeal}
+				class="generate_alternative_dish flex items-center justify-center px-3 py-1"
+			>
 				{#if !isLoading}
 					<Ai class="size-5" />
 				{:else}

@@ -44,7 +44,7 @@
 					<Box class="flex h-full items-center justify-between gap-4 p-4">
 						<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
 
-						<aside class="flex items-center gap-2">
+						<aside class="like_dislike_ingredient flex items-center gap-2">
 							{#if !$UserPreferences.like.includes(ingredient.name)}
 								<Button class="px-3 py-1" click={() => setLike(ingredient)}>
 									<Like class="size-5" />
