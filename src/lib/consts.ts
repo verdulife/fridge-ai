@@ -7,7 +7,7 @@ export const ERROR_PROMPT = "Los servidores están sufrieno una sobrecarga, por 
 export const CONFIRM_MESSAGES = {
   delete_data: "¿Estás seguro de que quieres borrar tus datos y cookies?",
   remake_menu: "¿Estás seguro de que quieres generar un menú nuevo para hoy?",
-  remake_dishe: "¿Estás seguro de que quieres generar una nueva receta?",
+  remake_dish: "¿Estás seguro de que quieres generar una nueva receta?",
   remake_recipe: "¿Estás seguro de que quieres generar una nueva preparación?",
 }
 

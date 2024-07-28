@@ -25,7 +25,7 @@
 	{#each Object.entries(groupMenusByDay) as [day, menu]}
 		<section class="mt-8 flex w-full flex-col gap-2">
 			<div class="px-4 lg:px-8">
-				<Text class="font-semibold">{day}</Text>
+				<Text class="font-semibold capitalize">{day}</Text>
 			</div>
 
 			{#if menu}

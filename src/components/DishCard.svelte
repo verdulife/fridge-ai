@@ -2,7 +2,7 @@
 	import type { MealType } from '@/lib/types';
 
 	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
-	import { ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
+	import { CONFIRM_MESSAGES, ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
 	import { generate } from '@/lib/utils';
 
 	import Heading from '@/components/ui/Heading.svelte';
@@ -23,6 +23,9 @@
 	}
 
 	async function generateMeal() {
+		const check = confirm(CONFIRM_MESSAGES.remake_dish);
+		if (!check) return;
+
 		isLoading = true;
 
 		const { menu_label, menu_ingredients, time_to_prepare } = await generate('/api/generate-meal', {

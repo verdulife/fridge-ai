@@ -3,6 +3,7 @@
 
 	import { readDataStream } from 'ai';
 	import { formatIngredient } from '@/lib/utils';
+	import { CONFIRM_MESSAGES } from '@/lib/consts';
 
 	import Dialog from '@/components/ui/Dialog.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
@@ -16,6 +17,11 @@
 	export let open = false;
 
 	async function generateRecipe() {
+		if (dish[0].recipe) {
+			const check = confirm(CONFIRM_MESSAGES.remake_recipe);
+			if (!check) return;
+		}
+
 		const res = await fetch('/api/generate-recipe', {
 			method: 'POST',
 			headers: {

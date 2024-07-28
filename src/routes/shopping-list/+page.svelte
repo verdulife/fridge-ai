@@ -48,7 +48,7 @@
 
 	{#each Object.entries(groupedMenus) as [day, ingredients]}
 		<section class="mt-8 flex w-full flex-col gap-4">
-			<Text class="font-semibold">{day}</Text>
+			<Text class="font-semibold capitalize">{day}</Text>
 
 			<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
 				{#each ingredients as ingredient}

@@ -3,14 +3,21 @@
 
 	import { CurrentDay, Menus, UiPreferences } from '@/lib/stores';
 	import { onMount } from 'svelte';
+	import { CONFIRM_MESSAGES, TIME_RANGES } from '@/lib/consts';
 
 	import Text from '@/components/ui/Text.svelte';
 	import DishCard from '@/components/DishCard.svelte';
 	import Ai from '@/assets/Ai.svelte';
 	import Button from './ui/Button.svelte';
-	import { TIME_RANGES } from '@/lib/consts';
 
 	export let click: () => void;
+
+	function regenerateMenu() {
+		const check = confirm(CONFIRM_MESSAGES.remake_menu);
+		if (!check) return;
+
+		click();
+	}
 
 	$: todayMenuIndex = $Menus.findIndex(
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
@@ -47,7 +54,7 @@
 <section class="flex w-full flex-col items-start gap-4">
 	<div class="flex w-full items-end justify-between px-4 lg:px-8">
 		<Text class="font-semibold">Tu menú del día</Text>
-		<Button class="generate_alternative_menu flex items-center gap-2 px-3 py-1" {click}>
+		<Button class="generate_alternative_menu flex items-center gap-2 px-3 py-1" click={regenerateMenu}>
 			<Ai class="size-5" />
 		</Button>
 	</div>
