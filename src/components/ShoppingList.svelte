@@ -15,13 +15,13 @@
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
 	);
 
-	$: breakfastMenuItems = $UiPreferences
+	$: breakfastMenuItems = $UiPreferences.show_breakfast
 		? ($Menus[todayMenuIndex]?.breakfast[0].menu_ingredients ?? [])
 		: [];
-	$: lunchMenuItems = $UiPreferences
+	$: lunchMenuItems = $UiPreferences.show_lunch
 		? ($Menus[todayMenuIndex]?.lunch[0].menu_ingredients ?? [])
 		: [];
-	$: dinnerMenuItems = $UiPreferences
+	$: dinnerMenuItems = $UiPreferences.show_dinner
 		? ($Menus[todayMenuIndex]?.dinner[0].menu_ingredients ?? [])
 		: [];
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];

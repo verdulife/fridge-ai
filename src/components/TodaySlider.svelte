@@ -9,7 +9,6 @@
 	import Ai from '@/assets/Ai.svelte';
 	import Button from './ui/Button.svelte';
 	import { TIME_RANGES } from '@/lib/consts';
-	import { slide } from 'svelte/transition';
 
 	export let click: () => void;
 
@@ -19,15 +18,9 @@
 
 	function scrollToTimeRange() {
 		const slider = document.querySelector('#todaySlider') as HTMLElement;
-		const slideBreakfast = document.querySelector(
-			"#todaySlider li[data-time-range='breakfast']"
-		) as HTMLElement;
-		const slideLunch = document.querySelector(
-			"#todaySlider li[data-time-range='lunch']"
-		) as HTMLElement;
-		const slideDinner = document.querySelector(
-			"#todaySlider li[data-time-range='dinner']"
-		) as HTMLElement;
+		const slideBreakfast = document.querySelector('#breakfast_dish') as HTMLElement;
+		const slideLunch = document.querySelector('#lunch_dish') as HTMLElement;
+		const slideDinner = document.querySelector('#dinner_dish') as HTMLElement;
 
 		const currentHour = new Date().getHours();
 
@@ -64,17 +57,17 @@
 		class="flex w-full snap-x snap-mandatory scroll-p-4 items-stretch gap-2 overflow-x-auto px-4 lg:scroll-p-8 lg:px-8"
 	>
 		{#if $UiPreferences.show_breakfast}
-			<li class="shrink-0 snap-start" data-time-range="breakfast">
+			<li id="breakfast_dish" class="shrink-0 snap-start">
 				<DishCard bind:dish={$Menus[todayMenuIndex].breakfast}>DESAYUNO</DishCard>
 			</li>
 		{/if}
 		{#if $UiPreferences.show_lunch}
-			<li class="shrink-0 snap-start" data-time-range="lunch">
+			<li id="lunch_dish" class="shrink-0 snap-start">
 				<DishCard bind:dish={$Menus[todayMenuIndex].lunch}>COMIDA</DishCard>
 			</li>
 		{/if}
 		{#if $UiPreferences.show_dinner}
-			<li class="shrink-0 snap-start" data-time-range="dinner">
+			<li id="dinner_dish" class="shrink-0 snap-start">
 				<DishCard bind:dish={$Menus[todayMenuIndex].dinner}>CENA</DishCard>
 			</li>
 		{/if}
