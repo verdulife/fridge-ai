@@ -12,16 +12,20 @@
 	}
 </script>
 
-<form class="flex flex-col items-center justify-center gap-4" on:submit|preventDefault={nextStep}>
+<form class="flex flex-col items-center justify-center gap-2" on:submit|preventDefault={nextStep}>
 	<Heading class="w-full">
-		Ingredientes que <span class="text-vista-300">detestes</span>
+		Ingredientes que <span class="text-vista-300">detestas</span>
 	</Heading>
-	<Text class="w-full">Más adelante podrás ampliar esta lista</Text>
+	<Text class="w-full">
+		No son obligatorios, pero te ayudarán a generear menús más interesantes
+	</Text>
 
-	<Input bind:value={$UserPreferences.dislike[0]} placeholder="Primer ingrediente" required />
-	<Input bind:value={$UserPreferences.dislike[1]} placeholder="Segundo ingrediente" required />
-	<Input bind:value={$UserPreferences.dislike[2]} placeholder="Tercer ingrediente" required />
-	<Input bind:value={$UserPreferences.dislike[3]} placeholder="Cuarto ingrediente" required />
+	<div class="mt-4 flex w-full flex-col gap-2">
+		<Input bind:value={$UserPreferences.dislike[0]} placeholder="Primer ingrediente" required />
+		<Input bind:value={$UserPreferences.dislike[1]} placeholder="Segundo ingrediente" required />
+		<Input bind:value={$UserPreferences.dislike[2]} placeholder="Tercer ingrediente" required />
+		<Input bind:value={$UserPreferences.dislike[3]} placeholder="Cuarto ingrediente" required />
+	</div>
 
 	<Button class="fixed bottom-16 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Button>
 </form>
