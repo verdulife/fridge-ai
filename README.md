@@ -63,6 +63,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Añadir comidas a visualizar en los ajustes del usuario
 - [x] Tooltips de uso en route home para la primera visita
 - [ ] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
+- [ ] Revisar textos, organizar y gramatica.
 - [ ] Auto-completar ingredientes en tour
 - [ ] Boton de agrupar por en la route shopping list
 - [ ] Crear tests
