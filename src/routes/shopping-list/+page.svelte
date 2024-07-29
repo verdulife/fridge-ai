@@ -22,10 +22,10 @@
 		if (!menu) continue;
 
 		const breakfastMenuItems = $UiPreferences.show_breakfast
-			? menu.breakfast[0].menu_ingredients
+			? menu.breakfast.menu_ingredients
 			: [];
-		const lunchMenuItems = $UiPreferences.show_lunch ? menu.lunch[0].menu_ingredients : [];
-		const dinnerMenuItems = $UiPreferences.show_dinner ? menu.dinner[0].menu_ingredients : [];
+		const lunchMenuItems = $UiPreferences.show_lunch ? menu.lunch.menu_ingredients : [];
+		const dinnerMenuItems = $UiPreferences.show_dinner ? menu.dinner.menu_ingredients : [];
 
 		const allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 

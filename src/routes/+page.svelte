@@ -17,6 +17,9 @@
 	let message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
 	let success = true;
 
+	const maxRetries = 2;
+	let counterRetries = 0;
+
 	$: todayMenu = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay);
 
 	async function loadGuide() {
@@ -42,8 +45,15 @@
 			$Menus = [...$Menus, { week_day, breakfast, lunch, dinner }];
 			loadGuide();
 		} else {
-			success = false;
-			alert(ERROR_PROMPT);
+			console.log({ counterRetries });
+
+			if (counterRetries < maxRetries) {
+				counterRetries++;
+				generateTodaysMenu();
+			} else {
+				success = false;
+				alert(ERROR_PROMPT);
+			}
 		}
 	}
 

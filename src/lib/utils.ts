@@ -20,8 +20,6 @@ export async function generate(url: string, input: any) {
     if (type === 'text') data += value;
   }
 
-  console.log(data);
-
   try {
     const parsedData = JSON.parse(data);
     return parsedData;
@@ -35,9 +33,9 @@ export function allMenuTitles() {
 
   return menus.map((menu: DayType) => ({
     weekDay: menu.week_day,
-    breakfast: menu.breakfast[0].menu_label,
-    lunch: menu.lunch[0].menu_label,
-    dinner: menu.dinner[0].menu_label
+    breakfast: menu.breakfast.menu_label,
+    lunch: menu.lunch.menu_label,
+    dinner: menu.dinner.menu_label
   }));
 }
 

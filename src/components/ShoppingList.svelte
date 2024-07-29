@@ -16,13 +16,13 @@
 	);
 
 	$: breakfastMenuItems = $UiPreferences.show_breakfast
-		? ($Menus[todayMenuIndex]?.breakfast[0].menu_ingredients ?? [])
+		? ($Menus[todayMenuIndex]?.breakfast.menu_ingredients ?? [])
 		: [];
 	$: lunchMenuItems = $UiPreferences.show_lunch
-		? ($Menus[todayMenuIndex]?.lunch[0].menu_ingredients ?? [])
+		? ($Menus[todayMenuIndex]?.lunch.menu_ingredients ?? [])
 		: [];
 	$: dinnerMenuItems = $UiPreferences.show_dinner
-		? ($Menus[todayMenuIndex]?.dinner[0].menu_ingredients ?? [])
+		? ($Menus[todayMenuIndex]?.dinner.menu_ingredients ?? [])
 		: [];
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 

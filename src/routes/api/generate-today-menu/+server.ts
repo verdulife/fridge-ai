@@ -2,7 +2,6 @@ import { createCohere } from '@ai-sdk/cohere';
 import { streamText } from 'ai';
 import { COHERE_API_KEY } from '$env/static/private';
 import { GENERATE_MENU_PROMPT } from '@/lib/prompt';
-import { MENU_RESPONSE_EXAMPLE } from '@/lib/examples';
 
 const cohere = createCohere({
   apiKey: COHERE_API_KEY,
@@ -16,14 +15,11 @@ export async function POST({ request }) {
 
   const result = await streamText({
     model: cohere('command-r-plus'),
+    seed: 3,
     messages: [
       {
         role: 'user',
         content: GENERATE_MENU_PROMPT
-      },
-      {
-        role: 'assistant',
-        content: MENU_RESPONSE_EXAMPLE
       },
       {
         role: 'user',

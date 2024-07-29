@@ -28,9 +28,9 @@ export interface MealType {
 
 export interface DayType {
   week_day: "Lunes",
-  breakfast: Array<MealType>;
-  lunch: Array<MealType>;
-  dinner: Array<MealType>;
+  breakfast: MealType;
+  lunch: MealType;
+  dinner: MealType;
 }
 
 export type WeekType = Array<DayType>;

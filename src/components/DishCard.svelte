@@ -30,12 +30,12 @@
 
 		const { menu_label, menu_ingredients, time_to_prepare } = await generate('/api/generate-meal', {
 			user_preferences: $UserPreferences,
-			current_meal: dish[0],
+			current_meal: dish,
 			week_menus: $Menus
 		});
 
 		if (menu_label) {
-			dish[0] = { menu_label, menu_ingredients, time_to_prepare };
+			dish = { menu_label, menu_ingredients, time_to_prepare };
 		} else {
 			alert(ERROR_PROMPT);
 		}
@@ -51,16 +51,16 @@
 		</span>
 	</header>
 
-	<Heading as="h3" class="text-lg">{dish[0].menu_label}</Heading>
+	<Heading as="h3" class="text-lg">{dish.menu_label}</Heading>
 
 	<footer
 		class="mt-auto flex w-full items-center justify-between border-t border-neutral-700/20 pt-4 dark:border-neutral-800"
 	>
 		<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
 			<Time class="size-5" />
-			{!Number(dish[0].time_to_prepare)
-				? dish[0].time_to_prepare
-				: `${dish[0].time_to_prepare} minutos`}
+			{!Number(dish.time_to_prepare)
+				? dish.time_to_prepare
+				: `${dish.time_to_prepare} minutos`}
 		</Text>
 
 		<aside class="flex items-center gap-2">

@@ -1,7 +1,7 @@
 import { createCohere } from '@ai-sdk/cohere';
 import { streamText } from 'ai';
 import { COHERE_API_KEY } from '$env/static/private';
-import { GENERATE_MEAL_PROMPT } from '@/lib/prompt';
+import { GENERATE_DISH_PROMPT } from '@/lib/prompt';
 
 const cohere = createCohere({
   apiKey: COHERE_API_KEY,
@@ -19,7 +19,7 @@ export async function POST({ request }) {
     messages: [
       {
         role: 'user',
-        content: GENERATE_MEAL_PROMPT
+        content: GENERATE_DISH_PROMPT
       },
       {
         role: 'user',
