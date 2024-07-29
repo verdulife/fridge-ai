@@ -1,7 +1,7 @@
 import { createCohere } from '@ai-sdk/cohere';
 import { streamText } from 'ai';
 import { COHERE_API_KEY } from '$env/static/private';
-import { GENERATE_RECIPE_PROMPT } from '@/lib/prompts';
+import { GENERATE_RECIPE_PROMPT } from '@/lib/prompt';
 
 const cohere = createCohere({
   apiKey: COHERE_API_KEY,

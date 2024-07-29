@@ -20,6 +20,8 @@ export async function generate(url: string, input: any) {
     if (type === 'text') data += value;
   }
 
+  console.log(data);
+
   try {
     const parsedData = JSON.parse(data);
     return parsedData;

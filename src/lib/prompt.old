@@ -20,7 +20,7 @@ Importante:
  - Devolverás un JSON con un menú diario.
  - Nunca devolveras mas texto que el JSON.
  - EL JSON debe estar codificado en UTF-8 y minificado.
- - El JSON debe seguir estrictamente la siguiente estructura, sin añadir ni quitar ninguna propiedad:"
+ - El JSON debe seguir estrictamente la siguiente estructura, sin añadir ni quitar ninguna propiedad:
  ${DAY_EXAMPLE},
  `;
 
