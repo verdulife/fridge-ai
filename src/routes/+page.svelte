@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { DayType } from '@/lib/types';
 
-	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
 	import { CurrentDay, Menus, UserPreferences, UiPreferences } from '@/lib/stores';
 	import { AWAITING_RESPONSES, ERROR_PROMPT } from '@/lib/consts';
@@ -20,6 +19,11 @@
 
 	$: todayMenu = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay);
 
+	async function loadGuide() {
+		if ($UiPreferences.guide_done) return;
+		guide = (await import('@/components/Guide.svelte')).default;
+	}
+
 	async function generateTodaysMenu() {
 		success = true;
 
@@ -36,6 +40,7 @@
 
 		if (week_day) {
 			$Menus = [...$Menus, { week_day, breakfast, lunch, dinner }];
+			loadGuide();
 		} else {
 			success = false;
 			alert(ERROR_PROMPT);
@@ -52,11 +57,6 @@
 		simulateLoading();
 		generateTodaysMenu();
 	}
-
-	onMount(async () => {
-		if ($UiPreferences.guide_done) return;
-		guide = (await import('@/components/Guide.svelte')).default;
-	});
 </script>
 
 <div id="welcome" class="flex w-full flex-col items-start gap-8 py-6 lg:py-8">

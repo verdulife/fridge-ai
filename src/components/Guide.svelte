@@ -6,6 +6,10 @@
 	import { driver } from 'driver.js';
 	import { onMount } from 'svelte';
 
+	function setGuideDone() {
+		$UiPreferences.guide_done = true;
+	}
+
 	const driverObj = driver({
 		popoverClass: 'driverjs-theme',
 		allowClose: false,
@@ -13,6 +17,9 @@
 		nextBtnText: 'Siguiente',
 		prevBtnText: 'Anterior',
 		doneBtnText: 'Listo',
+		onDestroyed: () => {
+			setGuideDone();
+		},
 		steps: [
 			{
 				popover: {
@@ -86,10 +93,7 @@
 					description:
 						'Aquí podrás ver todas las opciones de la lista de la compra de todos los menus semanales.',
 					side: 'bottom',
-					align: 'center',
-					onCloseClick: () => {
-						$UiPreferences.guide_done = true;
-					}
+					align: 'center'
 				}
 			}
 		]
