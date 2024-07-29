@@ -21,10 +21,10 @@
 	</Text>
 
 	<div class="mt-4 flex w-full flex-col gap-2">
-		<Input bind:value={$UserPreferences.dislike[0]} placeholder="Primer ingrediente" required />
-		<Input bind:value={$UserPreferences.dislike[1]} placeholder="Segundo ingrediente" required />
-		<Input bind:value={$UserPreferences.dislike[2]} placeholder="Tercer ingrediente" required />
-		<Input bind:value={$UserPreferences.dislike[3]} placeholder="Cuarto ingrediente" required />
+		<Input bind:value={$UserPreferences.dislike[0]} placeholder="Primer ingrediente" />
+		<Input bind:value={$UserPreferences.dislike[1]} placeholder="Segundo ingrediente" />
+		<Input bind:value={$UserPreferences.dislike[2]} placeholder="Tercer ingrediente" />
+		<Input bind:value={$UserPreferences.dislike[3]} placeholder="Cuarto ingrediente" />
 	</div>
 
 	<Button class="fixed bottom-16 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Button>
