@@ -23,6 +23,7 @@ export interface MealType {
   menu_label: string;
   menu_ingredients: Array<IngredientsType>;
   time_to_prepare: string;
+  aproximate_price_in_spain_euros: string;
   recipe?: string;
 }
 
@@ -31,6 +32,7 @@ export interface DayType {
   breakfast: MealType;
   lunch: MealType;
   dinner: MealType;
+  aproximate_price_in_spain_euros?: number;
 }
 
 export type WeekType = Array<DayType>;

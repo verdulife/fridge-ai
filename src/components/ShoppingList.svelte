@@ -3,7 +3,7 @@
 
 	import { UserPreferences, UiPreferences } from '@/lib/stores';
 	import { CurrentDay, Menus } from '@/lib/stores';
-	import { formatIngredient, setDislike, setLike } from '@/lib/utils';
+	import { formatIngredient, setDislike, setLike, formatPrice } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
 	import Box from './ui/Box.svelte';
@@ -32,12 +32,38 @@
 		amount: ingredients?.reduce((acc, curr) => Number(acc) + Number(curr.amount), 0),
 		unit: ingredients?.[0]?.unit
 	})) as IngredientsType[];
+
+	function calculateTodayPrice() {
+		const breakfast = $UiPreferences.show_breakfast
+			? $Menus[todayMenuIndex]?.breakfast?.aproximate_price_in_spain_euros
+			: '0,00 €';
+		const lunch = $UiPreferences.show_lunch
+			? $Menus[todayMenuIndex]?.lunch?.aproximate_price_in_spain_euros
+			: '0,00 €';
+		const dinner = $UiPreferences.show_dinner
+			? $Menus[todayMenuIndex]?.dinner?.aproximate_price_in_spain_euros
+			: '0,00 €';
+
+		const breakfast_value = breakfast.replace(',', '.').replace(' €', '');
+		const lunch_value = lunch.replace(',', '.').replace(' €', '');
+		const dinner_value = dinner.replace(',', '.').replace(' €', '');
+		const total_value = Number(breakfast_value) + Number(lunch_value) + Number(dinner_value);
+
+		$Menus[todayMenuIndex].aproximate_price_in_spain_euros = total_value;
+		return formatPrice(total_value);
+	}
 </script>
 
 <section class="flex w-full flex-col gap-4 px-4 lg:px-8">
-	<Text class="font-semibold">Ingredientes para hoy</Text>
-
 	{#if allMenuItems.length > 0}
+		<Text class="flex items-center justify-between font-semibold">
+			Ingredientes para hoy
+			<span class="rounded-full bg-gray-200 px-3 py-1 text-xs font-bold">
+				Coste aprox.
+				{calculateTodayPrice()}
+			</span>
+		</Text>
+
 		<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
 			{#each mergedMenuItems as ingredient}
 				<li class="flex w-full flex-col gap-2">

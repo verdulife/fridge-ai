@@ -72,3 +72,7 @@ export function setDislike({ name }: IngredientsType) {
 export function formatIngredient({ name, amount, unit }: IngredientsType) {
   return `${name} (${amount}${unit ? " " : ""}${unit})`;
 }
+
+export function formatPrice(price: number) {
+  return Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(price));
+}
