@@ -34,8 +34,6 @@
 	})) as IngredientsType[];
 
 	function calculateTodayPrice() {
-		console.log($Menus[todayMenuIndex]);
-
 		const breakfast = $UiPreferences.show_breakfast
 			? $Menus[todayMenuIndex].breakfast.approximate_price_euros
 			: '0,00 €';
@@ -45,8 +43,6 @@
 		const dinner = $UiPreferences.show_dinner
 			? $Menus[todayMenuIndex].dinner.approximate_price_euros
 			: '0,00 €';
-
-		console.log({ breakfast, lunch, dinner });
 
 		const breakfast_value = breakfast.replace(',', '.').replace(' €', '');
 		const lunch_value = lunch.replace(',', '.').replace(' €', '');
