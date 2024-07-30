@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { DayType, IngredientsType } from '@/lib/types';
 
-	import { UserPreferences, UiPreferences } from '@/lib/stores';
-	import { CurrentDay, Menus } from '@/lib/stores';
+	import { CurrentDay, Menus, UserPreferences } from '@/lib/stores';
 	import { formatIngredient, setDislike, setLike, formatPrice } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
@@ -11,19 +10,13 @@
 	import Like from '@/assets/Like.svelte';
 	import Dislike from '@/assets/Dislike.svelte';
 
-	$: todayMenuIndex = $Menus.findIndex(
+	$: currentMenu = $Menus.find(
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
 	);
 
-	$: breakfastMenuItems = $UiPreferences.show_breakfast
-		? ($Menus[todayMenuIndex].breakfast.ingredients ?? [])
-		: [];
-	$: lunchMenuItems = $UiPreferences.show_lunch
-		? ($Menus[todayMenuIndex].lunch.ingredients ?? [])
-		: [];
-	$: dinnerMenuItems = $UiPreferences.show_dinner
-		? ($Menus[todayMenuIndex].dinner.ingredients ?? [])
-		: [];
+	$: breakfastMenuItems = currentMenu.breakfast?.ingredients ?? [];
+	$: lunchMenuItems = currentMenu.lunch?.ingredients ?? [];
+	$: dinnerMenuItems = currentMenu.dinner?.ingredients ?? [];
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 
 	$: groupedIngredients = Object.groupBy(allMenuItems, ({ name }: IngredientsType) => name);
@@ -33,7 +26,7 @@
 		unit: ingredients?.[0]?.unit
 	})) as IngredientsType[];
 
-	function calculateTodayPrice() {
+	/* function calculateTodayPrice() {
 		const breakfast = $UiPreferences.show_breakfast
 			? $Menus[todayMenuIndex].breakfast.approximate_price_euros
 			: '0,00 €';
@@ -51,17 +44,17 @@
 
 		$Menus[todayMenuIndex].approximate_price_euros = total_value;
 		return formatPrice(total_value);
-	}
+	} */
 </script>
 
 <section class="flex w-full flex-col gap-4 px-4 lg:px-8">
 	{#if allMenuItems.length > 0}
 		<Text class="flex items-center justify-between font-semibold">
 			Ingredientes para hoy
-			<span class="rounded-full bg-gray-200 px-3 py-1 text-xs font-bold">
+			<!-- <span class="rounded-full bg-gray-200 px-3 py-1 text-xs font-bold">
 				Coste aprox.
 				{calculateTodayPrice()}
-			</span>
+			</span> -->
 		</Text>
 
 		<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">

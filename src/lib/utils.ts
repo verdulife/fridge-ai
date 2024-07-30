@@ -20,24 +20,22 @@ export async function generate(url: string, input: any) {
     if (type === 'text') data += value;
   }
 
-  console.log(data);
-
   try {
     const parsedData = JSON.parse(data);
     return parsedData;
-  } catch (err) {
-    return err;
+  } catch {
+    return {};
   }
 };
 
-export function allMenuTitles() {
+export function onlyMenuTitles() {
   const menus = get(Menus);
 
   return menus.map((menu: DayType) => ({
     weekDay: menu.week_day,
-    breakfast: menu.breakfast.label,
-    lunch: menu.lunch.label,
-    dinner: menu.dinner.label
+    breakfast: menu.breakfast?.label || null,
+    lunch: menu.lunch?.label || null,
+    dinner: menu.dinner?.label || null
   }));
 }
 

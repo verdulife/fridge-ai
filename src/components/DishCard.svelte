@@ -1,9 +1,10 @@
 <script lang="ts">
-	import type { DishType } from '@/lib/types';
+	import type { DayType } from '@/lib/types';
 
-	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
-	import { CONFIRM_MESSAGES, ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
-	import { generate } from '@/lib/utils';
+	import { browser } from '$app/environment';
+	import { Menus, UserPreferences, UiPreferences, CurrentDay } from '@/lib/stores';
+	import { AWAITING_RESPONSES, CONFIRM_MESSAGES, ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
+	import { generate, onlyMenuTitles } from '@/lib/utils';
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Ai from '@/assets/Ai.svelte';
@@ -14,12 +15,39 @@
 	import Button from '@/components/ui/Button.svelte';
 	import DishDialog from '@/components/DishDialog.svelte';
 
-	export let dish: DishType;
+	export let type: string;
+
+	$: dish = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay)[type];
+
 	let isLoading = false;
 	let open = false;
+	let message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
 
 	function openDialog() {
 		open = true;
+	}
+
+	function simulateLoading() {
+		setInterval(() => {
+			message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
+		}, 2000);
+	}
+
+	async function generateTodayMeal() {
+		const res = await generate('/api/generate-meal', {
+			user_preferences: $UserPreferences,
+			meal_type: type,
+			week_menus: onlyMenuTitles()
+		});
+
+		if (res) {
+			$Menus = $Menus.map((menu: DayType) => {
+				if (menu.week_day.toLocaleLowerCase() === $CurrentDay) menu[type] = res;
+				return menu;
+			});
+		} else {
+			alert(ERROR_PROMPT);
+		}
 	}
 
 	async function generateMeal() {
@@ -28,12 +56,14 @@
 
 		isLoading = true;
 
-		const { label, ingredients, time_to_prepare, approximate_price_euros } =
-			await generate('/api/generate-dish', {
+		const { label, ingredients, time_to_prepare, approximate_price_euros } = await generate(
+			'/api/generate-dish',
+			{
 				user_preferences: $UserPreferences,
 				current_dish: dish,
 				week_menus: $Menus
-			});
+			}
+		);
 
 		if (label) {
 			dish = { label, ingredients, time_to_prepare, approximate_price_euros };
@@ -43,50 +73,64 @@
 
 		isLoading = false;
 	}
+
+	$: if (browser && !dish?.label) {
+		simulateLoading();
+		generateTodayMeal();
+	}
 </script>
 
-<Box class="flex h-full w-80 flex-col items-start gap-4 p-4">
+<Box class="flex h-full min-h-48 w-80 flex-col items-start gap-4 p-4">
 	<header class="flex w-full items-center justify-between">
 		<span class="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold dark:bg-neutral-950">
 			<slot />
 		</span>
 	</header>
 
-	<Heading as="h3" class="text-lg">{dish.label}</Heading>
+	{#if dish?.label}
+		<Heading as="h3" class="text-lg">{dish.label}</Heading>
 
-	<footer
-		class="mt-auto flex w-full items-center justify-between border-t border-neutral-700/20 pt-4 dark:border-neutral-800"
-	>
-		<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
-			<Time class="size-5" />
-			{!Number(dish.time_to_prepare) ? dish.time_to_prepare : `${dish.time_to_prepare} minutos`}
-		</Text>
+		<footer
+			class="mt-auto flex w-full items-center justify-between border-t border-neutral-700/20 pt-4 dark:border-neutral-800"
+		>
+			<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
+				<Time class="size-5" />
+				{!Number(dish.time_to_prepare) ? dish.time_to_prepare : `${dish.time_to_prepare} minutos`}
+			</Text>
 
-		<aside class="flex items-center gap-2">
-			<Button click={openDialog} class="more_info_dish px-3 py-1">
-				<Plus class="size-5" />
-			</Button>
+			<aside class="flex items-center gap-2">
+				<Button click={openDialog} class="more_info_dish px-3 py-1">
+					<Plus class="size-5" />
+				</Button>
 
-			<Button
-				click={generateMeal}
-				class="generate_alternative_dish flex items-center justify-center px-3 py-1"
-			>
-				{#if !isLoading}
-					<Ai class="size-5" />
-				{:else}
-					<script src="https://cdn.lordicon.com/lordicon.js"></script>
-					<lord-icon
-						src="https://cdn.lordicon.com/jpgpblwn.json"
-						trigger="loop"
-						state="loop-line"
-						colors={`primary:${$UiPreferences.dark_mode ? UI_COLORS.btn_dark : UI_COLORS.btn_light}`}
-						style="width:20px;height:20px"
-					>
-					</lord-icon>
-				{/if}
-			</Button>
-		</aside>
-	</footer>
+				<Button
+					click={generateMeal}
+					class="generate_alternative_dish flex items-center justify-center px-3 py-1"
+				>
+					{#if !isLoading}
+						<Ai class="size-5" />
+					{:else}
+						<script src="https://cdn.lordicon.com/lordicon.js"></script>
+						<lord-icon
+							src="https://cdn.lordicon.com/jpgpblwn.json"
+							trigger="loop"
+							state="loop-line"
+							colors={`primary:${$UiPreferences.dark_mode ? UI_COLORS.btn_dark : UI_COLORS.btn_light}`}
+							style="width:20px;height:20px"
+						>
+						</lord-icon>
+					{/if}
+				</Button>
+			</aside>
+		</footer>
+	{:else}
+		<Text>{message}</Text>
+		<Button class="generate_alternative_dish flex items-center justify-center px-3 py-1">
+			<Ai class="size-5" />
+		</Button>
+	{/if}
 </Box>
 
-<DishDialog bind:dish bind:open />
+{#if dish?.label}
+	<DishDialog bind:dish bind:open />
+{/if}

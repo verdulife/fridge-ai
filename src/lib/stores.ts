@@ -30,12 +30,22 @@ export const defaultUiPreferences = {
   dark_mode: false,
 };
 
+const defaultMenus = [
+  { week_day: 'Lunes' },
+  { week_day: 'Martes' },
+  { week_day: 'Miércoles' },
+  { week_day: 'Jueves' },
+  { week_day: 'Viernes' },
+  { week_day: 'Sábado' },
+  { week_day: 'Domingo' }
+];
+
 const localUserPreferences = browser && localStorage.getItem("fridgeai-user");
 export const UserPreferences = writable(localUserPreferences ? JSON.parse(localUserPreferences) : defaultUserPreferences);
 UserPreferences.subscribe((value) => browser && (localStorage["fridgeai-user"] = JSON.stringify(value)));
 
 const localMenus = browser && localStorage.getItem("fridgeai-menus");
-export const Menus = writable(localMenus ? JSON.parse(localMenus) : []);
+export const Menus = writable(localMenus ? JSON.parse(localMenus) : defaultMenus);
 Menus.subscribe((value) => browser && (localStorage["fridgeai-menus"] = JSON.stringify(value)));
 
 const localUiPreferences = browser && localStorage.getItem("fridgeai-ui");

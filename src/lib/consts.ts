@@ -11,6 +11,8 @@ export const CONFIRM_MESSAGES = {
   remake_recipe: "¿Estás seguro de que quieres generar una nueva preparación?",
 }
 
+export const MEAL_TYPES = ["breakfast", "lunch", "dinner"];
+
 export const TIME_RANGES = {
   breakfast_from: 4,
   lunch_from: 12,
