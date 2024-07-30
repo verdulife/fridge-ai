@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { MealType } from '@/lib/types';
+	import type { DishType } from '@/lib/types';
 
 	import { readDataStream } from 'ai';
 	import { formatIngredient } from '@/lib/utils';
@@ -13,7 +13,7 @@
 	import Button from '@/components/ui/Button.svelte';
 	import Ai from '@/assets/Ai.svelte';
 
-	export let dish: Array<MealType>;
+	export let dish: Array<DishType>;
 	export let open = false;
 
 	async function generateRecipe() {
@@ -28,8 +28,8 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				menu_label: dish.menu_label,
-				menu_ingredients: dish.menu_ingredients,
+				label: dish.label,
+				ingredients: dish.ingredients,
 				time_to_prepare: dish.time_to_prepare
 			})
 		});
@@ -51,7 +51,7 @@
 		class="mx-auto flex size-full max-w-4xl flex-col items-start gap-8 overflow-y-auto overflow-x-hidden overscroll-contain px-6 pb-24 pt-16 lg:p-16 lg:pb-32"
 	>
 		<header class="flex flex-col gap-4">
-			<Heading>{dish.menu_label}</Heading>
+			<Heading>{dish.label}</Heading>
 
 			<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
 				<Time class="size-5" />
@@ -65,7 +65,7 @@
 			<Heading as="h3" class="text-xl">Ingredientes</Heading>
 
 			<ul class="flex w-full flex-wrap gap-1">
-				{#each dish.menu_ingredients as ingredient}
+				{#each dish.ingredients as ingredient}
 					<li class="flex flex-col gap-2">
 						<Box class="flex h-full items-center justify-between gap-4 px-4 py-2">
 							<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>

@@ -16,13 +16,13 @@
 	);
 
 	$: breakfastMenuItems = $UiPreferences.show_breakfast
-		? ($Menus[todayMenuIndex]?.breakfast.menu_ingredients ?? [])
+		? ($Menus[todayMenuIndex].breakfast.ingredients ?? [])
 		: [];
 	$: lunchMenuItems = $UiPreferences.show_lunch
-		? ($Menus[todayMenuIndex]?.lunch.menu_ingredients ?? [])
+		? ($Menus[todayMenuIndex].lunch.ingredients ?? [])
 		: [];
 	$: dinnerMenuItems = $UiPreferences.show_dinner
-		? ($Menus[todayMenuIndex]?.dinner.menu_ingredients ?? [])
+		? ($Menus[todayMenuIndex].dinner.ingredients ?? [])
 		: [];
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 
@@ -34,22 +34,26 @@
 	})) as IngredientsType[];
 
 	function calculateTodayPrice() {
+		console.log($Menus[todayMenuIndex]);
+
 		const breakfast = $UiPreferences.show_breakfast
-			? $Menus[todayMenuIndex]?.breakfast?.aproximate_price_in_spain_euros
+			? $Menus[todayMenuIndex].breakfast.approximate_price_euros
 			: '0,00 €';
 		const lunch = $UiPreferences.show_lunch
-			? $Menus[todayMenuIndex]?.lunch?.aproximate_price_in_spain_euros
+			? $Menus[todayMenuIndex].lunch.approximate_price_euros
 			: '0,00 €';
 		const dinner = $UiPreferences.show_dinner
-			? $Menus[todayMenuIndex]?.dinner?.aproximate_price_in_spain_euros
+			? $Menus[todayMenuIndex].dinner.approximate_price_euros
 			: '0,00 €';
+
+		console.log({ breakfast, lunch, dinner });
 
 		const breakfast_value = breakfast.replace(',', '.').replace(' €', '');
 		const lunch_value = lunch.replace(',', '.').replace(' €', '');
 		const dinner_value = dinner.replace(',', '.').replace(' €', '');
 		const total_value = Number(breakfast_value) + Number(lunch_value) + Number(dinner_value);
 
-		$Menus[todayMenuIndex].aproximate_price_in_spain_euros = total_value;
+		$Menus[todayMenuIndex].approximate_price_euros = total_value;
 		return formatPrice(total_value);
 	}
 </script>

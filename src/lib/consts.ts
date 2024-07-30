@@ -146,14 +146,14 @@ export const WEEK_DAYS = [
 ];
 
 export const AWAITING_RESPONSES = [
-  "Preparando menus...",
+  "Preparando menús...",
   "Buscando alimentos...",
-  "Creando lista de compra...",
+  "Creando lista de la compra...",
   "Buscando recetas...",
-  "Constrastando con el endocrino...",
+  "Constrastando ingredientes...",
   "Eliminando alimentos no deseados...",
   "Añadiendo alimentos deseados...",
-  "Cotejando alergias...",
+  "Cotejando alergias e intolerancias...",
   "Descansando...",
   "Guardando resultados...",
   "Limpiando..."

@@ -1,12 +1,12 @@
 const PIRAMIDE = '{"piramide_alimentaria":[{"grupo":"Granos y cereales","proporcion":"30-40%"},{"grupo":"Verduras","proporcion":"20-25%"},{"grupo":"Frutas","proporcion":"15-20%"},{"grupo":"Proteínas","proporcion":"10-20%"},{"grupo":"Lácteos","proporcion":"10-15%"},{"grupo":"Grasas, aceites y azúcares","proporcion":"5-10%"}]}';
 const INGREDIENT_EXAMPLE = `{"name": "Ingrediente de ejemplo","amount": 0,"unit": "gr | ml | und"}`;
-const DISH_EXAMPLE = `{"menu_label": "Plato de ejemplo","menu_ingredients": [${INGREDIENT_EXAMPLE}],"time_to_prepare": "20 min", "aproximate_price_in_spain_euros": "0,00 €"}`;
+const DISH_EXAMPLE = `{"label": "Plato de ejemplo","ingredients": [${INGREDIENT_EXAMPLE}],"time_to_prepare": "20 min", "approximate_price_euros": "0,00 €"}`;
 const DAY_EXAMPLE = `{"week_day": "Lunes | Martes | Miércoles | Jueves | Viernes | Sábado","breakfast": ${DISH_EXAMPLE},"lunch": ${DISH_EXAMPLE},"dinner": ${DISH_EXAMPLE}}`;
 
 const ACTING_AS = "Actua como un experto cocinero, dietista y nutricionista.";
 const PURPOSE_MENU = "Tu función es generar un menú diario.";
-const PURPOSE_DISH = "Genera una alternativa al plato current_meal.";
-const PURPOSE_RECIPE = "Genera una receta para el plato con menu_label, menu_ingredients y time_to_prepare.";
+const PURPOSE_DISH = "Genera una alternativa al plato current_dish.";
+const PURPOSE_RECIPE = "Genera una receta para el plato con label, ingredients y time_to_prepare.";
 
 const BALANCED_MENU = "Ten en cuenta los week_menus y genera un menú diario variado, equilibrado y saludable.";
 const BALANCED_DISH = "Ten en cuenta los week_menus y genera un plato variado, equilibrado y saludable.";

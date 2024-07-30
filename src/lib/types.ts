@@ -19,20 +19,20 @@ export interface IngredientsType {
   unit: string | null;
 }
 
-export interface MealType {
-  menu_label: string;
-  menu_ingredients: Array<IngredientsType>;
+export interface DishType {
+  label: string;
+  ingredients: Array<IngredientsType>;
   time_to_prepare: string;
-  aproximate_price_in_spain_euros: string;
+  approximate_price_euros: string;
   recipe?: string;
 }
 
 export interface DayType {
   week_day: "Lunes",
-  breakfast: MealType;
-  lunch: MealType;
-  dinner: MealType;
-  aproximate_price_in_spain_euros?: number;
+  breakfast: DishType;
+  lunch: DishType;
+  dinner: DishType;
+  approximate_price_euros?: number;
 }
 
 export type WeekType = Array<DayType>;

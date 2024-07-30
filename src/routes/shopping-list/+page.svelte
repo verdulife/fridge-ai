@@ -18,7 +18,7 @@
 	});
 
 	$: totalPricing = $Menus.reduce((acc: number, curr: DayType) => {
-		const price = curr.aproximate_price_in_spain_euros || 0;
+		const price = curr.approximate_price_euros || 0;
 		return acc + price;
 	}, 0);
 
@@ -26,9 +26,9 @@
 		const menu = groupMenusByDay[week_day]?.[0];
 		if (!menu) continue;
 
-		const breakfastMenuItems = $UiPreferences.show_breakfast ? menu.breakfast.menu_ingredients : [];
-		const lunchMenuItems = $UiPreferences.show_lunch ? menu.lunch.menu_ingredients : [];
-		const dinnerMenuItems = $UiPreferences.show_dinner ? menu.dinner.menu_ingredients : [];
+		const breakfastMenuItems = $UiPreferences.show_breakfast ? menu.breakfast.ingredients : [];
+		const lunchMenuItems = $UiPreferences.show_lunch ? menu.lunch.ingredients : [];
+		const dinnerMenuItems = $UiPreferences.show_dinner ? menu.dinner.ingredients : [];
 
 		const allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 
@@ -59,7 +59,7 @@
 				<span class="capitalize">{day}</span>
 				{#if groupMenusByDay[day]}
 					<span class="rounded-full bg-gray-200 px-3 py-1 text-xs font-bold">
-						Coste aprox. {formatPrice(groupMenusByDay[day][0].aproximate_price_in_spain_euros)}
+						Coste aprox. {formatPrice(groupMenusByDay[day][0].approximate_price_euros)}
 					</span>
 				{/if}
 			</Text>

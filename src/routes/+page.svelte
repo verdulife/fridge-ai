@@ -35,8 +35,13 @@
 			todayMenu = null;
 		}
 
+		let { like, dislike, ...preferences } = $UserPreferences;
+
+		if (like.length > 0) preferences.like = like;
+		if (dislike.length > 0) preferences.dislike = dislike;
+
 		const { week_day, breakfast, lunch, dinner } = await generate('/api/generate-today-menu', {
-			user_preferences: $UserPreferences,
+			user_preferences: preferences,
 			menu_day: $CurrentDay,
 			week_menus: allMenuTitles()
 		});
@@ -51,6 +56,7 @@
 				counterRetries++;
 				generateTodaysMenu();
 			} else {
+				counterRetries = 0;
 				success = false;
 				alert(ERROR_PROMPT);
 			}
