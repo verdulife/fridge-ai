@@ -3,7 +3,7 @@ import type { UserPreferencesType } from '@/lib/types';
 import { writable } from 'svelte/store';
 import { browser } from '$app/environment';
 import { getCurrentDay } from '@/lib/utils';
-import { average_preparation_options, exercise_options, gender_options } from '@/lib/consts';
+import { average_cost_options, average_preparation_options, exercise_options, gender_options } from '@/lib/consts';
 
 export const CurrentDay = writable(getCurrentDay());
 
@@ -20,6 +20,7 @@ export const defaultUserPreferences: UserPreferencesType = {
     weekly_exercise: exercise_options[0].id,
   },
   average_preparation_time_per_dish: average_preparation_options[0].id,
+  average_cost_per_dish: average_cost_options[0].id,
 };
 
 export const defaultUiPreferences = {

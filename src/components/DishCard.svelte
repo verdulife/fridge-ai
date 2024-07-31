@@ -4,7 +4,7 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
-	import { AWAITING_RESPONSES, CONFIRM_MESSAGES, ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
+	import { CONFIRM_MESSAGES, ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
 	import { generate, getCurrentSeason, onlyMenuTitles } from '@/lib/utils';
 
 	import Heading from '@/components/ui/Heading.svelte';
@@ -23,19 +23,21 @@
 
 	let isLoading = false;
 	let open = false;
-	let message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
+	let meals_state: {
+		[key: string]: boolean;
+	} = {
+		breakfast: true,
+		lunch: true,
+		dinner: true
+	};
 
 	function openDialog() {
 		open = true;
 	}
 
-	function simulateLoading() {
-		setInterval(() => {
-			message = AWAITING_RESPONSES[Math.floor(Math.random() * AWAITING_RESPONSES.length)];
-		}, 2000);
-	}
-
 	async function generateTodayMeal() {
+		meals_state = { breakfast: true, lunch: true, dinner: true };
+
 		const res = await generate('/api/generate-meal', {
 			user_preferences: $UserPreferences,
 			meal_type: type,
@@ -48,14 +50,15 @@
 				return menu;
 			});
 		} else {
-			alert(ERROR_PROMPT);
+			meals_state[type] = false;
 		}
 	}
 
-	async function generateMeal() {
+	async function regenerateMeal() {
 		const check = confirm(CONFIRM_MESSAGES.remake_dish);
 		if (!check) return;
 
+		meals_state[type] = true;
 		isLoading = true;
 
 		const { label, ingredients, time_to_prepare, approximate_price_euros } = await generate(
@@ -71,19 +74,18 @@
 		if (label) {
 			dish = { label, ingredients, time_to_prepare, approximate_price_euros };
 		} else {
-			alert(ERROR_PROMPT);
+			meals_state[type] = false;
 		}
 
 		isLoading = false;
 	}
 
 	$: if (browser && !dish?.label && $page.url.pathname !== '/menus') {
-		simulateLoading();
 		generateTodayMeal();
 	}
 </script>
 
-<Box class="flex h-full min-h-48 w-80 flex-col items-start gap-4 p-4">
+<Box class="relative flex h-full min-h-48 w-80 flex-col items-start gap-4 p-4">
 	<header class="flex w-full items-center justify-between">
 		<span class="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold dark:bg-neutral-950">
 			<slot />
@@ -107,7 +109,7 @@
 				</Button>
 
 				<Button
-					click={generateMeal}
+					click={regenerateMeal}
 					class="generate_alternative_dish flex items-center justify-center px-3 py-1"
 				>
 					{#if !isLoading}
@@ -127,10 +129,27 @@
 			</aside>
 		</footer>
 	{:else}
-		<Text>{message}</Text>
-		<Button class="generate_alternative_dish flex items-center justify-center px-3 py-1">
-			<Ai class="size-5" />
-		</Button>
+		<div class="absolute inset-0 flex size-full items-center justify-center">
+			{#if !meals_state[type]}
+				<Button
+					click={() => generateTodayMeal()}
+					class="flex items-center justify-center gap-1 px-3 py-1"
+				>
+					<Ai class="size-5" />
+					Generar
+				</Button>
+			{:else}
+				<script src="https://cdn.lordicon.com/lordicon.js"></script>
+				<lord-icon
+					src="https://cdn.lordicon.com/jpgpblwn.json"
+					trigger="loop"
+					state="loop-line"
+					colors={`primary:${$UiPreferences.dark_mode ? UI_COLORS.btn_dark : UI_COLORS.btn_light}`}
+					style="width:40px;height:40px"
+				>
+				</lord-icon>
+			{/if}
+		</div>
 	{/if}
 </Box>
 

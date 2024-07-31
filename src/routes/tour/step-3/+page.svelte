@@ -24,16 +24,31 @@
 
 <div class="flex flex-col justify-center gap-4">
 	<Heading>
-		Tus <span class="text-vista-300">alergias</span>,
-		<span class="text-vista-300">intolerancias</span> o
-		<span class="text-vista-300">preferencias</span>
+		Tus <span class="text-vista-300">alergias</span> o
+		<span class="text-vista-300">intolerancias</span>
 	</Heading>
 
 	<div class="flex flex-wrap items-start justify-start gap-1">
 		{#each allergens_options as allergen}
-			<Checkbox bind:checked={allergensSelection[allergen.id]}>
-				{allergen.name}
-			</Checkbox>
+			{#if allergen.id !== 'vegano' && allergen.id !== 'vegetariano'}
+				<Checkbox bind:checked={allergensSelection[allergen.id]}>
+					{allergen.name}
+				</Checkbox>
+			{/if}
+		{/each}
+	</div>
+
+	<Heading>
+		Tus <span class="text-vista-300">preferencias</span>
+	</Heading>
+
+	<div class="flex flex-wrap items-start justify-start gap-1">
+		{#each allergens_options as allergen}
+			{#if allergen.id === 'vegano' || allergen.id === 'vegetariano'}
+				<Checkbox bind:checked={allergensSelection[allergen.id]}>
+					{allergen.name}
+				</Checkbox>
+			{/if}
 		{/each}
 	</div>
 </div>

@@ -47,6 +47,25 @@ export const average_preparation_options = [
   },
 ];
 
+export const average_cost_options = [
+  {
+    id: "i-dont-care",
+    name: "No me importa",
+  },
+  {
+    id: "less-than-1-50-euros",
+    name: "Menos de 1,50 €",
+  },
+  {
+    id: "less-than-3-00-euros",
+    name: "Menos de 3,00 €",
+  },
+  {
+    id: "less-than-5-00-euros",
+    name: "Menos de 5,00 €",
+  },
+];
+
 export const allergens_options = [
   {
     id: "crustaceos",

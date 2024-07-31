@@ -11,7 +11,7 @@ const cohere = createCohere({
 export async function POST({ request }) {
   const { user_preferences, meal_type, week_menus, current_season } = await request.json();
 
-  console.log('Generating meal');
+  console.log(`Generating ${meal_type}`);
 
   const result = await streamText({
     model: cohere('command-r-plus'),

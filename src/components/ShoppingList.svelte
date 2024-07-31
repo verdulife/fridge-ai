@@ -11,6 +11,8 @@
 	import Dislike from '@/assets/Dislike.svelte';
 	import Price from '@/components/Price.svelte';
 
+	let currentPrice: string | undefined;
+
 	$: currentMenuIndex = $Menus.findIndex(
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
 	);
@@ -23,6 +25,7 @@
 	$: groupedIngredients = Object.groupBy(allMenuItems, ({ name }: IngredientsType) =>
 		name.toLocaleLowerCase()
 	);
+
 	$: mergedMenuItems = Object.entries(groupedIngredients).map(([name, ingredients]) => ({
 		name,
 		amount: ingredients?.reduce((acc, curr) => Number(acc) + Number(curr.amount), 0) || 0,
@@ -42,15 +45,22 @@
 		$Menus[currentMenuIndex].approximate_price_euros = total_value;
 		return formatPrice(total_value);
 	}
+
+	$: if (breakfastMenuItems || lunchMenuItems || dinnerMenuItems) {
+		currentPrice = calculateTodayPrice();
+	}
 </script>
 
 <section class="flex w-full flex-col gap-4 px-4 lg:px-8">
-	{#if allMenuItems.length > 0}
-		<Text class="flex items-center justify-between font-semibold">
-			Ingredientes para hoy
-			<Price>{calculateTodayPrice()}</Price>
-		</Text>
+	<Text class="flex items-center justify-between font-semibold">
+		Ingredientes para hoy
 
+		{#if currentPrice}
+			<Price>{currentPrice}</Price>
+		{/if}
+	</Text>
+
+	{#if allMenuItems.length > 0}
 		<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
 			{#each mergedMenuItems as ingredient}
 				<li class="flex w-full flex-col gap-2">
@@ -74,5 +84,7 @@
 				</li>
 			{/each}
 		</ul>
+	{:else}
+		<Text>No hay ingredientes para hoy</Text>
 	{/if}
 </section>

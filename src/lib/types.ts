@@ -11,6 +11,7 @@ export interface UserPreferencesType {
     weekly_exercise: string;
   },
   average_preparation_time_per_dish: string;
+  average_cost_per_dish: string;
 };
 
 export interface IngredientsType {

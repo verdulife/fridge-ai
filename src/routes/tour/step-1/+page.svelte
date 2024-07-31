@@ -15,7 +15,7 @@
 <form class="flex flex-col items-center gap-2" on:submit|preventDefault={nextStep}>
 	<Heading class="w-full">Ingredientes que te <span class="text-vista-300">gustan</span></Heading>
 	<Text class="w-full">
-		No son obligatorios, pero te ayudarán a generear menús más interesantes
+		No son obligatorios, pero te ayudarán a generear menús más interesantes.
 	</Text>
 
 	<div class="flex flex-col gap-2 w-full mt-4">
