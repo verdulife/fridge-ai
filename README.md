@@ -66,6 +66,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Mejorar dishcard placeholder
 - [x] Añadir en ajustes el coste medio de la receta
 - [x] Separar en tour alergias/intoloreancias de preferencias
+- [ ] Añadir opcion de usar OpenAI API & Cohere API del usuario.
 - [ ] Revisar textos, organizar y gramatica.
 - [ ] Auto-completar ingredientes en tour
 - [ ] Boton de agrupar por en la route shopping list
