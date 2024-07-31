@@ -19,6 +19,13 @@ export const TIME_RANGES = {
   dinner_to: 18
 }
 
+export const SEASONS_RANGES = {
+  spring_from: 3,
+  summer_from: 6,
+  fall_from: 9,
+  winter_from: 12
+}
+
 export const USER_INFO_LIB: { [key: string]: string } = {
   age: "años",
   height: "cm",

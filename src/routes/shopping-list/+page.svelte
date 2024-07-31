@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { DayType, IngredientsType } from '@/lib/types';
 
-	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
+	import { Menus, UserPreferences } from '@/lib/stores';
 	import { formatIngredient, formatPrice, setDislike, setLike } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
@@ -10,6 +10,7 @@
 	import Button from '@/components/ui/Button.svelte';
 	import Like from '@/assets/Like.svelte';
 	import Dislike from '@/assets/Dislike.svelte';
+	import Price from '@/components/Price.svelte';
 
 	let groupedMenus: Record<string, IngredientsType[]> = {};
 
@@ -26,9 +27,9 @@
 		const menu = groupMenusByDay[week_day]?.[0];
 		if (!menu) continue;
 
-		const breakfastMenuItems = $UiPreferences.show_breakfast ? menu.breakfast.ingredients : [];
-		const lunchMenuItems = $UiPreferences.show_lunch ? menu.lunch.ingredients : [];
-		const dinnerMenuItems = $UiPreferences.show_dinner ? menu.dinner.ingredients : [];
+		const breakfastMenuItems = menu.breakfast?.ingredients || [];
+		const lunchMenuItems = menu.lunch?.ingredients || [];
+		const dinnerMenuItems = menu.dinner?.ingredients || [];
 
 		const allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 
@@ -44,49 +45,51 @@
 </script>
 
 <div class="flex w-full flex-col items-start p-4 lg:p-8">
-	<Heading as="h1" class="!text-3xl font-bold">Tu lista de la compra</Heading>
+	<Heading as="h1" class="flex w-full items-center justify-between !text-3xl font-bold">
+		Tu lista de la compra
+		<Price class="text-base font-semibold">{formatPrice(totalPricing)}</Price>
+	</Heading>
+
 	<Text class="max-w-xs text-neutral-400 lg:max-w-md ">
 		Todos los ingredientes que necesitas para tu menú semanal, agrupados por día.
-
-		<span>
-			{formatPrice(totalPricing)}
-		</span>
 	</Text>
 
 	{#each Object.entries(groupedMenus) as [day, ingredients]}
 		<section class="mt-8 flex w-full flex-col gap-4">
 			<Text class="flex items-center justify-between font-semibold">
 				<span class="capitalize">{day}</span>
-				{#if groupMenusByDay[day]}
-					<span class="rounded-full bg-gray-200 px-3 py-1 text-xs font-bold">
-						Coste aprox. {formatPrice(groupMenusByDay[day][0].approximate_price_euros)}
-					</span>
+				{#if groupMenusByDay[day]?.[0].approximate_price_euros}
+					<Price>{formatPrice(groupMenusByDay[day][0].approximate_price_euros)}</Price>
 				{/if}
 			</Text>
 
-			<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
-				{#each ingredients as ingredient}
-					<li class="flex w-full flex-col gap-2">
-						<Box class="flex h-full items-center justify-between gap-4 p-4">
-							<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
+			{#if ingredients.length}
+				<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
+					{#each ingredients as ingredient}
+						<li class="flex w-full flex-col gap-2">
+							<Box class="flex h-full items-center justify-between gap-4 p-4">
+								<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
 
-							<aside class="flex items-center gap-2">
-								{#if !$UserPreferences.like.includes(ingredient.name)}
-									<Button class="px-3 py-1" click={() => setLike(ingredient)}>
-										<Like class="size-5" />
-									</Button>
-								{/if}
+								<aside class="flex items-center gap-2">
+									{#if !$UserPreferences.like.includes(ingredient.name)}
+										<Button class="px-3 py-1" click={() => setLike(ingredient)}>
+											<Like class="size-5" />
+										</Button>
+									{/if}
 
-								{#if !$UserPreferences.dislike.includes(ingredient.name)}
-									<Button class="px-3 py-1" click={() => setDislike(ingredient)}>
-										<Dislike class="size-5" />
-									</Button>
-								{/if}
-							</aside>
-						</Box>
-					</li>
-				{/each}
-			</ul>
+									{#if !$UserPreferences.dislike.includes(ingredient.name)}
+										<Button class="px-3 py-1" click={() => setDislike(ingredient)}>
+											<Dislike class="size-5" />
+										</Button>
+									{/if}
+								</aside>
+							</Box>
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<Text class="text-neutral-400">No hay ingredientes para este día</Text>
+			{/if}
 		</section>
 	{/each}
 </div>

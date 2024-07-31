@@ -12,6 +12,7 @@
 	import Box from '@/components/ui/Box.svelte';
 	import Button from '@/components/ui/Button.svelte';
 	import Ai from '@/assets/Ai.svelte';
+	import Price from '@/components/Price.svelte';
 
 	export let dish: DishType;
 	export let open = false;
@@ -60,7 +61,12 @@
 		</header>
 
 		<main class="flex w-full flex-col gap-4">
-			<Heading as="h3" class="text-xl">Ingredientes</Heading>
+			<div>
+				<Heading as="h3" class="flex items-center justify-between text-xl">
+					Ingredientes
+					<Price>{dish.approximate_price_euros}</Price>
+				</Heading>
+			</div>
 
 			<ul class="flex w-full flex-wrap gap-1">
 				{#each dish.ingredients as ingredient}

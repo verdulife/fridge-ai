@@ -28,11 +28,12 @@ export interface DishType {
 }
 
 export interface DayType {
-  [key: string]: string | DishType | undefined;
+  [key: string]: string | DishType | number | undefined;
   week_day: string;
   breakfast?: DishType;
   lunch?: DishType;
   dinner?: DishType;
+  approximate_price_euros?: number;
 }
 
 export type WeekType = Array<DayType>;

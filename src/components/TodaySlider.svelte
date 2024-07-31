@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { UiPreferences } from '@/lib/stores';
 	import { onMount } from 'svelte';
+	import { UiPreferences, CurrentDay } from '@/lib/stores';
 	import { TIME_RANGES } from '@/lib/consts';
 
 	import Text from '@/components/ui/Text.svelte';
@@ -45,17 +45,17 @@
 	>
 		{#if $UiPreferences.show_breakfast}
 			<li id="breakfast_dish" class="shrink-0 snap-start">
-				<DishCard type="breakfast">DESAYUNO</DishCard>
+				<DishCard type="breakfast" day={$CurrentDay}>DESAYUNO</DishCard>
 			</li>
 		{/if}
 		{#if $UiPreferences.show_lunch}
 			<li id="lunch_dish" class="shrink-0 snap-start">
-				<DishCard type="lunch">COMIDA</DishCard>
+				<DishCard type="lunch" day={$CurrentDay}>COMIDA</DishCard>
 			</li>
 		{/if}
 		{#if $UiPreferences.show_dinner}
 			<li id="dinner_dish" class="shrink-0 snap-start">
-				<DishCard type="dinner">CENA</DishCard>
+				<DishCard type="dinner" day={$CurrentDay}>CENA</DishCard>
 			</li>
 		{/if}
 	</ul>

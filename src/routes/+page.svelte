@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CurrentDay, UiPreferences } from '@/lib/stores';
+	import { CurrentDay, Menus, UiPreferences } from '@/lib/stores';
 
 	import Today from '@/components/Today.svelte';
 	import TodaySlider from '@/components/TodaySlider.svelte';
@@ -10,6 +10,11 @@
 	async function loadGuide() {
 		if ($UiPreferences.guide_done) return;
 		guide = (await import('@/components/Guide.svelte')).default;
+	}
+
+	$: currentMenu = $Menus.find((menu: any) => menu.week_day.toLocaleLowerCase() === $CurrentDay);
+	$: if (currentMenu.breakfast?.label || currentMenu.lunch?.label || currentMenu.dinner?.label) {
+		loadGuide();
 	}
 </script>
 

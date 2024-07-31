@@ -2,9 +2,10 @@
 	import type { DayType } from '@/lib/types';
 
 	import { browser } from '$app/environment';
-	import { Menus, UserPreferences, UiPreferences, CurrentDay } from '@/lib/stores';
+	import { page } from '$app/stores';
+	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
 	import { AWAITING_RESPONSES, CONFIRM_MESSAGES, ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
-	import { generate, onlyMenuTitles } from '@/lib/utils';
+	import { generate, getCurrentSeason, onlyMenuTitles } from '@/lib/utils';
 
 	import Heading from '@/components/ui/Heading.svelte';
 	import Ai from '@/assets/Ai.svelte';
@@ -16,8 +17,9 @@
 	import DishDialog from '@/components/DishDialog.svelte';
 
 	export let type: string;
+	export let day: string;
 
-	$: dish = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay)[type];
+	$: dish = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === day)[type];
 
 	let isLoading = false;
 	let open = false;
@@ -42,7 +44,7 @@
 
 		if (res) {
 			$Menus = $Menus.map((menu: DayType) => {
-				if (menu.week_day.toLocaleLowerCase() === $CurrentDay) menu[type] = res;
+				if (menu.week_day.toLocaleLowerCase() === day) menu[type] = res;
 				return menu;
 			});
 		} else {
@@ -61,7 +63,8 @@
 			{
 				user_preferences: $UserPreferences,
 				current_dish: dish,
-				week_menus: $Menus
+				week_menus: onlyMenuTitles(),
+				current_season: getCurrentSeason()
 			}
 		);
 
@@ -74,7 +77,7 @@
 		isLoading = false;
 	}
 
-	$: if (browser && !dish?.label) {
+	$: if (browser && !dish?.label && $page.url.pathname !== '/menus') {
 		simulateLoading();
 		generateTodayMeal();
 	}

@@ -57,16 +57,6 @@
 				}
 			},
 			{
-				element: '.generate_alternative_menu',
-				popover: {
-					title: 'Genera otro menú',
-					description:
-						'Si no te convence el menú, puedes generar uno nuevo. Esto cambiara todos los platos del menú.',
-					side: 'left',
-					align: 'center'
-				}
-			},
-			{
 				element: '.like_dislike_ingredient',
 				popover: {
 					title: 'Me gusta / No me gusta',

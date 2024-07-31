@@ -4,6 +4,7 @@ import { get } from 'svelte/store';
 import { Menus, UserPreferences } from '@/lib/stores';
 import { readDataStream } from 'ai';
 import toast from 'svelte-french-toast';
+import { SEASONS_RANGES } from './consts';
 
 export async function generate(url: string, input: any) {
   const res = await fetch(url, {
@@ -43,6 +44,15 @@ export function getCurrentDay(): string {
   return new Intl.DateTimeFormat("es-ES", { weekday: 'long' }).format(new Date());
 }
 
+export function getCurrentSeason(): string {
+  const current_month = new Date().getMonth() + 1;
+
+  if (current_month >= SEASONS_RANGES.spring_from && current_month < SEASONS_RANGES.summer_from) return 'primavera';
+  else if (current_month >= SEASONS_RANGES.summer_from && current_month < SEASONS_RANGES.fall_from) return 'verano';
+  else if (current_month >= SEASONS_RANGES.fall_from && current_month < SEASONS_RANGES.winter_from) return 'otoño';
+  else return 'invierno';
+}
+
 export function setLike({ name }: IngredientsType) {
   UserPreferences.update((value) => {
     value.like = [...value.like, name];
@@ -70,9 +80,11 @@ export function setDislike({ name }: IngredientsType) {
 }
 
 export function formatIngredient({ name, amount, unit }: IngredientsType) {
-  return `${name} (${amount}${unit ? " " : ""}${unit})`;
+  if (!Number(amount) || !unit) return name;
+  return `${name} (${amount} ${unit})`;
 }
 
-export function formatPrice(price: number) {
+export function formatPrice(price: number | undefined) {
+  if (!price) return;
   return Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(Number(price));
 }
