@@ -38,6 +38,10 @@ export const average_preparation_options = [
     name: "No me importa",
   },
   {
+    id: "less-than-15-minutes",
+    name: "Menos de 15 min",
+  },
+  {
     id: "less-than-30-minutes",
     name: "Menos de 30 min",
   },
