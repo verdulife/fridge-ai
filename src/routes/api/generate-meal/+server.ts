@@ -1,7 +1,7 @@
 import { createCohere } from '@ai-sdk/cohere';
 import { streamText } from 'ai';
 import { COHERE_API_KEY } from '$env/static/private';
-import { GENERATE_MENU_PROMPT } from '@/lib/prompt';
+import { GENERATE_MEAL_PROMPT } from '@/lib/prompt';
 
 const cohere = createCohere({
   apiKey: COHERE_API_KEY,
@@ -9,20 +9,20 @@ const cohere = createCohere({
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
-  const { user_preferences, menu_day, week_menus } = await request.json();
+  const { user_preferences, meal_type, week_menus, current_season } = await request.json();
 
-  console.log('START');
+  console.log(`Generating ${meal_type}`);
 
   const result = await streamText({
     model: cohere('command-r-plus'),
     messages: [
       {
         role: 'user',
-        content: GENERATE_MENU_PROMPT
+        content: GENERATE_MEAL_PROMPT
       },
       {
         role: 'user',
-        content: JSON.stringify({ user_preferences, menu_day, week_menus })
+        content: JSON.stringify({ user_preferences, meal_type, week_menus, current_season })
       },
     ],
   });

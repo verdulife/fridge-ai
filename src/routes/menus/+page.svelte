@@ -10,10 +10,6 @@
 	$: groupMenusByDay = Object.groupBy($Menus, ({ week_day }: DayType) =>
 		week_day.toLocaleLowerCase()
 	);
-
-	function getMenuIndexByDay(day: string) {
-		return $Menus.findIndex((menu: DayType) => menu.week_day.toLocaleLowerCase() === day);
-	}
 </script>
 
 <div class="flex w-full flex-col items-start py-6 lg:py-8">
@@ -28,7 +24,7 @@
 				<Text class="font-semibold capitalize">{day}</Text>
 			</div>
 
-			{#if menu}
+			{#if menu?.[0].breakfast || menu?.[0].lunch || menu?.[0].dinner}
 				<ul class="flex w-full flex-col gap-1">
 					<li class="flex w-full flex-col items-start gap-4">
 						<ul
@@ -36,22 +32,24 @@
 						>
 							{#if $UiPreferences.show_breakfast}
 								<li class="shrink-0 snap-start">
-									<DishCard bind:dish={$Menus[getMenuIndexByDay(day)].breakfast}>DESAYUNO</DishCard>
+									<DishCard type="breakfast" {day}>DESAYUNO</DishCard>
 								</li>
 							{/if}
 							{#if $UiPreferences.show_lunch}
 								<li class="shrink-0 snap-start">
-									<DishCard bind:dish={$Menus[getMenuIndexByDay(day)].lunch}>COMIDA</DishCard>
+									<DishCard type="lunch" {day}>COMIDA</DishCard>
 								</li>
 							{/if}
 							{#if $UiPreferences.show_dinner}
 								<li class="shrink-0 snap-start">
-									<DishCard bind:dish={$Menus[getMenuIndexByDay(day)].dinner}>CENA</DishCard>
+									<DishCard type="dinner" {day}>CENA</DishCard>
 								</li>
 							{/if}
 						</ul>
 					</li>
 				</ul>
+			{:else}
+				<Text class="px-4 text-neutral-400 lg:px-8">No hay menús para este día</Text>
 			{/if}
 		</section>
 	{/each}

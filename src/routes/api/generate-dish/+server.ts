@@ -9,9 +9,9 @@ const cohere = createCohere({
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
-  const { user_preferences, current_dish, week_menus } = await request.json();
+  const { user_preferences, current_dish, week_menus, current_season } = await request.json();
 
-  console.log('START');
+  console.log('Generating dish');
 
   const result = await streamText({
     model: cohere('command-r-plus'),
@@ -22,7 +22,7 @@ export async function POST({ request }) {
       },
       {
         role: 'user',
-        content: JSON.stringify({ user_preferences, current_dish, week_menus })
+        content: JSON.stringify({ user_preferences, current_dish, week_menus, current_season })
       },
     ],
   });

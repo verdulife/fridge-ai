@@ -1,27 +1,10 @@
 <script lang="ts">
-	import type { DayType } from '@/lib/types';
-
-	import { CurrentDay, Menus, UiPreferences } from '@/lib/stores';
 	import { onMount } from 'svelte';
-	import { CONFIRM_MESSAGES, TIME_RANGES } from '@/lib/consts';
+	import { UiPreferences, CurrentDay } from '@/lib/stores';
+	import { TIME_RANGES } from '@/lib/consts';
 
 	import Text from '@/components/ui/Text.svelte';
 	import DishCard from '@/components/DishCard.svelte';
-	import Ai from '@/assets/Ai.svelte';
-	import Button from './ui/Button.svelte';
-
-	export let click: () => void;
-
-	function regenerateMenu() {
-		const check = confirm(CONFIRM_MESSAGES.remake_menu);
-		if (!check) return;
-
-		click();
-	}
-
-	$: todayMenuIndex = $Menus.findIndex(
-		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
-	);
 
 	function scrollToTimeRange() {
 		const slider = document.querySelector('#todaySlider') as HTMLElement;
@@ -54,9 +37,6 @@
 <section class="flex w-full flex-col items-start gap-4">
 	<div class="flex w-full items-end justify-between px-4 lg:px-8">
 		<Text class="font-semibold">Tu menú del día</Text>
-		<Button class="generate_alternative_menu flex items-center gap-2 px-3 py-1" click={regenerateMenu}>
-			<Ai class="size-5" />
-		</Button>
 	</div>
 
 	<ul
@@ -65,17 +45,17 @@
 	>
 		{#if $UiPreferences.show_breakfast}
 			<li id="breakfast_dish" class="shrink-0 snap-start">
-				<DishCard bind:dish={$Menus[todayMenuIndex].breakfast}>DESAYUNO</DishCard>
+				<DishCard type="breakfast" day={$CurrentDay}>DESAYUNO</DishCard>
 			</li>
 		{/if}
 		{#if $UiPreferences.show_lunch}
 			<li id="lunch_dish" class="shrink-0 snap-start">
-				<DishCard bind:dish={$Menus[todayMenuIndex].lunch}>COMIDA</DishCard>
+				<DishCard type="lunch" day={$CurrentDay}>COMIDA</DishCard>
 			</li>
 		{/if}
 		{#if $UiPreferences.show_dinner}
 			<li id="dinner_dish" class="shrink-0 snap-start">
-				<DishCard bind:dish={$Menus[todayMenuIndex].dinner}>CENA</DishCard>
+				<DishCard type="dinner" day={$CurrentDay}>CENA</DishCard>
 			</li>
 		{/if}
 	</ul>

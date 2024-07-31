@@ -6,7 +6,8 @@
 		CONFIRM_MESSAGES,
 		exercise_options,
 		USER_INFO_LIB,
-		MAX_BODY_VALUE
+		MAX_BODY_VALUE,
+		average_cost_options
 	} from '@/lib/consts';
 	import {
 		UserPreferences,
@@ -150,14 +151,49 @@
 	</Box>
 
 	<Box class="flex w-full flex-col p-4">
-		<Text class="font-semibold">Alergias, intolerancias y preferencias</Text>
+		<Text class="font-semibold">Precio medio por plato</Text>
+		<Text class="text-sm text-neutral-400">Elije el precio medio de la receta por plato.</Text>
+
+		<div class="mt-4 flex flex-wrap gap-1">
+			{#each average_cost_options as average}
+				<Radio
+					bind:group={$UserPreferences.average_cost_per_dish}
+					value={average.id}
+					class="flex items-center gap-1 pl-3 pr-4"
+				>
+					<Time class="h-4 w-4" />
+					{average.name}
+				</Radio>
+			{/each}
+		</div>
+	</Box>
+
+	<Box class="flex w-full flex-col p-4">
+		<Text class="font-semibold">Alergias o intolerancias</Text>
 		<Text class="text-sm text-neutral-400">Activa o desactiva según tus necesidades.</Text>
 
 		<div class="mt-4 flex flex-wrap items-start justify-start gap-1">
 			{#each allergens_options as allergen}
-				<Checkbox bind:checked={allergensSelection[allergen.id]}>
-					{allergen.name}
-				</Checkbox>
+				{#if allergen.id !== 'vegano' && allergen.id !== 'vegetariano'}
+					<Checkbox bind:checked={allergensSelection[allergen.id]}>
+						{allergen.name}
+					</Checkbox>
+				{/if}
+			{/each}
+		</div>
+	</Box>
+
+	<Box class="flex w-full flex-col p-4">
+		<Text class="font-semibold">Preferencias</Text>
+		<Text class="text-sm text-neutral-400">Activa o desactiva según tus necesidades.</Text>
+
+		<div class="mt-4 flex flex-wrap items-start justify-start gap-1">
+			{#each allergens_options as allergen}
+				{#if allergen.id === 'vegano' || allergen.id === 'vegetariano'}
+					<Checkbox bind:checked={allergensSelection[allergen.id]}>
+						{allergen.name}
+					</Checkbox>
+				{/if}
 			{/each}
 		</div>
 	</Box>

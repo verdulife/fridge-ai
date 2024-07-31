@@ -11,10 +11,19 @@ export const CONFIRM_MESSAGES = {
   remake_recipe: "¿Estás seguro de que quieres generar una nueva preparación?",
 }
 
+export const MEAL_TYPES = ["breakfast", "lunch", "dinner"];
+
 export const TIME_RANGES = {
   breakfast_from: 4,
   lunch_from: 12,
   dinner_to: 18
+}
+
+export const SEASONS_RANGES = {
+  spring_from: 3,
+  summer_from: 6,
+  fall_from: 9,
+  winter_from: 12
 }
 
 export const USER_INFO_LIB: { [key: string]: string } = {
@@ -29,12 +38,35 @@ export const average_preparation_options = [
     name: "No me importa",
   },
   {
+    id: "less-than-15-minutes",
+    name: "Menos de 15 min",
+  },
+  {
     id: "less-than-30-minutes",
     name: "Menos de 30 min",
   },
   {
     id: "less-than-1-hour",
     name: "Menos de 1 h",
+  },
+];
+
+export const average_cost_options = [
+  {
+    id: "i-dont-care",
+    name: "No me importa",
+  },
+  {
+    id: "less-than-1-50-euros",
+    name: "Menos de 1,50 €",
+  },
+  {
+    id: "less-than-3-00-euros",
+    name: "Menos de 3,00 €",
+  },
+  {
+    id: "less-than-5-00-euros",
+    name: "Menos de 5,00 €",
   },
 ];
 

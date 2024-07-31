@@ -1,8 +1,7 @@
 <script lang="ts">
 	import type { DayType, IngredientsType } from '@/lib/types';
 
-	import { UserPreferences, UiPreferences } from '@/lib/stores';
-	import { CurrentDay, Menus } from '@/lib/stores';
+	import { CurrentDay, Menus, UserPreferences } from '@/lib/stores';
 	import { formatIngredient, setDislike, setLike, formatPrice } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
@@ -10,60 +9,58 @@
 	import Button from './ui/Button.svelte';
 	import Like from '@/assets/Like.svelte';
 	import Dislike from '@/assets/Dislike.svelte';
+	import Price from '@/components/Price.svelte';
 
-	$: todayMenuIndex = $Menus.findIndex(
+	let currentPrice: string | undefined;
+
+	$: currentMenuIndex = $Menus.findIndex(
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
 	);
 
-	$: breakfastMenuItems = $UiPreferences.show_breakfast
-		? ($Menus[todayMenuIndex].breakfast.ingredients ?? [])
-		: [];
-	$: lunchMenuItems = $UiPreferences.show_lunch
-		? ($Menus[todayMenuIndex].lunch.ingredients ?? [])
-		: [];
-	$: dinnerMenuItems = $UiPreferences.show_dinner
-		? ($Menus[todayMenuIndex].dinner.ingredients ?? [])
-		: [];
+	$: breakfastMenuItems = $Menus[currentMenuIndex].breakfast?.ingredients ?? [];
+	$: lunchMenuItems = $Menus[currentMenuIndex].lunch?.ingredients ?? [];
+	$: dinnerMenuItems = $Menus[currentMenuIndex].dinner?.ingredients ?? [];
 	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
 
-	$: groupedIngredients = Object.groupBy(allMenuItems, ({ name }: IngredientsType) => name);
+	$: groupedIngredients = Object.groupBy(allMenuItems, ({ name }: IngredientsType) =>
+		name.toLocaleLowerCase()
+	);
+
 	$: mergedMenuItems = Object.entries(groupedIngredients).map(([name, ingredients]) => ({
 		name,
-		amount: ingredients?.reduce((acc, curr) => Number(acc) + Number(curr.amount), 0),
+		amount: ingredients?.reduce((acc, curr) => Number(acc) + Number(curr.amount), 0) || 0,
 		unit: ingredients?.[0]?.unit
 	})) as IngredientsType[];
 
 	function calculateTodayPrice() {
-		const breakfast = $UiPreferences.show_breakfast
-			? $Menus[todayMenuIndex].breakfast.approximate_price_euros
-			: '0,00 €';
-		const lunch = $UiPreferences.show_lunch
-			? $Menus[todayMenuIndex].lunch.approximate_price_euros
-			: '0,00 €';
-		const dinner = $UiPreferences.show_dinner
-			? $Menus[todayMenuIndex].dinner.approximate_price_euros
-			: '0,00 €';
+		const breakfast = $Menus[currentMenuIndex].breakfast?.approximate_price_euros || '0,00 €';
+		const lunch = $Menus[currentMenuIndex].lunch?.approximate_price_euros || '0,00 €';
+		const dinner = $Menus[currentMenuIndex].dinner?.approximate_price_euros || '0,00 €';
 
 		const breakfast_value = breakfast.replace(',', '.').replace(' €', '');
 		const lunch_value = lunch.replace(',', '.').replace(' €', '');
 		const dinner_value = dinner.replace(',', '.').replace(' €', '');
 		const total_value = Number(breakfast_value) + Number(lunch_value) + Number(dinner_value);
 
-		$Menus[todayMenuIndex].approximate_price_euros = total_value;
+		$Menus[currentMenuIndex].approximate_price_euros = total_value;
 		return formatPrice(total_value);
+	}
+
+	$: if (breakfastMenuItems || lunchMenuItems || dinnerMenuItems) {
+		currentPrice = calculateTodayPrice();
 	}
 </script>
 
 <section class="flex w-full flex-col gap-4 px-4 lg:px-8">
-	{#if allMenuItems.length > 0}
-		<Text class="flex items-center justify-between font-semibold">
-			Ingredientes para hoy
-			<span class="rounded-full bg-gray-200 px-3 py-1 text-xs font-bold">
-				Coste aprox.
-				{calculateTodayPrice()}
-			</span>
-		</Text>
+	<Text class="flex items-center justify-between font-semibold">
+		Ingredientes para hoy
 
+		{#if currentPrice}
+			<Price>{currentPrice}</Price>
+		{/if}
+	</Text>
+
+	{#if allMenuItems.length > 0}
 		<ul class="grid grid-cols-1 gap-1 lg:grid-cols-2">
 			{#each mergedMenuItems as ingredient}
 				<li class="flex w-full flex-col gap-2">
@@ -87,5 +84,7 @@
 				</li>
 			{/each}
 		</ul>
+	{:else}
+		<Text>No hay ingredientes para hoy</Text>
 	{/if}
 </section>

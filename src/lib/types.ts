@@ -11,6 +11,7 @@ export interface UserPreferencesType {
     weekly_exercise: string;
   },
   average_preparation_time_per_dish: string;
+  average_cost_per_dish: string;
 };
 
 export interface IngredientsType {
@@ -28,10 +29,11 @@ export interface DishType {
 }
 
 export interface DayType {
-  week_day: "Lunes",
-  breakfast: DishType;
-  lunch: DishType;
-  dinner: DishType;
+  [key: string]: string | DishType | number | undefined;
+  week_day: string;
+  breakfast?: DishType;
+  lunch?: DishType;
+  dinner?: DishType;
   approximate_price_euros?: number;
 }
 

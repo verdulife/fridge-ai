@@ -41,6 +41,8 @@
 		</div>
 	</div>
 
+	<hr class="border-neutral-700/20" />
+
 	<div class="flex w-full flex-col gap-2">
 		<Text>Altura</Text>
 		<div class="flex items-center justify-between gap-1">
@@ -56,6 +58,8 @@
 			</div>
 		</div>
 	</div>
+
+	<hr class="border-neutral-700/20" />
 
 	<div class="flex w-full flex-col gap-2">
 		<Text>Peso</Text>
