@@ -59,9 +59,9 @@
 			{
 				element: '.like_dislike_ingredient',
 				popover: {
-					title: 'Me gusta / No me gusta',
+					title: 'No me gusta',
 					description:
-						'Puedes marcar los ingredientes que te gustan o no te gustan. Esto te ayudará a generar un menú más personalizado.',
+						'Puedes marcar los ingredientes que no te gustan. Esto te ayudará a generar un menú más personalizado.',
 					side: 'left',
 					align: 'center'
 				}

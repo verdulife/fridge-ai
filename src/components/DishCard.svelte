@@ -48,7 +48,6 @@
 		meals_state = { breakfast: true, lunch: true, dinner: true };
 
 		console.log(onlyMenuTitles());
-	
 
 		try {
 			const res = await generate('/api/generate-meal', {
@@ -112,10 +111,13 @@
 						<Plus class="size-5" />
 					</Button>
 
-					<Button click={regenerateTodayMeal} class="flex items-center justify-center px-3 py-1 transition-all">
+					<Button
+						click={regenerateTodayMeal}
+						class="generate_alternative_dish flex items-center justify-center px-3 py-1 transition-all"
+					>
 						{#if !isLoading}
 							{#if isError}
-								<span class="flex items-center justify-center gap-1 text-red-400 text-xs">
+								<span class="flex items-center justify-center gap-1 text-xs text-red-400">
 									<Error class="size-5" />
 									Error
 								</span>
