@@ -6,6 +6,7 @@ import { getCurrentDay } from '@/lib/utils';
 import { average_cost_options, average_preparation_options, exercise_options, gender_options } from '@/lib/consts';
 
 export const CurrentDay = writable(getCurrentDay());
+export const IsGenerating = writable(false);
 
 export const defaultUserPreferences: UserPreferencesType = {
   like: [],

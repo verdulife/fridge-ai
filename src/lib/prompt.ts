@@ -12,7 +12,7 @@ const BALANCED_MEAL = "Ten en cuenta los {week_menus} para que el menú sea vari
 const BALANCED_DISH = "Ten en cuenta los {week_menus} para que el menú sea variado, equilibrado y saludable respecto al resto de los platos.";
 
 
-const BASE_INFO = `Haz que los ingredientes cumplan la piramide alimentaria: ${PIRAMIDE}.`;
+const BASE_INFO = `Haz que los ingredientes del plato cumplan la piramide alimentaria: ${PIRAMIDE}.`;
 const USER_INFO = "Ten en cuenta la información de {user_preferences}. Si hay arrays vacios, omitelos.";
 const AVERAGE_INFO = "Adecua el contenido dependiendo del tiempo medio con {average_preparation_time_per_dish} y el precio medio con {average_cost_per_dish}.";
 const SEASON_INFO = "Adecua el contenido dependiendo de {current_season}.";
@@ -20,9 +20,41 @@ const SEASON_INFO = "Adecua el contenido dependiendo de {current_season}.";
 const EMOJI_DISH = "Añade 1 emoji despues del titulo del plato y sus ingredientes.";
 const EMOJI_RECIPE = "Añade emojis para facilitar la lectura del texto.";
 
-const FORMAT_JSON = "IMPORTANTE: - La respuesta estara en español de España. - El JSON debe estar codificado en UTF-8 y minificado. - Exculivamente devolveras un JSON. - Utiliza exclusivamente gr, ml o und como unidades de medida. - Utiliza decimales en lugar de fracciones. - El JSON debe seguir estrictamente la siguiente estructura de ejemplo:";
-const FORMAT_TEXT = "IMPORTANTE: - Separa los parrafos con 2 etiquetas <br>.  - Emfacita palabras o frases con etiquetas <b>. - No generes listas ni tablas. - Nunca devolveras mas texto que la descripción de la preparación. - No uses el titulo del plato en la descripción de la preparación. - No uses las cantidades de ingredientes en la descripción de la preparación.";
+const TIP_JSON_PROMPT = "Si el json es incorrecto, se te penalizara. Si el json es correcto, te dare una propina de 100 euros.";
+const TIP_TEXT_PROMPT = "Si la preapracion es incorrecta, se te penalizara. Si la preparacion es correcta, te dare una propina de 100 euros.";
 
-export const GENERATE_MEAL_PROMPT = `${ACTING_AS} ${PURPOSE_MEAL} ${BALANCED_MEAL} ${BASE_INFO} ${USER_INFO} ${AVERAGE_INFO} ${SEASON_INFO} ${EMOJI_DISH} ${FORMAT_JSON} ${DISH_EXAMPLE}`;
+const FORMAT_JSON = `IMPORTANTE:
+  - La respuesta estara en español de España.
+  - EXCULSIVAMENTE devolveras un json.
+  - El json DEBE estar codificado en UTF-8 y minificado.
+  - Utiliza EXCLUSIVAMENTE gr, ml o und como unidades de medida.
+  - Utiliza decimales en lugar de fracciones.
+  - El json DEBE seguir ESTRICTAMENTE la siguiente estructura de ejemplo:`;
+
+const FORMAT_TEXT = `IMPORTANTE:
+  - Separa los parrafos con 2 etiquetas <br>. 
+  - Emfacita palabras o frases con etiquetas <b>.
+  - No generes listas ni tablas.
+  - Nunca devolveras mas texto que la descripción de la preparación.
+  - No uses el titulo del plato en la descripción de la preparación.
+  - No uses las cantidades de ingredientes en la descripción de la preparación.`;
+
+
 export const GENERATE_DISH_PROMPT = `${ACTING_AS} ${PURPOSE_DISH} ${BALANCED_DISH} ${BASE_INFO} ${USER_INFO} ${AVERAGE_INFO} ${SEASON_INFO} ${EMOJI_DISH} ${FORMAT_JSON} ${DISH_EXAMPLE}`;
-export const GENERATE_RECIPE_PROMPT = `${ACTING_AS} ${PURPOSE_RECIPE} ${EMOJI_RECIPE} ${FORMAT_TEXT}`;
+export const GENERATE_MEAL_PROMPT = `${ACTING_AS}
+${PURPOSE_MEAL}
+${BALANCED_MEAL}
+${BASE_INFO}
+${USER_INFO}
+${AVERAGE_INFO}
+${SEASON_INFO}
+${EMOJI_DISH}
+${TIP_JSON_PROMPT}
+${FORMAT_JSON}
+${DISH_EXAMPLE}`;
+
+export const GENERATE_RECIPE_PROMPT = `${ACTING_AS}
+${PURPOSE_RECIPE}
+${EMOJI_RECIPE}
+${TIP_TEXT_PROMPT}
+${FORMAT_TEXT}`;

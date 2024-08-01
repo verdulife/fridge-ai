@@ -3,7 +3,7 @@
 
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import { Menus, UserPreferences, UiPreferences, CurrentDay } from '@/lib/stores';
+	import { Menus, UserPreferences, UiPreferences, CurrentDay, IsGenerating } from '@/lib/stores';
 	import { UI_COLORS } from '@/lib/consts';
 	import { generate, getCurrentSeason, onlyMenuTitles } from '@/lib/utils';
 
@@ -35,6 +35,7 @@
 
 	async function generateTodayMeal() {
 		if (!browser || dish?.label) return;
+
 		isLoading = true;
 		meals_state = { breakfast: true, lunch: true, dinner: true };
 
@@ -60,32 +61,6 @@
 
 		isLoading = false;
 	}
-
-	/* async function regenerateMeal() {
-		const check = confirm(CONFIRM_MESSAGES.remake_dish);
-		if (!check) return;
-
-		meals_state[type] = true;
-		isLoading = true;
-
-		const { label, ingredients, time_to_prepare, approximate_price_euros } = await generate(
-			'/api/generate-dish',
-			{
-				user_preferences: $UserPreferences,
-				current_dish: dish,
-				week_menus: onlyMenuTitles(),
-				current_season: getCurrentSeason()
-			}
-		);
-
-		if (label) {
-			dish = { label, ingredients, time_to_prepare, approximate_price_euros };
-		} else {
-			meals_state[type] = false;
-		}
-
-		isLoading = false;
-	} */
 
 	$: if ($CurrentDay && $page.url.pathname !== '/menus') {
 		generateTodayMeal();
