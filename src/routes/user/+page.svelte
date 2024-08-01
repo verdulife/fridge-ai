@@ -14,7 +14,8 @@
 		UiPreferences,
 		Menus,
 		defaultUserPreferences,
-		defaultUiPreferences
+		defaultUiPreferences,
+		defaultMenus
 	} from '@/lib/stores';
 
 	import Radio from '@/components/ui/Radio.svelte';
@@ -62,7 +63,7 @@
 
 		$UiPreferences = defaultUiPreferences;
 		$UserPreferences = defaultUserPreferences;
-		$Menus = [];
+		$Menus = defaultMenus;
 		localStorage.clear();
 
 		goto('/tour?rc=true');

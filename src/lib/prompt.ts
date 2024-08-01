@@ -1,6 +1,6 @@
 const PIRAMIDE = "Granos y cereales 30-40%, verduras 20-25%, frutas 15-20%, proteínas 10-20%, lácteos 10-15%, grasas, aceites y azúcares 5-10%";
-const INGREDIENT_EXAMPLE = '{name: "",amount: 0,unit: ""}';
-const DISH_EXAMPLE = `{label:"",ingredients:[${INGREDIENT_EXAMPLE}],time_to_prepare:"0 min",approximate_price_euros:"0,00 €"}`;
+const INGREDIENT_EXAMPLE = '{name: "ingredient name",amount: 0,unit: "gr | ml | und"}';
+const DISH_EXAMPLE = `{label: "dish name",ingredients:[${INGREDIENT_EXAMPLE}],time_to_prepare:"0 min",approximate_price_euros:"0,00 €"}`;
 
 const ACTING_AS = "Actua como una API creada por expertos cocineros, dietistas y nutricionistas.";
 

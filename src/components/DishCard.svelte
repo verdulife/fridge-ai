@@ -3,8 +3,8 @@
 
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import { Menus, UserPreferences, UiPreferences } from '@/lib/stores';
-	import { CONFIRM_MESSAGES, ERROR_PROMPT, UI_COLORS } from '@/lib/consts';
+	import { Menus, UserPreferences, UiPreferences, CurrentDay } from '@/lib/stores';
+	import { UI_COLORS } from '@/lib/consts';
 	import { generate, getCurrentSeason, onlyMenuTitles } from '@/lib/utils';
 
 	import Heading from '@/components/ui/Heading.svelte';
@@ -16,16 +16,14 @@
 	import Button from '@/components/ui/Button.svelte';
 	import DishDialog from '@/components/DishDialog.svelte';
 
-	export let type: string;
+	export let type: 'breakfast' | 'lunch' | 'dinner';
 	export let day: string;
 
 	$: dish = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === day)[type];
 
 	let isLoading = false;
 	let open = false;
-	let meals_state: {
-		[key: string]: boolean;
-	} = {
+	$: meals_state = {
 		breakfast: true,
 		lunch: true,
 		dinner: true
@@ -36,24 +34,31 @@
 	}
 
 	async function generateTodayMeal() {
+		if (!browser || dish?.label) return;
+		isLoading = true;
 		meals_state = { breakfast: true, lunch: true, dinner: true };
 
-		const res = await generate('/api/generate-meal', {
-			user_preferences: $UserPreferences,
-			meal_type: type,
-			day,
-			week_menus: onlyMenuTitles(),
-			current_season: getCurrentSeason()
-		});
+		try {
+			const res = await generate('/api/generate-meal', {
+				user_preferences: $UserPreferences,
+				meal_type: type,
+				day,
+				week_menus: onlyMenuTitles(),
+				current_season: getCurrentSeason()
+			});
 
-		if (res) {
 			$Menus = $Menus.map((menu: DayType) => {
 				if (menu.week_day.toLocaleLowerCase() === day) menu[type] = res;
 				return menu;
 			});
-		} else {
+
+			console.log(`${type} done`);
+		} catch {
 			meals_state[type] = false;
+			console.log(`Error generating ${type}`);
 		}
+
+		isLoading = false;
 	}
 
 	/* async function regenerateMeal() {
@@ -82,7 +87,7 @@
 		isLoading = false;
 	} */
 
-	$: if (browser && !dish?.label && $page.url.pathname !== '/menus') {
+	$: if ($CurrentDay && $page.url.pathname !== '/menus') {
 		generateTodayMeal();
 	}
 </script>

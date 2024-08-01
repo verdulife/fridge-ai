@@ -7,25 +7,27 @@ import toast from 'svelte-french-toast';
 import { SEASONS_RANGES } from './consts';
 
 export async function generate(url: string, input: any) {
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(input)
-  });
-
-  if (!res.ok || !res.body) return;
-  const reader = res.body.getReader();
-  let data = '';
-
-  for await (const { type, value } of readDataStream(reader)) {
-    if (type === 'text') data += value;
-  }
-
   try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(input)
+    });
+
+    if (!res.ok || !res.body) return;
+    const reader = res.body.getReader();
+    let data = '';
+
+    for await (const { type, value } of readDataStream(reader)) {
+      if (type === 'text') data += value;
+    }
+
+    console.log(data);
+
     const parsedData = JSON.parse(data);
     return parsedData;
   } catch {
-    return {};
+    throw new Error('Error parsing data');
   }
 };
 

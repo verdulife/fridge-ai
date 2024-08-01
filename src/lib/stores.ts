@@ -31,7 +31,7 @@ export const defaultUiPreferences = {
   dark_mode: false,
 };
 
-const defaultMenus = [
+export const defaultMenus = [
   { week_day: 'Lunes' },
   { week_day: 'Martes' },
   { week_day: 'Miércoles' },
