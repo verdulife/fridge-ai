@@ -38,14 +38,6 @@ export async function POST({ request }) {
       },
       {
         role: 'user',
-        content: JSON.stringify({ user_preferences, meal_type: 'dinner', day, week_menus, current_season })
-      },
-      {
-        role: 'assistant',
-        content: `{"label":"Tortilla de espinacas con queso 🍳","ingredients":[{"name":"Huevos","amount":2,"unit":"und"},{"name":"Espinacas","amount":50,"unit":"gr"},{"name":"Queso rallado","amount":30,"unit":"gr"},{"name":"Aceite de oliva","amount":1,"unit":"cucharada"},{"name":"Sal y pimienta","amount":1,"unit":"pizca"}],"time_to_prepare":"15 min","approximate_price_euros":"1,50 €"}`
-      },
-      {
-        role: 'user',
         content: JSON.stringify({ user_preferences, meal_type, day, week_menus, current_season })
       }
     ],
