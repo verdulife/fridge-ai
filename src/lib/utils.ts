@@ -55,20 +55,6 @@ export function getCurrentSeason(): string {
   else return 'invierno';
 }
 
-export function setLike({ name }: IngredientsType) {
-  UserPreferences.update((value) => {
-    value.like = [...value.like, name];
-    toast.success('Añadido ingrediente que te gusta');
-
-    if (value.dislike.includes(name)) {
-      value.dislike = value.dislike.filter((item: string) => item !== name);
-    }
-
-    return value;
-  });
-
-}
-
 export function setDislike({ name }: IngredientsType) {
   UserPreferences.update((value) => {
     value.dislike = [...value.dislike, name];

@@ -3,7 +3,7 @@
 
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
-	import { Menus, UserPreferences, UiPreferences, CurrentDay, IsGenerating } from '@/lib/stores';
+	import { Menus, UserPreferences, UiPreferences, CurrentDay } from '@/lib/stores';
 	import { UI_COLORS } from '@/lib/consts';
 	import { generate, getCurrentSeason, onlyMenuTitles } from '@/lib/utils';
 
@@ -15,6 +15,7 @@
 	import Box from '@/components/ui/Box.svelte';
 	import Button from '@/components/ui/Button.svelte';
 	import DishDialog from '@/components/DishDialog.svelte';
+	import Error from '@/assets/Error.svelte';
 
 	export let type: 'breakfast' | 'lunch' | 'dinner';
 	export let day: string;
@@ -22,7 +23,9 @@
 	$: dish = $Menus.find((menu: DayType) => menu.week_day.toLocaleLowerCase() === day)[type];
 
 	let isLoading = false;
+	let isError = false;
 	let open = false;
+
 	$: meals_state = {
 		breakfast: true,
 		lunch: true,
@@ -33,11 +36,19 @@
 		open = true;
 	}
 
-	async function generateTodayMeal() {
-		if (!browser || dish?.label) return;
+	function anounceError() {
+		isError = true;
 
-		isLoading = true;
+		setTimeout(() => {
+			isError = false;
+		}, 2000);
+	}
+
+	async function generateMeal() {
 		meals_state = { breakfast: true, lunch: true, dinner: true };
+
+		console.log(onlyMenuTitles());
+	
 
 		try {
 			const res = await generate('/api/generate-meal', {
@@ -56,9 +67,19 @@
 			console.log(`${type} done`);
 		} catch {
 			meals_state[type] = false;
+			anounceError();
 			console.log(`Error generating ${type}`);
 		}
+	}
 
+	async function generateTodayMeal() {
+		if (!browser || dish?.label) return;
+		await generateMeal();
+	}
+
+	async function regenerateTodayMeal() {
+		isLoading = true;
+		await generateMeal();
 		isLoading = false;
 	}
 
@@ -91,9 +112,16 @@
 						<Plus class="size-5" />
 					</Button>
 
-					<Button click={generateTodayMeal} class="flex items-center justify-center px-3 py-1">
+					<Button click={regenerateTodayMeal} class="flex items-center justify-center px-3 py-1 transition-all">
 						{#if !isLoading}
-							<Ai class="size-5" />
+							{#if isError}
+								<span class="flex items-center justify-center gap-1 text-red-400 text-xs">
+									<Error class="size-5" />
+									Error
+								</span>
+							{:else}
+								<Ai class="size-5" />
+							{/if}
 						{:else}
 							<script src="https://cdn.lordicon.com/lordicon.js"></script>
 							<lord-icon

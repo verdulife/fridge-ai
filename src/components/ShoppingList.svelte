@@ -2,12 +2,11 @@
 	import type { DayType, IngredientsType } from '@/lib/types';
 
 	import { CurrentDay, Menus, UiPreferences, UserPreferences } from '@/lib/stores';
-	import { formatIngredient, setDislike, setLike, formatPrice } from '@/lib/utils';
+	import { formatIngredient, setDislike, formatPrice } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
-	import Box from './ui/Box.svelte';
-	import Button from './ui/Button.svelte';
-	import Like from '@/assets/Like.svelte';
+	import Box from '@/components/ui/Box.svelte';
+	import Button from '@/components/ui/Button.svelte';
 	import Dislike from '@/assets/Dislike.svelte';
 	import Price from '@/components/Price.svelte';
 
@@ -77,12 +76,6 @@
 						<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
 
 						<aside class="like_dislike_ingredient flex items-center gap-2">
-							{#if !$UserPreferences.like.includes(ingredient.name)}
-								<Button class="px-3 py-1" click={() => setLike(ingredient)}>
-									<Like class="size-5" />
-								</Button>
-							{/if}
-
 							{#if !$UserPreferences.dislike.includes(ingredient.name)}
 								<Button class="px-3 py-1" click={() => setDislike(ingredient)}>
 									<Dislike class="size-5" />

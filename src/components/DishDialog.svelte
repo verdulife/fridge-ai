@@ -68,15 +68,17 @@
 				</Heading>
 			</div>
 
-			<ul class="flex w-full flex-wrap gap-1">
-				{#each dish.ingredients as ingredient}
-					<li class="flex flex-col gap-2">
-						<Box class="flex h-full items-center justify-between gap-4 px-4 py-2">
-							<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
-						</Box>
-					</li>
-				{/each}
-			</ul>
+			{#if dish?.ingredients}
+				<ul class="flex w-full flex-wrap gap-1">
+					{#each dish.ingredients as ingredient}
+						<li class="flex flex-col gap-2">
+							<Box class="flex h-full items-center justify-between gap-4 px-4 py-2">
+								<Text class="first-letter:uppercase">{formatIngredient(ingredient)}</Text>
+							</Box>
+						</li>
+					{/each}
+				</ul>
+			{/if}
 		</main>
 
 		<footer class="flex flex-col items-start gap-4">

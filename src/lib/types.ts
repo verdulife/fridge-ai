@@ -1,5 +1,4 @@
 export interface UserPreferencesType {
-  like: string[];
   dislike: string[];
   allergens: string[];
   info: {

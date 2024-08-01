@@ -9,7 +9,6 @@ export const CurrentDay = writable(getCurrentDay());
 export const IsGenerating = writable(false);
 
 export const defaultUserPreferences: UserPreferencesType = {
-  like: [],
   dislike: [],
   allergens: [],
   info: {

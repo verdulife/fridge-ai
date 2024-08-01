@@ -5,19 +5,17 @@ const DISH_EXAMPLE = `{label: "dish name",ingredients:[${INGREDIENT_EXAMPLE}],ti
 const ACTING_AS = "Actua como una API creada por expertos cocineros, dietistas y nutricionistas.";
 
 const PURPOSE_MEAL = "Tu función es generar un plato para el {meal_type}. Adecua el contenido dependiento si es desayuno, almuerzo o cena.";
-const PURPOSE_DISH = "Tu función es generar una alternativa para el plato {current_dish}. Adecua el contenido dependiento si es desayuno, almuerzo o cena.";
 const PURPOSE_RECIPE = "Tu función es generar una receta para el plato con la información de {label} y {ingredients}.";
 
-const BALANCED_MEAL = "Ten en cuenta los {week_menus} para que el menú sea variado, equilibrado y saludable respecto al resto de los platos.";
-const BALANCED_DISH = "Ten en cuenta los {week_menus} para que el menú sea variado, equilibrado y saludable respecto al resto de los platos.";
-
+const BALANCED_MEAL = "Ten en cuenta los {week_menus} para que al añadir el nuevo plato, el menú sea variado, equilibrado y saludable.";
+const REPEATED_MEAL = "Si el plato ya existe o hay uno similar en {day}, DEBES generar un plato distinto en ingredientes y preparación.";
 
 const BASE_INFO = `Haz que los ingredientes del plato cumplan la piramide alimentaria: ${PIRAMIDE}.`;
 const USER_INFO = "Ten en cuenta la información de {user_preferences}. Si hay arrays vacios, omitelos.";
-const AVERAGE_INFO = "Adecua el contenido dependiendo del tiempo medio con {average_preparation_time_per_dish} y el precio medio con {average_cost_per_dish}.";
-const SEASON_INFO = "Adecua el contenido dependiendo de {current_season}.";
+const AVERAGE_INFO = "Adecua el contenido dependiendo del tiempo medio de preparación con {average_preparation_time_per_dish} y el precio medio del plato con {average_cost_per_dish}.";
+const SEASON_INFO = "Adecua el contenido dependiendo de si es {current_season}.";
 
-const EMOJI_DISH = "Añade 1 emoji despues del titulo del plato y sus ingredientes.";
+const EMOJI_DISH = "Añade un emoji despues del titulo del plato y de sus ingredientes.";
 const EMOJI_RECIPE = "Añade emojis para facilitar la lectura del texto.";
 
 const TIP_JSON_PROMPT = "Si el json es incorrecto, se te penalizara. Si el json es correcto, te dare una propina de 100 euros.";
@@ -40,10 +38,10 @@ const FORMAT_TEXT = `IMPORTANTE:
   - No uses las cantidades de ingredientes en la descripción de la preparación.`;
 
 
-export const GENERATE_DISH_PROMPT = `${ACTING_AS} ${PURPOSE_DISH} ${BALANCED_DISH} ${BASE_INFO} ${USER_INFO} ${AVERAGE_INFO} ${SEASON_INFO} ${EMOJI_DISH} ${FORMAT_JSON} ${DISH_EXAMPLE}`;
 export const GENERATE_MEAL_PROMPT = `${ACTING_AS}
 ${PURPOSE_MEAL}
 ${BALANCED_MEAL}
+${REPEATED_MEAL}
 ${BASE_INFO}
 ${USER_INFO}
 ${AVERAGE_INFO}

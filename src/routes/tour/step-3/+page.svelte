@@ -1,10 +1,16 @@
 <script lang="ts">
 	import { UserPreferences } from '@/lib/stores';
-	import { allergens_options } from '@/lib/consts';
+	import {
+		allergens_options,
+		average_cost_options,
+		average_preparation_options
+	} from '@/lib/consts';
 
 	import Heading from '@/components/ui/Heading.svelte';
-	import Checkbox from '@/components/ui/Checkbox.svelte';
 	import Link from '@/components/ui/Link.svelte';
+	import Text from '@/components/ui/Text.svelte';
+	import Radio from '@/components/ui/Radio.svelte';
+	import Time from '@/assets/Time.svelte';
 
 	let currenSelection = $UserPreferences.allergens;
 
@@ -22,33 +28,40 @@
 		));
 </script>
 
-<div class="flex flex-col justify-center gap-4">
+<div class="flex flex-col justify-center gap-2">
 	<Heading>
-		Tus <span class="text-vista-300">alergias</span> o
-		<span class="text-vista-300">intolerancias</span>
+		Tiempo de <span class="text-vista-300">preparacion</span>
 	</Heading>
+	<Text class="text-neutral-400">Elije el tiempo medio de preparación de tus platos.</Text>
 
-	<div class="flex flex-wrap items-start justify-start gap-1">
-		{#each allergens_options as allergen}
-			{#if allergen.id !== 'vegano' && allergen.id !== 'vegetariano'}
-				<Checkbox bind:checked={allergensSelection[allergen.id]}>
-					{allergen.name}
-				</Checkbox>
-			{/if}
+	<div class="mt-4 flex flex-wrap gap-1">
+		{#each average_preparation_options as average}
+			<Radio
+				bind:group={$UserPreferences.average_preparation_time_per_dish}
+				value={average.id}
+				class="flex items-center gap-1 pl-3 pr-4"
+			>
+				<Time class="h-4 w-4" />
+				{average.name}
+			</Radio>
 		{/each}
 	</div>
 
-	<Heading>
-		Tus <span class="text-vista-300">preferencias</span>
+	<Heading class="mt-4">
+		Precio por <span class="text-vista-300">plato</span>
 	</Heading>
+	<Text class="text-neutral-400">Elije el precio medio de la receta por plato.</Text>
 
-	<div class="flex flex-wrap items-start justify-start gap-1">
-		{#each allergens_options as allergen}
-			{#if allergen.id === 'vegano' || allergen.id === 'vegetariano'}
-				<Checkbox bind:checked={allergensSelection[allergen.id]}>
-					{allergen.name}
-				</Checkbox>
-			{/if}
+	<div class="mt-4 flex flex-wrap gap-1">
+		{#each average_cost_options as average}
+			<Radio
+				bind:group={$UserPreferences.average_cost_per_dish}
+				value={average.id}
+				class="flex items-center gap-1 pl-3 pr-4"
+			>
+				<Time class="h-4 w-4" />
+				{average.name}
+			</Radio>
 		{/each}
 	</div>
 </div>

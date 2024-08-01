@@ -1,31 +1,56 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
 	import { UserPreferences } from '@/lib/stores';
+	import { allergens_options } from '@/lib/consts';
 
 	import Heading from '@/components/ui/Heading.svelte';
-	import Text from '@/components/ui/Text.svelte';
-	import Input from '@/components/ui/Input.svelte';
-	import Button from '@/components/ui/Button.svelte';
+	import Checkbox from '@/components/ui/Checkbox.svelte';
+	import Link from '@/components/ui/Link.svelte';
 
-	function nextStep() {
-		goto('/tour/step-3');
-	}
+	let currenSelection = $UserPreferences.allergens;
+
+	$: allergensSelection = allergens_options.reduce(
+		(acc, allergen) => {
+			acc[allergen.id] = currenSelection.includes(allergen.id);
+			return acc;
+		},
+		{} as { [key: string]: boolean }
+	);
+
+	$: allergensSelection,
+		($UserPreferences.allergens = Object.keys(allergensSelection).filter(
+			(key) => allergensSelection[key]
+		));
 </script>
 
-<form class="flex flex-col items-center justify-center gap-2" on:submit|preventDefault={nextStep}>
-	<Heading class="w-full">
-		Ingredientes que <span class="text-vista-300">detestas</span>
+<div class="flex flex-col justify-center gap-4">
+	<Heading>
+		Tus <span class="text-vista-300">alergias</span> o
+		<span class="text-vista-300">intolerancias</span>
 	</Heading>
-	<Text class="w-full">
-		No son obligatorios, pero te ayudarán a generear menús más interesantes
-	</Text>
 
-	<div class="mt-4 flex w-full flex-col gap-2">
-		<Input bind:value={$UserPreferences.dislike[0]} placeholder="Primer ingrediente" />
-		<Input bind:value={$UserPreferences.dislike[1]} placeholder="Segundo ingrediente" />
-		<Input bind:value={$UserPreferences.dislike[2]} placeholder="Tercer ingrediente" />
-		<Input bind:value={$UserPreferences.dislike[3]} placeholder="Cuarto ingrediente" />
+	<div class="flex flex-wrap items-start justify-start gap-1">
+		{#each allergens_options as allergen}
+			{#if allergen.id !== 'vegano' && allergen.id !== 'vegetariano'}
+				<Checkbox bind:checked={allergensSelection[allergen.id]}>
+					{allergen.name}
+				</Checkbox>
+			{/if}
+		{/each}
 	</div>
 
-	<Button class="fixed bottom-16 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Button>
-</form>
+	<Heading>
+		Tus <span class="text-vista-300">preferencias</span>
+	</Heading>
+
+	<div class="flex flex-wrap items-start justify-start gap-1">
+		{#each allergens_options as allergen}
+			{#if allergen.id === 'vegano' || allergen.id === 'vegetariano'}
+				<Checkbox bind:checked={allergensSelection[allergen.id]}>
+					{allergen.name}
+				</Checkbox>
+			{/if}
+		{/each}
+	</div>
+</div>
+
+<Link href="/tour/step-3" class="fixed bottom-16 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Link>
