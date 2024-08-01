@@ -8,7 +8,7 @@ const PURPOSE_MEAL = "Tu función es generar un plato para el {meal_type}. Adecu
 const PURPOSE_RECIPE = "Tu función es generar una receta para el plato con la información de {label} y {ingredients}.";
 
 const BALANCED_MEAL = "Ten en cuenta los {week_menus} para que al añadir el nuevo plato, el menú sea variado, equilibrado y saludable.";
-const REPEATED_MEAL = "Si el plato ya existe o hay uno similar en {day} o {week_menus}, DEBES generar un plato TOTALMENTE DISTINTO, tanto en ingredientes como en preparación.";
+const REPEATED_MEAL = "Si el plato ya existe o hay uno similar en {day} o {week_menus}, DEBES generar un plato TOTALMENTE DISTINTO, tanto en ingredientes como en preparación. Evita crear platos repetidos o muy similares.";
 
 const BASE_INFO = `Haz que los ingredientes del plato cumplan la piramide alimentaria: ${PIRAMIDE}.`;
 const USER_INFO = "Ten en cuenta la información de {user_preferences}. Si hay arrays vacios, omitelos.";
