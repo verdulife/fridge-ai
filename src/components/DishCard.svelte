@@ -41,7 +41,9 @@
 		const res = await generate('/api/generate-meal', {
 			user_preferences: $UserPreferences,
 			meal_type: type,
-			week_menus: onlyMenuTitles()
+			day,
+			week_menus: onlyMenuTitles(),
+			current_season: getCurrentSeason()
 		});
 
 		if (res) {
@@ -54,7 +56,7 @@
 		}
 	}
 
-	async function regenerateMeal() {
+	/* async function regenerateMeal() {
 		const check = confirm(CONFIRM_MESSAGES.remake_dish);
 		if (!check) return;
 
@@ -78,7 +80,7 @@
 		}
 
 		isLoading = false;
-	}
+	} */
 
 	$: if (browser && !dish?.label && $page.url.pathname !== '/menus') {
 		generateTodayMeal();
@@ -109,10 +111,7 @@
 						<Plus class="size-5" />
 					</Button>
 
-					<Button
-						click={regenerateMeal}
-						class="generate_alternative_dish flex items-center justify-center px-3 py-1"
-					>
+					<Button click={generateTodayMeal} class="flex items-center justify-center px-3 py-1">
 						{#if !isLoading}
 							<Ai class="size-5" />
 						{:else}

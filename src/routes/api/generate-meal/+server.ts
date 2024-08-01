@@ -9,7 +9,7 @@ const cohere = createCohere({
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
-  const { user_preferences, meal_type, week_menus, current_season } = await request.json();
+  const { user_preferences, meal_type, day, week_menus, current_season } = await request.json();
 
   console.log(`Generating ${meal_type}`);
 
@@ -22,7 +22,7 @@ export async function POST({ request }) {
       },
       {
         role: 'user',
-        content: JSON.stringify({ user_preferences, meal_type, week_menus, current_season })
+        content: JSON.stringify({ user_preferences, meal_type, day, week_menus, current_season })
       },
     ],
   });

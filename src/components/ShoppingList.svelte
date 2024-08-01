@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { DayType, IngredientsType } from '@/lib/types';
 
-	import { CurrentDay, Menus, UserPreferences } from '@/lib/stores';
+	import { CurrentDay, Menus, UiPreferences, UserPreferences } from '@/lib/stores';
 	import { formatIngredient, setDislike, setLike, formatPrice } from '@/lib/utils';
 
 	import Text from '@/components/ui/Text.svelte';
@@ -13,6 +13,7 @@
 
 	let currentPrice: string | undefined;
 
+	$: $CurrentDay, (allMenuItems = []);
 	$: currentMenuIndex = $Menus.findIndex(
 		(menu: DayType) => menu.week_day.toLocaleLowerCase() === $CurrentDay
 	);
@@ -20,7 +21,11 @@
 	$: breakfastMenuItems = $Menus[currentMenuIndex].breakfast?.ingredients ?? [];
 	$: lunchMenuItems = $Menus[currentMenuIndex].lunch?.ingredients ?? [];
 	$: dinnerMenuItems = $Menus[currentMenuIndex].dinner?.ingredients ?? [];
-	$: allMenuItems = [...breakfastMenuItems, ...lunchMenuItems, ...dinnerMenuItems];
+	$: allMenuItems = [] as IngredientsType[];
+
+	$: if ($UiPreferences.show_breakfast) allMenuItems = [...breakfastMenuItems, ...allMenuItems];
+	$: if ($UiPreferences.show_lunch) allMenuItems = [...lunchMenuItems, ...allMenuItems];
+	$: if ($UiPreferences.show_dinner) allMenuItems = [...dinnerMenuItems, ...allMenuItems];
 
 	$: groupedIngredients = Object.groupBy(allMenuItems, ({ name }: IngredientsType) =>
 		name.toLocaleLowerCase()
@@ -33,9 +38,15 @@
 	})) as IngredientsType[];
 
 	function calculateTodayPrice() {
-		const breakfast = $Menus[currentMenuIndex].breakfast?.approximate_price_euros || '0,00 €';
-		const lunch = $Menus[currentMenuIndex].lunch?.approximate_price_euros || '0,00 €';
-		const dinner = $Menus[currentMenuIndex].dinner?.approximate_price_euros || '0,00 €';
+		const breakfast = $UiPreferences.show_breakfast
+			? $Menus[currentMenuIndex].breakfast?.approximate_price_euros || '0,00 €'
+			: '0,00 €';
+		const lunch = $UiPreferences.show_lunch
+			? $Menus[currentMenuIndex].lunch?.approximate_price_euros || '0,00 €'
+			: '0,00 €';
+		const dinner = $UiPreferences.show_dinner
+			? $Menus[currentMenuIndex].dinner?.approximate_price_euros || '0,00 €'
+			: '0,00 €';
 
 		const breakfast_value = breakfast.replace(',', '.').replace(' €', '');
 		const lunch_value = lunch.replace(',', '.').replace(' €', '');
@@ -46,9 +57,7 @@
 		return formatPrice(total_value);
 	}
 
-	$: if (breakfastMenuItems || lunchMenuItems || dinnerMenuItems) {
-		currentPrice = calculateTodayPrice();
-	}
+	$: allMenuItems, (currentPrice = calculateTodayPrice());
 </script>
 
 <section class="flex w-full flex-col gap-4 px-4 lg:px-8">

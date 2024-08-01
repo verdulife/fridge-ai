@@ -19,7 +19,9 @@
 </script>
 
 <div id="welcome" class="flex w-full flex-col items-start gap-8 py-6 lg:py-8">
-	<svelte:component this={guide} />
+	{#if guide}
+		<svelte:component this={guide} />
+	{/if}
 
 	<Today bind:currentDay={$CurrentDay} />
 	<TodaySlider />
