@@ -81,7 +81,7 @@
 		});
 	}
 
-	function exitEdit(discardTitle = true) {
+	function exitEdit() {
 		const title = document.querySelector(`[data-title="${dish.label}"]`) as HTMLElement;
 		if (!title) return;
 
@@ -90,9 +90,7 @@
 		title.removeAttribute('contenteditable');
 		window.getSelection()?.removeAllRanges();
 
-		if (discardTitle || !title.textContent) {
-			title.textContent = dish.label;
-		}
+		setTimeout(() => (title.textContent = dish.label));
 	}
 
 	async function genereateMealByTitle() {
@@ -117,7 +115,7 @@
 				return menu;
 			});
 
-			exitEdit(false);
+			exitEdit();
 			setTimeout(() => generateRecipe(false));
 		} catch {
 			anounceError();
