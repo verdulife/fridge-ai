@@ -67,8 +67,9 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Añadir en ajustes el coste medio de la receta
 - [x] Separar en tour alergias/intoloreancias de preferencias
 - [x] Quitar platos que te gustan, dejar solo los que no te gustan.
+- [x] Añadir opcion de usar Cohere API del usuario.
+- [ ] Mejorar ui funcionalidad de dislike.
 - [ ] Revisar textos, organizar y gramatica.
-- [ ] Añadir opcion de usar OpenAI API & Cohere API del usuario.
 - [ ] Hacer que los platos no se generen en paralelo para mantener el contexto.
 - [ ] Auto-completar ingredientes en tour
 - [ ] Boton de agrupar por en la route shopping list

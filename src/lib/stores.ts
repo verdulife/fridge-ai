@@ -20,7 +20,7 @@ export const defaultUserPreferences: UserPreferencesType = {
     weekly_exercise: exercise_options[0].id,
   },
   average_preparation_time_per_dish: average_preparation_options[0].id,
-  average_cost_per_dish: average_cost_options[0].id,
+  average_cost_per_dish: average_cost_options[0].id
 };
 
 export const defaultUiPreferences = {

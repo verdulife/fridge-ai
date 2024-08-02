@@ -3,12 +3,16 @@ import { streamText } from 'ai';
 import { COHERE_API_KEY } from '$env/static/private';
 import { GENERATE_MEAL_PROMPT } from '@/lib/prompt';
 
-const cohere = createCohere({
-  apiKey: COHERE_API_KEY,
-});
-
 /** @type {import('./$types').RequestHandler} */
-export async function POST({ request }) {
+export async function POST({ cookies, request }) {
+  const apiKeyCookie = cookies.get('apiKey');
+
+  console.log(`Using API Key: ${apiKeyCookie ? "User" : "Fridge AI"}`);
+
+  const cohere = createCohere({
+    apiKey: apiKeyCookie || COHERE_API_KEY,
+  });
+
   const { user_preferences, meal_type, day, week_menus, current_season } = await request.json();
 
   console.log(`Generating ${meal_type}`);

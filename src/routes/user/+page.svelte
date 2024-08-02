@@ -29,8 +29,11 @@
 	import Time from '@/assets/Time.svelte';
 	import Minus from '@/assets/Minus.svelte';
 	import Plus from '@/assets/Plus.svelte';
+	import Cohere from '@/assets/Cohere.svelte';
 
+	export let data;
 	let currenSelection = $UserPreferences.allergens;
+	let custom_api = data.apikey_cookie || '';
 
 	$: allergensSelection = allergens_options.reduce(
 		(acc, allergen) => {
@@ -44,6 +47,14 @@
 		($UserPreferences.allergens = Object.keys(allergensSelection).filter(
 			(key) => allergensSelection[key]
 		));
+
+	function setApiKey() {
+		if (data.apikey_cookie) {
+			goto(`/api/set-api-key?delete=true`);
+		} else {
+			goto(`/api/set-api-key?apiKey=${custom_api}`);
+		}
+	}
 
 	function subtract(key: string) {
 		const value = parseFloat($UserPreferences.info[key]);
@@ -71,6 +82,39 @@
 </script>
 
 <div class="mx-auto flex w-full max-w-3xl flex-col items-start gap-2 p-4 lg:p-8">
+	<Heading class="!text-2xl font-bold lg:mb-2">Rendimiento</Heading>
+
+	<Box class="flex w-full flex-col items-start p-4">
+		<Text class="font-semibold">API Key</Text>
+		<Text class="text-sm text-neutral-400">
+			Fridge AI utiliza la capa gratuita de la API de Cohere. Para un mejor rendimiento, puedes
+			crear tu propia clave API <a
+				href="https://dashboard.cohere.com/welcome/login"
+				target="_blank"
+				class="text-blue-400 underline">aquí</a
+			> y añadirla en el campo de abajo.
+		</Text>
+
+		<form on:submit|preventDefault={setApiKey} class="w-full">
+			<div
+				class="mt-4 flex w-full items-center rounded-md border dark:border-neutral-800 dark:bg-neutral-900"
+			>
+				<Cohere class="h-3 px-3" />
+				<input
+					type="password"
+					bind:value={custom_api}
+					class="grow border-l bg-transparent p-3 outline-none dark:border-neutral-800"
+				/>
+			</div>
+
+			{#if !data?.apikey_cookie}
+				<Button class="mt-4 px-6 py-2">Añadir clave API</Button>
+			{:else}
+				<Button class="mt-4 px-6 py-2">Borrar clave API</Button>
+			{/if}
+		</form>
+	</Box>
+
 	<Heading class="!text-2xl font-bold lg:mb-2">Ajustes visuales</Heading>
 
 	<Box class="flex w-full flex-col p-4">
