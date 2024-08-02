@@ -43,3 +43,17 @@ export interface RouteType {
   label: string;
   icon: string;
 }
+
+export interface PromptInputMealType {
+  user_preferences: UserPreferencesType;
+  meal_type: string;
+  day: string;
+  week_menus: WeekType;
+  current_season: string;
+}
+
+export interface PromptInputRecipeType {
+  label: string;
+  ingredients: Array<IngredientsType>;
+  time_to_prepare: string;
+}

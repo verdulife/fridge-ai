@@ -87,7 +87,7 @@
 	}
 </script>
 
-{#if dish?.label || $page.url.pathname !== '/menus'}
+{#if $page.url.pathname !== '/menus'}
 	<Box class="relative flex h-full min-h-48 w-80 flex-col items-start gap-4 p-4">
 		<header class="flex w-full items-center justify-between">
 			<span class="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold dark:bg-neutral-950">

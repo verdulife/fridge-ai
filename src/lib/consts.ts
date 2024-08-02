@@ -73,67 +73,67 @@ export const average_cost_options = [
 export const allergens_options = [
   {
     id: "crustaceos",
-    name: "Crustáceos",
+    name: "🦀 Crustáceos",
   },
   {
     id: "huevos",
-    name: "Huevos",
+    name: "🥚 Huevos",
   },
   {
     id: "pescado",
-    name: "Pescado",
+    name: "🐟 Pescado",
   },
   {
     id: "cacahuetes",
-    name: "Cacahuetes",
+    name: "🥜 Cacahuetes",
   },
   {
     id: "soja",
-    name: "Soja",
+    name: "🌱 Soja",
   },
   {
     id: "lacteos",
-    name: "Lácteos",
+    name: "🥛 Lácteos",
   },
   {
     id: "frutos-secos",
-    name: "Frutos secos",
+    name: "🌰 Frutos secos",
   },
   {
     id: "apio",
-    name: "Apio",
+    name: "🥬Apio",
   },
   {
     id: "mostaza",
-    name: "Mostaza",
+    name: "🟡 Mostaza",
   },
   {
     id: "sesamo",
-    name: "Sésamo",
+    name: "🟤 Sésamo",
   },
   {
     id: "sulfitos",
-    name: "Sulfitos",
+    name: "🍷 Sulfitos",
   },
   {
     id: "moluscos",
-    name: "Moluscos",
+    name: "🦪 Moluscos",
   },
   {
     id: "altramuces",
-    name: "Altramuces",
+    name: "🥫 Altramuces",
   },
   {
     id: "vegetariano",
-    name: "Vegetariano",
+    name: "🥗 Vegetariano",
   },
   {
     id: "vegano",
-    name: "Vegano",
+    name: "💚 Vegano",
   },
   {
     id: "celiaco",
-    name: "Celiaco",
+    name: "🍞 Celiaco",
   },
 ];
 

@@ -1,12 +1,12 @@
-import type { DayType, IngredientsType } from './types';
+import type { DayType, IngredientsType, PromptInputMealType, PromptInputRecipeType } from '@/lib/types';
 
+import { readDataStream } from 'ai';
 import { get } from 'svelte/store';
 import { Menus, UserPreferences } from '@/lib/stores';
-import { readDataStream } from 'ai';
-import toast from 'svelte-french-toast';
 import { SEASONS_RANGES } from './consts';
+import toast from 'svelte-french-toast';
 
-export async function generate(url: string, input: any) {
+export async function generate(url: string, input: PromptInputMealType | PromptInputRecipeType) {
   try {
     const res = await fetch(url, {
       method: 'POST',
@@ -34,12 +34,17 @@ export async function generate(url: string, input: any) {
 export function onlyMenuTitles() {
   const menus = get(Menus);
 
-  return menus.map((menu: DayType) => ({
-    weekDay: menu.week_day,
-    breakfast: menu.breakfast?.label || null,
-    lunch: menu.lunch?.label || null,
-    dinner: menu.dinner?.label || null
-  }));
+  const allMeals = menus.map((menu: DayType) => {
+    const meals = [];
+
+    if (menu.breakfast) meals.push(menu.breakfast.label);
+    if (menu.lunch) meals.push(menu.lunch.label);
+    if (menu.dinner) meals.push(menu.dinner.label);
+
+    return meals;
+  });
+
+  return allMeals.flat();
 }
 
 export function getCurrentDay(): string {

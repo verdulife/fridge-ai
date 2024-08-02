@@ -1,4 +1,3 @@
-const PIRAMIDE = "Granos y cereales 30-40%, verduras 20-25%, frutas 15-20%, proteínas 10-20%, lácteos 10-15%, grasas, aceites y azúcares 5-10%";
 const INGREDIENT_EXAMPLE = '{name: "ingredient name",amount: 0,unit: "gr | ml | und"}';
 const DISH_EXAMPLE = `{label: "dish name",ingredients:[${INGREDIENT_EXAMPLE}],time_to_prepare:"0 min",approximate_price_euros:"0,00 €"}`;
 
@@ -10,7 +9,7 @@ const PURPOSE_RECIPE = "Tu función es generar una receta para el plato con la i
 const BALANCED_MEAL = "Ten en cuenta los {week_menus} para que al añadir el nuevo plato, el menú sea variado, equilibrado y saludable.";
 const REPEATED_MEAL = "Si el plato ya existe o hay uno similar en {day} o {week_menus}, DEBES generar un plato TOTALMENTE DISTINTO, tanto en ingredientes como en preparación. Evita crear platos repetidos o muy similares.";
 
-const BASE_INFO = `Haz que los ingredientes del plato cumplan la piramide alimentaria: ${PIRAMIDE}.`;
+const BASE_INFO = `Haz que los ingredientes del plato cumplant con el concepto nutricional "El Plato de Harvard". Muy ocasionalmente, puedes añadir carne roja.`;
 const USER_INFO = "Ten en cuenta la información de {user_preferences}. Si hay arrays vacios, omitelos.";
 const AVERAGE_INFO = "Adecua el contenido dependiendo del tiempo medio de preparación con {average_preparation_time_per_dish} y el precio medio del plato con {average_cost_per_dish}.";
 const SEASON_INFO = "Adecua el contenido dependiendo de si es {current_season}.";

@@ -15,6 +15,7 @@ export async function POST({ request }) {
 
   const result = await streamText({
     model: cohere('command-r-plus'),
+    temperature: 1,
     messages: [
       {
         role: 'user',
@@ -27,14 +28,6 @@ export async function POST({ request }) {
       {
         role: 'assistant',
         content: `{"label":"Bol de frutas con yogur 🍉","ingredients":[{"name":"Yogur natural","amount":150,"unit":"gr"},{"name":"Sandía","amount":100,"unit":"gr"},{"name":"Melón","amount":100,"unit":"gr"},{"name":"Uva","amount":50,"unit":"gr"},{"name":"Kiwi","amount":1,"unit":"und"},{"name":"Miel","amount":5,"unit":"gr"}],"time_to_prepare":"10 min","approximate_price_euros":"1,20 €"}`
-      },
-      {
-        role: 'user',
-        content: JSON.stringify({ user_preferences, meal_type: 'lunch', day, week_menus, current_season })
-      },
-      {
-        role: 'assistant',
-        content: `{"label":"Ensalada de pasta con atún 🐟","ingredients":[{"name":"Pasta","amount":80,"unit":"gr"},{"name":"Atún en conserva","amount":50,"unit":"gr"},{"name":"Tomate cherry","amount":100,"unit":"gr"},{"name":"Lechuga","amount":50,"unit":"gr"},{"name":"Zanahoria","amount":30,"unit":"gr"},{"name":"Maíz dulce","amount":20,"unit":"gr"},{"name":"Aceite de oliva","amount":5,"unit":"ml"},{"name":"Vinagre de manzana","amount":3,"unit":"ml"},{"name":"Sal y pimienta","amount":1,"unit":"pizca"}],"time_to_prepare":"15 min","approximate_price_euros":"1,80 €"}`
       },
       {
         role: 'user',
