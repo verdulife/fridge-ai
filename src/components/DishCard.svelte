@@ -47,8 +47,6 @@
 	async function generateMeal() {
 		meals_state = { breakfast: true, lunch: true, dinner: true };
 
-		console.log(onlyMenuTitles());
-
 		try {
 			const res = await generate('/api/generate-meal', {
 				user_preferences: $UserPreferences,
@@ -87,7 +85,7 @@
 	}
 </script>
 
-{#if dish.label || $page.url.pathname !== '/menus'}
+{#if dish?.label || $page.url.pathname !== '/menus'}
 	<Box class="relative flex h-full min-h-48 w-80 flex-col items-start gap-4 p-4">
 		<header class="flex w-full items-center justify-between">
 			<span class="rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold dark:bg-neutral-950">

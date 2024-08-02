@@ -22,8 +22,6 @@ export async function generate(url: string, input: PromptInputMealType | PromptI
       if (type === 'text') data += value;
     }
 
-    console.log(data);
-
     const parsedData = JSON.parse(data);
     return parsedData;
   } catch {

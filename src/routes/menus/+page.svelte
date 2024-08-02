@@ -10,8 +10,6 @@
 	$: groupMenusByDay = Object.groupBy($Menus, ({ week_day }: DayType) =>
 		week_day.toLocaleLowerCase()
 	);
-
-	$: console.log(groupMenusByDay);
 </script>
 
 <div class="flex w-full flex-col items-start py-6 lg:py-8">

@@ -11,6 +11,7 @@ export interface UserPreferencesType {
   },
   average_preparation_time_per_dish: string;
   average_cost_per_dish: string;
+  api_key?: string;
 };
 
 export interface IngredientsType {
