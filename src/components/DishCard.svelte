@@ -75,6 +75,9 @@
 	}
 
 	async function regenerateTodayMeal() {
+		const check = confirm('¿Estás seguro que quieres regenerar el plato?');
+		if (!check) return;
+
 		isLoading = true;
 		await generateMeal();
 		isLoading = false;

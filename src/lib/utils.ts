@@ -62,10 +62,6 @@ export function setDislike({ name }: IngredientsType) {
   UserPreferences.update((value) => {
     value.dislike = [...value.dislike, name];
     toast.success('Añadido ingrediente que detestas');
-
-    if (value.like.includes(name)) {
-      value.like = value.like.filter((item: string) => item !== name);
-    }
     return value;
   });
 }
