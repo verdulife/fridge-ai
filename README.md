@@ -1,22 +1,24 @@
-![logo](static/card.jpg)
+![logo](https://fridge-ai.vercel.app/card.jpg)
 
 # Fridge AI 🍽
 
-PWA para el Hackathon de SDK AI de Vercel, impulsada por Midudev.
+PWA para el Hackathon de SDK AI de Vercel, creada por Midudev y Vercel.
 
 ## Descripción
 
-Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibrar y hacer mas sano tu menu semanal. Almacena todo en tu frigorífico y deja que la IA haga el resto.
+Fridge AI es una PWA impulsada con IA. Genera tu menú semanal 100% personalizado, alternativas para no aburrirte y la lista de la compra, todo en un solo lugar.
+
+Y si te preocupa tu nutrición, todos los menús tienen en cuenta tus datos para ser los más equilibrados y sanos para ti.
 
 ## Funcionalidades
 
-- Almacena tus preferencias en local storage
-- Actuliza tus datos en cualquier momento:
-  - Ingredientes que te gustan
+- Almacena tus preferencias en localStorage
+- Actualiza tus datos en cualquier momento:
   - Ingredientes que no te gustan
   - Tiempo de preparación medio para tus platos
+  - Coste medio de la receta
   - Visualiza solo las comidas que necesitas
-- Genera un menú semanal sano y equilibrado con AI
+- Genera un menú semanal sano y equilibrado con IA
   - Obtén recetas alternativas para tus platos
   - Genera la preparación para la receta
 - Genera una lista de compras para tu menú semanal:
@@ -29,7 +31,7 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - SvelteKit
 - Vercel AI SDK
 - Cohere
-- Tailwind
+- Tailwindcss
 - TypeScript
 
 ## Diseño de prototipo
@@ -41,39 +43,39 @@ Tu frigorífico digital vitaminado con AI. Esta aplicación te permite equilibra
 - [x] Generar páginas y navegación
 - [x] Preparar esquemas y local storage
 - [x] Start tour para almacenar preferencias
-- [ ] UI base
+- [x] UI base
   - [x] Home
   - [x] Meals
   - [x] Shopping list
   - [x] Settings
 - [x] Prompt engineering
 - [x] Prompt a json
-- [x] Alergia intolerancia o preferencias
+- [x] Alergia, intolerancia o preferencias
 - [x] Añadir tiempo de preparación en los platos
 - [x] Mover nav al header en desktop
-- [x] Regenerar menu diario completo
+- [x] Regenerar menú diario completo
 - [x] Botón borrar datos y cookies
 - [x] Añadir cantidades en los ingredientes
 - [x] Revisar ingredientes en route shopping list
-- [x] Usar desctruccturacion para excluir posibles resuktados extra de la AI
-- [x] Limpirar stores al borrar datos y cookies
+- [x] Usar desestructuración para excluir posibles resultados extra de la AI
+- [x] Limpiar stores al borrar datos y cookies
 - [x] Completar dark mode
-- [x] Texto descriptivo en route menus y shopping list debajo del titulo
+- [x] Texto descriptivo en route menus y shopping list debajo del título
 - [x] Añadir tiempo de preparación medio en los ajustes del usuario
 - [x] Añadir comidas a visualizar en los ajustes del usuario
 - [x] Tooltips de uso en route home para la primera visita
-- [x] Añadir a los prompts informacion nutricional (porcentages semanales y diarios)
+- [x] Añadir a los prompts información nutricional (porcentajes semanales y diarios)
 - [x] Mejorar dishcard placeholder
 - [x] Añadir en ajustes el coste medio de la receta
-- [x] Separar en tour alergias/intoloreancias de preferencias
+- [x] Separar en tour alergias/intolerancias de preferencias
 - [x] Quitar platos que te gustan, dejar solo los que no te gustan.
-- [x] Añadir opcion de usar Cohere API del usuario.
+- [x] Añadir opción de usar Cohere API del usuario.
 - [x] Mejorar ui funcionalidad de dislike.
-- [ ] Revisar textos, organizar y gramatica.
+- [x] Revisar textos, ortografía y gramática.
 - [ ] Hacer que los platos no se generen en paralelo para mantener el contexto.
-- [ ] Auto-completar ingredientes en tour
-- [ ] Boton de agrupar por en la route shopping list
+- [ ] Autocompletar ingredientes en tour
+- [ ] Botón de agrupar por en la route shopping list
 - [ ] Crear tests
 - [ ] Crear CHANGELOG.md
-- [ ] Webapp landing page
-- [ ] Añadir mas idiomas
+- [ ] Landing page
+- [ ] Añadir más idiomas

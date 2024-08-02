@@ -17,7 +17,7 @@
 		Ingredientes que <span class="text-vista-300">no te gustan</span>
 	</Heading>
 	<Text class="w-full">
-		No son obligatorios, pero te ayudarán a generear menús más personalizados.
+		No son obligatorios, pero te ayudarán a generar menús más personalizados.
 	</Text>
 
 	<div class="mt-4 flex w-full flex-col gap-2">

@@ -30,9 +30,9 @@
 
 <div class="flex flex-col justify-center gap-2">
 	<Heading>
-		Tiempo de <span class="text-vista-300">preparacion</span>
+		Tiempo de <span class="text-vista-300">preparación</span>
 	</Heading>
-	<Text class="text-neutral-400">Elije el tiempo medio de preparación de tus platos.</Text>
+	<Text class="text-neutral-400">Elige el tiempo medio de preparación de tus platos.</Text>
 
 	<div class="mt-4 flex flex-wrap gap-1">
 		{#each average_preparation_options as average}
@@ -50,7 +50,7 @@
 	<Heading class="mt-4">
 		Precio por <span class="text-vista-300">plato</span>
 	</Heading>
-	<Text class="text-neutral-400">Elije el precio medio de la receta por plato.</Text>
+	<Text class="text-neutral-400">Elige el precio medio de la receta por plato.</Text>
 
 	<div class="mt-4 flex flex-wrap gap-1">
 		{#each average_cost_options as average}

@@ -24,7 +24,7 @@
 			{
 				popover: {
 					title: 'Bienvenido',
-					description: 'Comencemos con una rapida introducción a Fridge AI.'
+					description: 'Comencemos con una rápida introducción a Fridge AI.'
 				}
 			},
 			{
@@ -32,7 +32,7 @@
 				popover: {
 					title: 'Genera más menús',
 					description:
-						'Haz clic en los botones para generar menús para otros días. Tambien se generará un menú automáticamente si no hay ningún menú para el día actual.',
+						'Haz clic en los botones para generar menús para otros días. También se generará un menú automáticamente si no hay ningún menú para el día actual.',
 					side: 'bottom',
 					align: 'center'
 				}
@@ -42,7 +42,7 @@
 				popover: {
 					title: 'Toda la información sobre el menú',
 					description:
-						'Haz clic en este botón para ver toda la información sobre el plato. Encontrarás todos los ingredientes, y como prepararlo.',
+						'Haz clic en este botón para ver toda la información sobre el plato. Encontrarás todos los ingredientes, y cómo prepararlo.',
 					side: 'bottom',
 					align: 'center'
 				}
@@ -62,16 +62,16 @@
 					title: 'No me gusta',
 					description:
 						'Puedes marcar los ingredientes que no te gustan. Esto te ayudará a generar un menú más personalizado.',
-					side: 'left',
+					side: 'top',
 					align: 'center'
 				}
 			},
 			{
 				element: '#nav_menus',
 				popover: {
-					title: 'Menus de la semana',
+					title: 'Menús de la semana',
 					description:
-						'A medida que vayas generando menús, podras verlos aqui ordenados por el día de la semana.',
+						'A medida que vayas generando menús, podrás verlos aquí ordenados por el día de la semana.',
 					side: 'bottom',
 					align: 'center'
 				}
@@ -81,7 +81,7 @@
 				popover: {
 					title: 'Lista de la compra',
 					description:
-						'Aquí podrás ver todas las opciones de la lista de la compra de todos los menus semanales.',
+						'Aquí podrás ver todas las opciones de la lista de la compra de todos los menús semanales.',
 					side: 'bottom',
 					align: 'center'
 				}

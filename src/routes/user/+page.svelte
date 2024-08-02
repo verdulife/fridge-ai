@@ -178,7 +178,7 @@
 	<Box class="flex w-full flex-col p-4">
 		<Text class="font-semibold">Tiempo de cocina</Text>
 		<Text class="text-sm text-neutral-400">
-			Elije el tiempo medio de preparación de tus platos.
+			Elige el tiempo medio de preparación de tus platos.
 		</Text>
 
 		<div class="mt-4 flex flex-wrap gap-1">
@@ -197,7 +197,7 @@
 
 	<Box class="flex w-full flex-col p-4">
 		<Text class="font-semibold">Precio medio por plato</Text>
-		<Text class="text-sm text-neutral-400">Elije el precio medio de la receta por plato.</Text>
+		<Text class="text-sm text-neutral-400">Elige el precio medio de la receta por plato.</Text>
 
 		<div class="mt-4 flex flex-wrap gap-1">
 			{#each average_cost_options as average}
@@ -248,7 +248,7 @@
 	<Box class="flex w-full flex-col p-4">
 		<Text class="font-semibold">Tu cuerpo</Text>
 		<Text class="text-sm text-neutral-400">
-			Actualiza periodicamente tus datos de peso y altura.
+			Actualiza periódicamente tus datos de peso y altura.
 		</Text>
 
 		<div class="mt-4 flex flex-col gap-2">
@@ -291,7 +291,7 @@
 	<Box class="flex w-full flex-col items-start gap-4 p-4">
 		<Text class="font-semibold">Ejercicio semanal</Text>
 		<Text class="text-sm text-neutral-400">
-			Define cuanto tiempo le dedicas a hacer ejercicio o deporte semanalmente.
+			Define cuánto tiempo le dedicas a hacer ejercicio o deporte semanalmente.
 		</Text>
 
 		<div class="mt-4 flex flex-wrap items-start justify-start gap-1">

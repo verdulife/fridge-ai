@@ -2,7 +2,7 @@ export const UI_COLORS = { bg_light: "#f5f5f5", bg_dark: "#0a0a0a", btn_light: "
 
 export const MAX_BODY_VALUE = 300;
 
-export const ERROR_PROMPT = "Los servidores están sufrieno una sobrecarga, por favor intentalo de nuevo.";
+export const ERROR_PROMPT = "Los servidores están sufriendo una sobrecarga, por favor inténtalo de nuevo.";
 
 export const CONFIRM_MESSAGES = {
   delete_data: "¿Estás seguro de que quieres borrar tus datos y cookies?",
