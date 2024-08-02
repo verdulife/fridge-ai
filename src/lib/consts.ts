@@ -7,8 +7,11 @@ export const ERROR_PROMPT = "Los servidores están sufriendo una sobrecarga, por
 export const CONFIRM_MESSAGES = {
   delete_data: "¿Estás seguro de que quieres borrar tus datos y cookies?",
   remake_menu: "¿Estás seguro de que quieres generar un menú nuevo para hoy?",
-  remake_dish: "¿Estás seguro de que quieres generar una nueva receta?",
+  remake_dish: "¿Estás seguro de que quieres generar una nueva receta? Esto substituirá la receta actual.",
   remake_recipe: "¿Estás seguro de que quieres generar una nueva preparación?",
+  title_to_dish: `Al ser una sugerencia, Esta receta puede no estar equilibrada con el resto de los menús.
+
+¿Estás seguro de que quieres crear una receta a partir del título? Esto sustituirá la receta actual.`,
 }
 
 export const MEAL_TYPES = ["breakfast", "lunch", "dinner"];

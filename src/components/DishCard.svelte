@@ -166,5 +166,5 @@
 {/if}
 
 {#if dish?.label}
-	<DishDialog bind:dish bind:open />
+	<DishDialog bind:dish bind:open {type} />
 {/if}

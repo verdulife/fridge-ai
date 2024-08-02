@@ -5,9 +5,11 @@ const ACTING_AS = "Actua como una API creada por expertos cocineros, dietistas y
 
 const PURPOSE_MEAL = "Tu función es generar un plato para el {meal_type}. Adecua el contenido dependiento si es desayuno, almuerzo o cena.";
 const PURPOSE_RECIPE = "Tu función es generar una receta para el plato con la información de {label} y {ingredients}.";
+const PURPOSE_SUGGESTED_TITLE = "Tu función es generar un plato con el título {suggested_title}.";
 
 const BALANCED_MEAL = "Ten en cuenta los {week_menus} para que al añadir el nuevo plato, el menú sea variado, equilibrado y saludable.";
 const REPEATED_MEAL = "Si el plato ya existe o hay uno similar en {day} o {week_menus}, DEBES generar un plato TOTALMENTE DISTINTO, tanto en ingredientes como en preparación. Evita crear platos repetidos o muy similares.";
+const SUGGESTION_MEAL = "Si el titulo es demasiado largo o tiene faltas de ortografía, DEBES corregir las faltas y resumir el titulo sin modificar su significado.";
 
 const BASE_INFO = `Haz que los ingredientes del plato cumplant con el concepto nutricional "El Plato de Harvard". Muy ocasionalmente, puedes añadir carne roja.`;
 const USER_INFO = "Ten en cuenta la información de {user_preferences}. Si hay arrays vacios, omitelos.";
@@ -55,3 +57,11 @@ ${PURPOSE_RECIPE}
 ${EMOJI_RECIPE}
 ${TIP_TEXT_PROMPT}
 ${FORMAT_TEXT}`;
+
+export const GENERATE_SUGGESTED_TITLE_PROMPT = `${ACTING_AS}
+${PURPOSE_SUGGESTED_TITLE}
+${SUGGESTION_MEAL}
+${EMOJI_DISH}
+${TIP_JSON_PROMPT}
+${FORMAT_JSON}
+${DISH_EXAMPLE}`;

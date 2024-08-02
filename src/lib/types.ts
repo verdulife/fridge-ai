@@ -57,3 +57,7 @@ export interface PromptInputRecipeType {
   ingredients: Array<IngredientsType>;
   time_to_prepare: string;
 }
+
+export interface PromptInputSuggestedTitleType {
+  suggested_title: string;
+}

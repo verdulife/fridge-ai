@@ -1,4 +1,4 @@
-import type { DayType, IngredientsType, PromptInputMealType, PromptInputRecipeType } from '@/lib/types';
+import type { DayType, IngredientsType, PromptInputMealType, PromptInputRecipeType, PromptInputSuggestedTitleType } from '@/lib/types';
 
 import { readDataStream } from 'ai';
 import { get } from 'svelte/store';
@@ -6,7 +6,7 @@ import { Menus, UserPreferences } from '@/lib/stores';
 import { SEASONS_RANGES } from './consts';
 import toast from 'svelte-french-toast';
 
-export async function generate(url: string, input: PromptInputMealType | PromptInputRecipeType) {
+export async function generate(url: string, input: PromptInputMealType | PromptInputRecipeType | PromptInputSuggestedTitleType) {
   try {
     const res = await fetch(url, {
       method: 'POST',
