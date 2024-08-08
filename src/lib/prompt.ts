@@ -23,6 +23,8 @@ const TIP_JSON_PROMPT = "Si el json es incorrecto, se te penalizara. Si el json 
 const TIP_TEXT_PROMPT = "Si la preapracion es incorrecta, se te penalizara. Si la preparacion es correcta, te dare una propina de 100 euros.";
 
 const FORMAT_JSON = `IMPORTANTE:
+  - Presta especial atencion a los alergenos, intolerancias y preferencias alimentarias.
+  - Se muy estricto si el urusario es vegetariano, vegano o celiaco.
   - La respuesta estara en español de España.
   - EXCULSIVAMENTE devolveras un json.
   - El json DEBE estar codificado en UTF-8 y minificado.
