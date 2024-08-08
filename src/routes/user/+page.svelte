@@ -115,7 +115,7 @@
 		</form>
 	</Box>
 
-	<Heading class="!text-2xl font-bold lg:mb-2">Ajustes visuales</Heading>
+	<Heading class="mt-6 !text-2xl font-bold lg:mb-2">Ajustes visuales</Heading>
 
 	<Box class="flex w-full flex-col p-4">
 		<Text class="font-semibold">Tema</Text>
