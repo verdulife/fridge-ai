@@ -6,10 +6,16 @@
 	import DishCard from '@/components/DishCard.svelte';
 	import Heading from '@/components/ui/Heading.svelte';
 	import Text from '@/components/ui/Text.svelte';
+	import Button from '@/components/ui/Button.svelte';
+	import Ai from '@/assets/Ai.svelte';
 
 	$: groupMenusByDay = Object.groupBy($Menus, ({ week_day }: DayType) =>
 		week_day.toLocaleLowerCase()
 	);
+
+	function testMenu() {
+		console.log($Menus);
+	}
 </script>
 
 <div class="flex w-full flex-col items-start py-6 lg:py-8">
@@ -17,6 +23,13 @@
 	<Text class="max-w-xs px-4 text-neutral-400 lg:max-w-md lg:px-8">
 		Todos los menús que se han generado los encontrarás aquí.
 	</Text>
+
+	<!-- <div class="flex items-center px-4 py-2 lg:px-8">
+		<Button class="flex items-center gap-1 py-2 pl-3 pr-4 text-sm font-semibold" click={testMenu}>
+			<Ai class="size-5" />
+			Medir menú semanal
+		</Button>
+	</div> -->
 
 	{#each Object.entries(groupMenusByDay) as [day, menu]}
 		<section class="mt-8 flex w-full flex-col gap-2">
