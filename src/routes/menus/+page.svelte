@@ -8,13 +8,17 @@
 	import Text from '@/components/ui/Text.svelte';
 	import Button from '@/components/ui/Button.svelte';
 	import Ai from '@/assets/Ai.svelte';
+	import Dialog from '@/components/ui/Dialog.svelte';
+	import EvalDialog from '@/components/EvalDialog.svelte';
+
+	let showDialog = false;
 
 	$: groupMenusByDay = Object.groupBy($Menus, ({ week_day }: DayType) =>
 		week_day.toLocaleLowerCase()
 	);
 
 	function testMenu() {
-		console.log($Menus);
+		showDialog = true;
 	}
 </script>
 
@@ -24,10 +28,10 @@
 		Todos los menús que se han generado los encontrarás aquí.
 	</Text>
 
-	<!-- <div class="flex items-center px-4 py-2 lg:px-8">
+	<!-- <div class="flex items-center px-4 pt-4 lg:px-8">
 		<Button class="flex items-center gap-1 py-2 pl-3 pr-4 text-sm font-semibold" click={testMenu}>
 			<Ai class="size-5" />
-			Medir menú semanal
+			Valorar menús
 		</Button>
 	</div> -->
 
@@ -67,6 +71,8 @@
 		</section>
 	{/each}
 </div>
+
+<!-- <EvalDialog bind:open={showDialog}></EvalDialog> -->
 
 <style>
 	ul {
