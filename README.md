@@ -25,6 +25,8 @@ Y si te preocupa tu nutrición, todos los menús tienen en cuenta tus datos para
   - Listado de ingredientes por plato
   - Listado de ingredientes por día
   - Listado de ingredientes por semana
+- Sugiere un plato y obtén los ingredientes y la receta
+- Información sobre para cada plato
 
 ## Tecnologías
 
