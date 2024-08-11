@@ -35,6 +35,14 @@ export const USER_INFO_LIB: { [key: string]: string } = {
   weight: "kg",
 };
 
+export const NUTRISCORE_LIB: { [key: string]: number } = {
+  "A": 10,
+  "B": 8,
+  "C": 6,
+  "D": 4,
+  "E": 2,
+};
+
 export const average_preparation_options = [
   {
     id: "i-dont-care",

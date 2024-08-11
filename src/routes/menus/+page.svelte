@@ -8,7 +8,6 @@
 	import Text from '@/components/ui/Text.svelte';
 	import Button from '@/components/ui/Button.svelte';
 	import Ai from '@/assets/Ai.svelte';
-	import Dialog from '@/components/ui/Dialog.svelte';
 	import EvalDialog from '@/components/EvalDialog.svelte';
 
 	let showDialog = false;
@@ -17,7 +16,7 @@
 		week_day.toLocaleLowerCase()
 	);
 
-	function testMenu() {
+	function evalMenu() {
 		showDialog = true;
 	}
 </script>
@@ -29,7 +28,7 @@
 	</Text>
 
 	<!-- <div class="flex items-center px-4 pt-4 lg:px-8">
-		<Button class="flex items-center gap-1 py-2 pl-3 pr-4 text-sm font-semibold" click={testMenu}>
+		<Button class="flex items-center gap-1 py-2 pl-3 pr-4 text-sm font-semibold" click={evalMenu}>
 			<Ai class="size-5" />
 			Valorar menús
 		</Button>
