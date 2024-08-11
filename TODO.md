@@ -32,6 +32,8 @@
 - [x] Añadir opción de usar Cohere API del usuario.
 - [x] Mejorar ui funcionalidad de dislike.
 - [x] Revisar textos, ortografía y gramática.
+- [ ] Evaluacion del menu semanal.
+- [ ] Crear plato al vuelo en shopping list.
 - [ ] Hacer que los platos no se generen en paralelo para mantener el contexto.
 - [ ] Autocompletar ingredientes en tour
 - [ ] Botón de agrupar por en la route shopping list
