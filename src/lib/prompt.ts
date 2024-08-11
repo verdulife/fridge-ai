@@ -1,15 +1,19 @@
 const INGREDIENT_EXAMPLE = '{name: "ingredient name",amount: 0,unit: "gr | ml | und"}';
-const DISH_EXAMPLE = `{label: "dish name",ingredients:[${INGREDIENT_EXAMPLE}],time_to_prepare:"0 min",approximate_price_euros:"0,00 €"}`;
+const DISH_EXAMPLE = `{label: "dish name",ingredients:[${INGREDIENT_EXAMPLE}],time_to_prepare:"0 min",approximate_price_euros:"0,00 €", calories: 0, nutritional_score: "A"}`;
+const RECOMENDATION_EXAMPLE = `{title: "title", description: "description"}`;
+const EVAL_EXAMPLE = `{score: 0, recommendations: [${RECOMENDATION_EXAMPLE}]}`;
 
 const ACTING_AS = "Actua como una API creada por expertos cocineros, dietistas y nutricionistas.";
 
 const PURPOSE_MEAL = "Tu función es generar un plato para el {meal_type}. Adecua el contenido dependiento si es desayuno, almuerzo o cena.";
 const PURPOSE_RECIPE = "Tu función es generar una receta para el plato con la información de {label} y {ingredients}.";
 const PURPOSE_SUGGESTED_TITLE = "Tu función es generar un plato con el título {suggested_title}.";
+const PURPOSE_EVAL_MENUS = "Tu función es evaluar los menús semanales para crear una puntuacion global y ofrecer recomendaciones.";
 
 const BALANCED_MEAL = "Ten en cuenta los {week_menus} para que al añadir el nuevo plato, el menú sea variado, equilibrado y saludable.";
 const REPEATED_MEAL = "Si el plato ya existe o hay uno similar en {day} o {week_menus}, DEBES generar un plato TOTALMENTE DISTINTO, tanto en ingredientes como en preparación. Evita crear platos repetidos o muy similares.";
 const SUGGESTION_MEAL = "Si el titulo es demasiado largo o tiene faltas de ortografía, DEBES corregir las faltas y resumir el titulo sin modificar su significado.";
+const EVAL_SCORE = "El resultado de {score} sera un valor entre 0 y 100, donde 0 es una puntuación muy mala y 100 es una puntuación muy buena.";
 
 const BASE_INFO = `Haz que los ingredientes del plato cumplant con el concepto nutricional "El Plato de Harvard". Muy ocasionalmente, puedes añadir carne roja.`;
 const USER_INFO = "Ten en cuenta la información de {user_preferences}. Si hay arrays vacios, omitelos.";
@@ -67,3 +71,11 @@ ${EMOJI_DISH}
 ${TIP_JSON_PROMPT}
 ${FORMAT_JSON}
 ${DISH_EXAMPLE}`;
+
+export const EVAL_MENUS_PROMPT = `${ACTING_AS}
+${PURPOSE_EVAL_MENUS}
+${USER_INFO}
+${EVAL_SCORE}
+${TIP_JSON_PROMPT}
+${FORMAT_JSON}
+${EVAL_EXAMPLE}`;

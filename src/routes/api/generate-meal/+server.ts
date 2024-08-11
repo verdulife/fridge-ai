@@ -31,7 +31,7 @@ export async function POST({ cookies, request }) {
       },
       {
         role: 'assistant',
-        content: `{"label":"Bol de frutas con yogur 🍉","ingredients":[{"name":"Yogur natural","amount":150,"unit":"gr"},{"name":"Sandía","amount":100,"unit":"gr"},{"name":"Melón","amount":100,"unit":"gr"},{"name":"Uva","amount":50,"unit":"gr"},{"name":"Kiwi","amount":1,"unit":"und"},{"name":"Miel","amount":5,"unit":"gr"}],"time_to_prepare":"10 min","approximate_price_euros":"1,20 €"}`
+        content: `{"label":"Bol de frutas con yogur 🍉","ingredients":[{"name":"Yogur natural","amount":150,"unit":"gr"},{"name":"Sandía","amount":100,"unit":"gr"},{"name":"Melón","amount":100,"unit":"gr"},{"name":"Uva","amount":50,"unit":"gr"},{"name":"Kiwi","amount":1,"unit":"und"},{"name":"Miel","amount":5,"unit":"gr"}],"time_to_prepare":"10 min","approximate_price_euros":"1,20 €", "calories": 265, "nutritional_score": "B"}`
       },
       {
         role: 'user',

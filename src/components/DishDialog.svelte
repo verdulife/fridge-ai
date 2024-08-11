@@ -16,6 +16,7 @@
 	import Price from '@/components/Price.svelte';
 	import { CurrentDay, Menus } from '@/lib/stores';
 	import Error from '@/assets/Error.svelte';
+	import Scale from '@/assets/Scale.svelte';
 
 	export let type: 'breakfast' | 'lunch' | 'dinner';
 	export let dish: DishType;
@@ -134,9 +135,31 @@
 		<header class="flex flex-col items-start gap-4">
 			<Heading title={dish.label}>{dish.label}</Heading>
 
-			<Text class="flex items-center gap-1 text-xs uppercase text-neutral-400">
-				<Time class="size-5" />
-				{!Number(dish.time_to_prepare) ? dish.time_to_prepare : `${dish.time_to_prepare} minutos`}
+			<Text class="flex items-center gap-4 text-xs uppercase text-neutral-400">
+				<span class="flex items-center gap-1">
+					<Time class="size-5" />
+					{!Number(dish.time_to_prepare) ? dish.time_to_prepare : `${dish.time_to_prepare} min`}
+				</span>
+
+				{#if dish.calories}
+					<span class="flex items-center gap-1">
+						<Scale class="size-5" />
+						{dish.calories} cal
+					</span>
+				{/if}
+
+				{#if dish.nutritional_score}
+					<span
+						class="bg-ora flex size-5 items-center justify-center gap-1 rounded-full font-bold text-white"
+						class:bg-green-500={dish.nutritional_score === 'A'}
+						class:bg-green-800={dish.nutritional_score === 'B'}
+						class:bg-yellow-400={dish.nutritional_score === 'C'}
+						class:bg-orange-500={dish.nutritional_score === 'D'}
+						class:bg-red-600={dish.nutritional_score === 'E'}
+					>
+						{dish.nutritional_score}
+					</span>
+				{/if}
 			</Text>
 
 			{#if isLoading}

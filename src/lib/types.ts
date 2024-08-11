@@ -24,6 +24,8 @@ export interface DishType {
   ingredients: Array<IngredientsType>;
   time_to_prepare: string;
   approximate_price_euros: string;
+  calories: number;
+  nutritional_score: "A" | "B" | "C" | "D" | "E";
   recipe?: string;
 }
 
@@ -60,4 +62,9 @@ export interface PromptInputRecipeType {
 
 export interface PromptInputSuggestedTitleType {
   suggested_title: string;
+}
+
+export interface PromptInputEvalMenusType {
+  user_preferences: UserPreferencesType;
+  week_menus: string[];
 }

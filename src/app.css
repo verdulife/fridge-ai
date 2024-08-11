@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+	--vista: rgb(133 208 169);
+}
