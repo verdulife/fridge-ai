@@ -44,7 +44,7 @@
 
 <Link
 	href="/tour/step-1"
-	class="!hover:text-neutral-50 fixed bottom-16 w-2/3 max-w-64 bg-vista-300 px-6 py-3 text-neutral-800 hover:bg-vista-400 dark:bg-vista-300"
+	class="!hover:text-neutral-50 fixed bottom-14 w-2/3 max-w-64 bg-vista-300 px-6 py-3 text-neutral-800 hover:bg-vista-400 dark:bg-vista-300"
 	brand
 >
 	EMPEZAR

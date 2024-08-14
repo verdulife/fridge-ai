@@ -78,4 +78,4 @@
 	</div>
 </div>
 
-<Link href="/tour/step-5" class="fixed bottom-16 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Link>
+<Link href="/tour/step-5" class="fixed bottom-14 w-2/3 max-w-64 px-6 py-3">SIGUIENTE</Link>

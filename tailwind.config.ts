@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+import type { Config } from 'tailwindcss';
+
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   darkMode: 'selector',
@@ -22,5 +23,4 @@ export default {
     },
   },
   plugins: [],
-}
-
+} as Config;
