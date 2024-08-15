@@ -24,7 +24,8 @@ export async function generate(url: string, input: PromptInputMealType | PromptI
 
     const parsedData = JSON.parse(data);
     return parsedData;
-  } catch {
+  } catch (err) {
+    console.log(err);
     throw new Error('Error parsing data');
   }
 };

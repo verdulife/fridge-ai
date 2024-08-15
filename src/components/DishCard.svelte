@@ -64,7 +64,10 @@
 			console.log(`${type} done`);
 		} catch {
 			meals_state[type] = false;
+			meals_state = meals_state;
+
 			anounceError();
+
 			console.log(`Error generating ${type}`);
 		}
 	}

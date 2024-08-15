@@ -111,6 +111,9 @@
 			isLoading = true;
 
 			const res = await generate('/api/generate-by-title', { suggested_title: titleText });
+
+			console.log(res);
+
 			$Menus = $Menus.map((menu: DayType) => {
 				if (menu.week_day.toLocaleLowerCase() === $CurrentDay) menu[type] = res;
 				return menu;
